@@ -14,16 +14,16 @@
 * much after initial creation.
 */
 
-/* TODO: REPLACE WITH YOUR OWN FONT! */
-@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
-
-:root {
-  --primary: #396dff;
-  --primary--dim: #6987db;
-  --darkgrey: #d4d4d4;
-  --medgrey: #e0e0e0;
-  --grey: #f7f7f7;
+/* Imported handwritten font seen in logo */
+@import url("https://fonts.googleapis.com/css2?family=Special+Elite&display=swap");
+/* Imported font for rest of page */
+@import url("https://fonts.googleapis.com/css2?family=Readex+Pro:wght@160..700&family=Special+Elite&display=swap");
+root {
+  /* Below is the s(H)elfie color palette */
+  --darkpurple: #5b0a78;
+  --lightpurple: #e6ceff;
   --white: #fff;
+  --grey: #dddddd;
 
   --xs: 4px;
   --s: 8px;
