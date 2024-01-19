@@ -1,0 +1,17 @@
+.Profile-floor {
+  height: 35vh;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: var(--darkpurple);
+}
+
+body {
+  background-color: var(--grey);
+}
+
+.Profile-name {
+  font-family: "Readex Pro";
+  color: var(--darkpurple);
+}

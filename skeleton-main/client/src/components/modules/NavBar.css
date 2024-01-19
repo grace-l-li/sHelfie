@@ -2,15 +2,22 @@
 /* @import url("https://fonts.googleapis.com/css2?family=Special+Elite&display=swap"); */
 
 .NavBar-container {
-  padding: var(--m) var(--m) var(--s) var(--m);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--m) var(--m) var(--m) var(--m);
   background-color: var(--lightpurple);
 }
 
 .NavBar-title {
   color: var(--darkpurple);
-  font-size: 30px;
+  font-size: 32px;
   font-family: "Special Elite";
   font-weight: bold;
+  position: relative;
+  top: 5px;
+  text-decoration: none !important;
+  /* removes underline from logo (overrides the "NavLink" styling) */
 }
 
 .NavBar-linkContainer {
@@ -26,7 +33,7 @@
   font-size: 21px;
 }
 
-.NavBar-link:visited {
+.active {
   opacity: 1;
   text-decoration: underline;
 }

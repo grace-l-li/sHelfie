@@ -8,7 +8,7 @@ const Profile = () => {
     <>
       <NavBar />
       <div>
-        <h1 className="Profile-name u-textCenter">YOUR NAME HERE</h1>
+        <h1 className="Profile-name u-textCenter">Jacob Elordi</h1>
         <hr className="Profile-line" />
         <div className="u-flex">
           <div className="Profile-subContainer u-textCenter">
@@ -27,6 +27,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      <div className="Profile-floor">{/* Content for the lower third container */}</div>
     </>
   );
 };
