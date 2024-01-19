@@ -1,14 +1,41 @@
 /* Imported handwritten font seen in logo */
-@import url("https://fonts.googleapis.com/css2?family=Special+Elite&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Special+Elite&display=swap"); */
 
 .NavBar-container {
-  padding: var(--s) var(--m);
+  padding: var(--m) var(--m) var(--s) var(--m);
   background-color: var(--lightpurple);
 }
 
 .NavBar-title {
   color: var(--darkpurple);
-  font-size: 20px;
+  font-size: 30px;
   font-family: "Special Elite";
   font-weight: bold;
+}
+
+.NavBar-linkContainer {
+  margin-left: var(--l);
+}
+
+.NavBar-link {
+  color: var(--darkpurple);
+  opacity: 0.7;
+  text-decoration: none;
+  font-family: "Readex Pro";
+  font-weight: bold;
+  font-size: 21px;
+}
+
+.NavBar-link:visited {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.NavBar-link:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.NavBar-link + .NavBar-link {
+  margin-left: var(--m);
 }
