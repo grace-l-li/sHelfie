@@ -1,3 +1,6 @@
+/* Imported handwritten font seen in logo */
+@import url("https://fonts.googleapis.com/css2?family=Special+Elite&display=swap");
+
 .NavBar-container {
   padding: var(--s) var(--m);
   background-color: var(--lightpurple);
@@ -6,4 +9,6 @@
 .NavBar-title {
   color: var(--darkpurple);
   font-size: 20px;
+  font-family: "Special Elite";
+  font-weight: bold;
 }

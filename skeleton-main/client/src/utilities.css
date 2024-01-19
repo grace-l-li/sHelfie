@@ -14,11 +14,9 @@
 * much after initial creation.
 */
 
-/* Imported handwritten font seen in logo */
-@import url("https://fonts.googleapis.com/css2?family=Special+Elite&display=swap");
 /* Imported font for rest of page */
 @import url("https://fonts.googleapis.com/css2?family=Readex+Pro:wght@160..700&family=Special+Elite&display=swap");
-root {
+:root {
   /* Below is the s(H)elfie color palette */
   --darkpurple: #5b0a78;
   --lightpurple: #e6ceff;
@@ -34,7 +32,7 @@ root {
 body {
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: "Readex Pro";
   font-weight: 300;
 }
 
