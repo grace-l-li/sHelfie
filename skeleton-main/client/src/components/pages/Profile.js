@@ -4,6 +4,7 @@ import "./Profile.css";
 import NavBar from "../modules/NavBar";
 import tableDrawing from "../modules/Table.svg";
 import shelfDrawing from "../modules/ShelfDrawing.svg";
+import { get } from "../../utilities";
 
 const Profile = (props) => {
   const [userData, setUserData] = useState();
@@ -34,11 +35,11 @@ const Profile = (props) => {
       </div>
       <div className="Profile-floor">
         {/* No Link here yet! */}
-        <a href="/your-link" className="table-link">
+        <a href="/curr/" className="table-link">
           <img src={tableDrawing} alt="Table" />
         </a>
       </div>
-      <a href="/your-link-for-shelf" className="shelf-link">
+      <a href="/read/" className="shelf-link">
         <img src={shelfDrawing} alt="Shelf" />
       </a>
     </>
