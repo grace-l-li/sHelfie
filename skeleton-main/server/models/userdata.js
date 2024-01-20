@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const UserDataSchema = new mongoose.Schema({
   name: String,
-  googleid: String,
+  id: String, //_id of user that this data belongs to
   bio: String,
   followers: [],
   num_followers: Number,

@@ -52,7 +52,6 @@ const App = () => {
           <Home path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
         }
       />
-      <Route path="*" element={<NotFound />} />
 
       <Route
         path="/profile"

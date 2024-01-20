@@ -1,12 +1,12 @@
 const UserData = require("./models/userdata");
 
 const getOrCreateUserData = (user) => {
-  return UserData.findOne({ googleid: user.sub }).then((existingUserData) => {
+  return UserData.findOne({ id: user._id }).then((existingUserData) => {
     if (existingUserData) return existingUserData;
 
     const newUserData = new UserData({
       name: user.name,
-      googleid: user.sub,
+      id: user._id,
       bio: "",
       followers: [],
       num_followers: 0,
