@@ -5,16 +5,20 @@ import "../../utilities.css";
 import "./Profile.css";
 
 const Read = (props) => {
-  const [userData, setUserData] = useState();
+  //   const [userData, setUserData] = useState();
 
   useEffect(() => {
     document.title = "Bookshelf";
-    //     get(`/api/userdata`, { userid: props.userId }).then((userDataObj) => setUserData(userDataObj));
+    //get(`/api/userdata`, { userid: props.userId }).then((userDataObj) => setUserData(userDataObj));
   }, []);
 
   return (
     <>
-      <div>Hi</div>
+      <div>Read</div>
+
+      <a href="/profile/">
+        <button>Back</button>
+      </a>
     </>
   );
 };

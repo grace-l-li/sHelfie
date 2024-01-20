@@ -9,6 +9,7 @@ import Home from "./pages/Home.js";
 import Profile from "./pages/Profile.js";
 import Read from "./pages/read.js";
 import Curr from "./pages/curr.js";
+import TBR from "./pages/tbr.js";
 
 import "../utilities.css";
 
