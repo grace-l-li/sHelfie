@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "../../utilities.css";
 import "./Profile.css";
 import NavBar from "../modules/NavBar";
+import tableDrawing from "../modules/Table.svg";
+import shelfDrawing from "../modules/ShelfDrawing.svg";
 
 const Profile = (props) => {
   const [userData, setUserData] = useState();
@@ -30,9 +32,15 @@ const Profile = (props) => {
           </div>
         </div>
       </div>
-      <div className="Profile-floor">{/* Content for the lower third container */}</div>
-
-      <div>{userData.num_followers}</div>
+      <div className="Profile-floor">
+        {/* No Link here yet! */}
+        <a href="/your-link" className="table-link">
+          <img src={tableDrawing} alt="Table" />
+        </a>
+      </div>
+      <a href="/your-link-for-shelf" className="shelf-link">
+        <img src={shelfDrawing} alt="Shelf" />
+      </a>
     </>
   );
 };
