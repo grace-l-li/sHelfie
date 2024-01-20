@@ -91,6 +91,18 @@ const App = () => {
         }
       />
 
+      <Route
+        path="/tbr"
+        element={
+          <TBR
+            path="/tbr"
+            // handleLogin={handleLogin}
+            // handleLogout={handleLogout}
+            // userId={userId}
+          />
+        }
+      />
+
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
