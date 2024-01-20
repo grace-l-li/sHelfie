@@ -10,7 +10,7 @@ const Profile = (props) => {
   //   const [userData, setUserData] = useState();
 
   useEffect(() => {
-    document.title = "Profile Page";
+    document.title = "Profile";
     // get(`/api/userdata`, { userid: props.userId }).then((userDataObj) => setUserData(userDataObj));
   }, []);
 
