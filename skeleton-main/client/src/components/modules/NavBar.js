@@ -1,22 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom"; // Import NavLink instead of Link
 
 import "./NavBar.css";
 
-/**
- * The navigation bar at the top of all pages. Takes no props.
- */
 const NavBar = () => {
   return (
     <nav className="NavBar-container">
-      <div className="NavBar-title u-inlineBlock">s(H)elfie</div>
+      <NavLink to="/" exact className="NavBar-title">
+        s(H)elfie
+      </NavLink>
       <div className="NavBar-linkContainer u-inlineBlock">
-        <Link to="/" className="NavBar-link">
+        <NavLink to="/" exact activeClassName="active" className="NavBar-link">
           Home
-        </Link>
-        <Link to="/profile/" className="NavBar-link">
+        </NavLink>
+        <NavLink to="/profile/" activeClassName="active" className="NavBar-link">
           Profile
-        </Link>
+        </NavLink>
       </div>
     </nav>
   );
