@@ -7,11 +7,11 @@ import shelfDrawing from "../modules/ShelfDrawing.svg";
 import { get } from "../../utilities";
 
 const Profile = (props) => {
-  const [userData, setUserData] = useState();
+  //   const [userData, setUserData] = useState();
 
   useEffect(() => {
     document.title = "Profile Page";
-    get(`/api/userdata`, { userid: props.userId }).then((userDataObj) => setUserData(userDataObj));
+    // get(`/api/userdata`, { userid: props.userId }).then((userDataObj) => setUserData(userDataObj));
   }, []);
 
   return (
