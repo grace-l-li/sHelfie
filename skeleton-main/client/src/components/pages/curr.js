@@ -17,7 +17,7 @@ const Curr = (props) => {
       <div>Currently Reading</div>
 
       <a href="/profile/">
-        <button>Back</button>
+        <button class="dark-btn">Back</button>
       </a>
     </>
   );

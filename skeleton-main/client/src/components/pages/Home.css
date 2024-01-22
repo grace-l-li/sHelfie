@@ -1,0 +1,17 @@
+.Home-container {
+  flex-direction: row;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Feed-flex {
+  flex: 3;
+  background-color: grey;
+}
+
+.Friends-flex {
+  flex: 1;
+  background-color: white;
+}

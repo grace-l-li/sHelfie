@@ -17,7 +17,7 @@ const TBR = (props) => {
       <div>TBR</div>
 
       <a href="/profile/">
-        <button>Back</button>
+        <button class="dark-btn">Back</button>
       </a>
     </>
   );

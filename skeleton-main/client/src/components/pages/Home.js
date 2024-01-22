@@ -12,7 +12,11 @@ const Home = () => {
   return (
     <div>
       <NavBar />
-      <Feed /> {/* include the Feed component */}
+      <Feed />
+      {/* <div className="Home-container">
+        <Feed className="Feed-flex" />
+        <div className="Friends-flex">hi</div>
+      </div> */}
     </div>
   );
 };
