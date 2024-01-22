@@ -2,13 +2,14 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import homeIcon from "./HomeIcon.svg";
 import profileIcon from "./ProfileIcon.svg";
+import logo from "./ShelfieLogo.svg";
 import "./NavBar.css";
 
 const NavBar = () => {
   return (
     <nav className="NavBar-container">
       <NavLink to="/" exact className="NavBar-title">
-        s(H)elfie
+        <img src={logo} alt="s(H)elfie" />
       </NavLink>
       <div className="NavBar-linkContainer u-inlineBlock">
         <NavLink to="/" exact className="NavBar-link">
