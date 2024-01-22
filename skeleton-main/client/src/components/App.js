@@ -7,6 +7,9 @@ import NavBar from "./modules/NavBar.js";
 import NotFound from "./pages/NotFound.js";
 import Home from "./pages/Home.js";
 import Profile from "./pages/Profile.js";
+import Read from "./pages/read.js";
+import Curr from "./pages/curr.js";
+import TBR from "./pages/tbr.js";
 
 import "../utilities.css";
 
@@ -52,7 +55,6 @@ const App = () => {
           <Home path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
         }
       />
-      <Route path="*" element={<NotFound />} />
 
       <Route
         path="/profile"
@@ -65,6 +67,43 @@ const App = () => {
           />
         }
       />
+
+      <Route
+        path="/read"
+        element={
+          <Read
+            path="/read"
+            // handleLogin={handleLogin}
+            // handleLogout={handleLogout}
+            // userId={userId}
+          />
+        }
+      />
+
+      <Route
+        path="/curr"
+        element={
+          <Curr
+            path="/curr"
+            // handleLogin={handleLogin}
+            // handleLogout={handleLogout}
+            // userId={userId}
+          />
+        }
+      />
+
+      <Route
+        path="/tbr"
+        element={
+          <TBR
+            path="/tbr"
+            // handleLogin={handleLogin}
+            // handleLogout={handleLogout}
+            // userId={userId}
+          />
+        }
+      />
+
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

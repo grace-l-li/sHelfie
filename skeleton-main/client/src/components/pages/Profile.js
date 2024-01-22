@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../utilities.css";
 import "./Profile.css";
 import NavBar from "../modules/NavBar";
@@ -8,8 +8,16 @@ import shelfDrawing from "../modules/ShelfDrawing.svg";
 import boxDrawing from "../modules/Box.svg";
 import blankProfile from "../modules/BlankProfile.svg";
 import pictureFrame from "../modules/PictureFrame.svg";
+import { get } from "../../utilities";
 
-const Profile = () => {
+const Profile = (props) => {
+  //   const [userData, setUserData] = useState();
+
+  useEffect(() => {
+    document.title = "Profile";
+    // get(`/api/userdata`, { userid: props.userId }).then((userDataObj) => setUserData(userDataObj));
+  }, []);
+
   return (
     <>
       <NavBar />
@@ -37,15 +45,15 @@ const Profile = () => {
       <div className="Profile-floor" />
 
       <div className="flex-container">
-        <a href="/box-link" className="box-link">
+        <a href="/tbr/" className="box-link">
           <img src={boxDrawing} alt="Box" />
           <div className="subpage-link">to be read</div>
         </a>
-        <a href="/your-link" className="table-link">
+        <a href="/curr/" className="table-link">
           <img src={tableDrawing} alt="Table" />
           <div className="subpage-link">currently reading</div>
         </a>
-        <a href="/your-link-for-shelf" className="shelf-link">
+        <a href="/read/" className="shelf-link">
           <img src={shelfDrawing} alt="Shelf" />
           <div className="subpage-link">read</div>
         </a>
