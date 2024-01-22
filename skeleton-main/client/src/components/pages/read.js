@@ -17,7 +17,7 @@ const Read = (props) => {
       <div>Read</div>
 
       <a href="/profile/">
-        <button>Back</button>
+        <button class="dark-btn">Back</button>
       </a>
     </>
   );

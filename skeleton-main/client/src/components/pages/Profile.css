@@ -3,14 +3,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 40vw;
-  height: 40vh;
-  position: absolute;
-  padding-right: 2vw;
-  padding-bottom: 1vh;
-  top: 9vh;
-  left: 5vh;
-  z-index: 1;
+  width: 100%;
+  margin-top: 2vh;
 }
 
 .Friends-container {
@@ -40,6 +34,7 @@
   flex: 2;
   height: 30vh;
   padding: 2vh;
+  margin-left: 5vh;
 }
 
 .Profile-image-container {
@@ -50,19 +45,15 @@
   flex: 1;
   min-height: 120px;
   top: 0px;
-  left: 10px;
+  margin-right: 5vh;
 }
 
-.Profile-image-container button {
+.edit-profile-btn {
   margin-top: 4vh;
-  font-family: "Readex Pro";
-  font-weight: bold;
-  background-color: var(--darkpurple);
-  color: var(--white);
-  border: none;
-  font-size: 3vh;
-  border-radius: 15px;
-  padding: 6px;
+}
+
+.add-book-btn {
+  margin-left: 22vw;
 }
 
 .Profile-image {
@@ -73,7 +64,7 @@
 
 .Picture-frame {
   position: absolute;
-  width: 25vh;
+  width: 24vh;
   height: auto;
   z-index: 2;
 }
@@ -106,43 +97,37 @@ body {
   font-size: 8vh;
   margin-bottom: 5px;
 }
-/* 
-.table-link {
-  margin-top: 190px;
-  margin-bottom: 20px;
-} */
 
 .table-link img {
-  min-width: 18vw;
+  width: 18vw;
   height: auto;
 }
 
-.table-link,
-.shelf-link,
-.box-link {
+.shelf-link {
+  z-index: 2;
+  margin-bottom: 12vh;
+}
+
+.box-link,
+.table-link {
+  width: 50%;
   display: flex;
-  flex-direction: column; /* Stack items vertically */
-  align-items: center; /* Center items horizontally */
-  justify-content: center; /* Center items vertically */
-  margin-top: 20px; /* Example margin */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-/* 
-/* .shelf-link {
-  margin-top: -50px;
-  margin-bottom: 20vh;
-} */
+
 .shelf-link img {
-  margin-bottom: 15vh;
-  min-width: 18vw;
+  width: 18vw;
   height: auto;
 }
 
 .box-link {
-  margin-top: 110px;
+  margin-bottom: 15vh;
 }
 
 .box-link img {
-  min-width: 18vw;
+  width: 18vw;
   height: auto;
 }
 
@@ -154,6 +139,7 @@ body {
   font-size: 4vh;
   transition: color 0.3s ease;
   transition: text-decoration 0.3s ease;
+  margin-top: 1vh;
 }
 
 .subpage-link:hover {
@@ -168,6 +154,44 @@ body {
   width: 100%;
   bottom: 0;
   z-index: 2;
+}
+
+.outermost-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+  bottom: 0;
+  z-index: 2;
+}
+
+.left-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 2;
+  z-index: 1;
+  width: 100%;
+}
+
+.bottomleft-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  flex: 3;
+}
+
+.right-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-height: 90vh;
+  z-index: 1;
 }
 
 .shelf-link,

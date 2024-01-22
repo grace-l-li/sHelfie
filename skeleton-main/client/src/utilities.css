@@ -28,6 +28,40 @@
   --m: 16px;
   --l: 24px;
 }
+.dark-btn {
+  font-family: "Readex Pro";
+  font-weight: bold;
+  background-color: var(--darkpurple);
+  color: var(--white);
+  border: none;
+  font-size: 3vh;
+  border-radius: 15px;
+  padding: 6px;
+  transition: color 0.3s ease;
+  transition: background-color 0.3s ease;
+}
+.dark-btn:hover {
+  background-color: var(--lightpurple);
+  color: var(--darkpurple);
+}
+
+.light-btn {
+  font-family: "Readex Pro";
+  font-weight: bold;
+  background-color: var(--lightpurple);
+  color: var(--white);
+  border: none;
+  font-size: 3vh;
+  border-radius: 15px;
+  padding: 6px;
+  transition: color 0.3s ease;
+  transition: background-color 0.3s ease;
+}
+
+.light-btn:hover {
+  background-color: var(--white);
+  color: var(--darkpurple);
+}
 
 body {
   margin: 0;
