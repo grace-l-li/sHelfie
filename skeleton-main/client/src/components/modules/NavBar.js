@@ -1,6 +1,7 @@
 import React from "react";
-import { NavLink } from "react-router-dom"; // Import NavLink instead of Link
-
+import { NavLink } from "react-router-dom";
+import homeIcon from "./HomeIcon.svg";
+import profileIcon from "./ProfileIcon.svg";
 import "./NavBar.css";
 
 const NavBar = () => {
@@ -10,11 +11,11 @@ const NavBar = () => {
         s(H)elfie
       </NavLink>
       <div className="NavBar-linkContainer u-inlineBlock">
-        <NavLink to="/" exact activeClassName="active" className="NavBar-link">
-          Home
+        <NavLink to="/" exact className="NavBar-link">
+          <img src={homeIcon} alt="Home" />
         </NavLink>
         <NavLink to="/profile/" activeClassName="active" className="NavBar-link">
-          Profile
+          <img src={profileIcon} alt="Profile" />
         </NavLink>
       </div>
     </nav>

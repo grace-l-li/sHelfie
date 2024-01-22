@@ -23,7 +23,7 @@ const LandingPage = ({ userId, handleLogin, handleLogout }) => {
         <GoogleLogin onSuccess={handleLogin} onError={(err) => console.log(err)} />
       )}
 
-      <body>
+      <body class="Landing-Page">
         <div class="container">
           <div class="content">
             <ul>
@@ -32,15 +32,17 @@ const LandingPage = ({ userId, handleLogin, handleLogout }) => {
                   <ul class="front">
                     <li>
                       <div class="frontcover">
-                        <p class="title">Welcome to shelfie!</p>
-                        <h2 class="heading">A place to share your favorite books</h2>
-                        <p class="sub-title">
-                          shelfie is a place to share your favorite books with your friends. You can
-                          create a profile, add books to your shelf, and see what your friends are
-                          reading.{" "}
-                        </p>
+                        <p class="title">Welcome to shelife!</p>
+                        <h2 class="heading">Share your book shelves!</h2>
+                        <p class="sub-title"> </p>
                         <div class="book-icon">
                           <img src=".png" alt=""></img>
+                        </div>
+                        <div class="writer">
+                          <img src=".png" alt=""></img>
+                          <p>
+                            <i>Written by </i>Dannell, Grace, and Franklin
+                          </p>
                         </div>
                       </div>
                     </li>
@@ -50,8 +52,7 @@ const LandingPage = ({ userId, handleLogin, handleLogout }) => {
                     <li></li>
                     <li>
                       <a href="#" class="btn">
-                        {" "}
-                        Login
+                        Login With Google
                       </a>
                     </li>
                     <li></li>

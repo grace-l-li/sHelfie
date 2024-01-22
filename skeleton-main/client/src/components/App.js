@@ -4,10 +4,16 @@ import { Routes, Route } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
 import NavBar from "./modules/NavBar.js";
+//import LoginButton from "./modules/Login.js";
+//import LogoutButton from "./modules/Logout.js";
+
 import NotFound from "./pages/NotFound.js";
 import Home from "./pages/Home.js";
 import Profile from "./pages/Profile.js";
 import Landing from "./pages/Landing.js";
+import Curr from "./pages/curr.js";
+import TBR from "./pages/tbr.js";
+import Read from "./pages/read.js";
 import "../utilities.css";
 
 import { socket } from "../client-socket.js";
@@ -55,10 +61,14 @@ const App = () => {
       <Route
         path="/home"
         element={
-          <Home path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
+          <Home
+            path="home/"
+            handleLogin={handleLogin}
+            handleLogout={handleLogout}
+            userId={userId}
+          />
         }
       />
-      <Route path="*" element={<NotFound />} />
 
       <Route
         path="/profile"
@@ -71,6 +81,43 @@ const App = () => {
           />
         }
       />
+
+      <Route
+        path="/Read"
+        element={
+          <Read
+            path="/Read"
+            // handleLogin={handleLogin}
+            // handleLogout={handleLogout}
+            // userId={userId}
+          />
+        }
+      />
+
+      <Route
+        path="/curr"
+        element={
+          <Curr
+            path="/curr"
+            // handleLogin={handleLogin}
+            // handleLogout={handleLogout}
+            // userId={userId}
+          />
+        }
+      />
+
+      <Route
+        path="/tbr"
+        element={
+          <TBR
+            path="/tbr"
+            // handleLogin={handleLogin}
+            // handleLogout={handleLogout}
+            // userId={userId}
+          />
+        }
+      />
+
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
