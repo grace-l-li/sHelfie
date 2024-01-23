@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 import jwt_decode from "jwt-decode";
 
@@ -25,6 +25,7 @@ import { get, post } from "../utilities";
  */
 const App = () => {
   const [userId, setUserId] = useState(undefined);
+  const navigate = useNavigate();
 
   useEffect(() => {
     get("/api/whoami").then((user) => {
@@ -43,6 +44,7 @@ const App = () => {
       setUserId(user._id);
       post("/api/initsocket", { socketid: socket.id });
     });
+    navigate("/profile");
   };
 
   const handleLogout = () => {

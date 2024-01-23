@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from "react";
+import "../../utilities.css";
 import "./tbr.css";
 
 const TBR = (props) => {

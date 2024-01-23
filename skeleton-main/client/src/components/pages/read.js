@@ -2,7 +2,7 @@ import "./read.css";
 
 import React, { useState, useEffect } from "react";
 import "../../utilities.css";
-import "./Profile.css";
+import "./read.css";
 
 const Read = (props) => {
   //   const [userData, setUserData] = useState();

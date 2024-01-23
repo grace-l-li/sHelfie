@@ -2,7 +2,7 @@ import "./curr.css";
 
 import React, { useState, useEffect } from "react";
 import "../../utilities.css";
-import "./Profile.css";
+import "./curr.css";
 
 const Curr = (props) => {
   //   const [userData, setUserData] = useState();
