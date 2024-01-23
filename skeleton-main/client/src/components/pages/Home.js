@@ -6,6 +6,7 @@ import "./Home.css";
 
 const Home = () => {
   useEffect(() => {
+    document.title = "Home";
     // Set the background color when the component mounts
     document.body.style.backgroundColor = "var(--grey)"; // Assuming var(--grey) is defined in your CSS
 

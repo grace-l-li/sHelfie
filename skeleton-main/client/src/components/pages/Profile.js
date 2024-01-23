@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 import "../../utilities.css";
 import "./Profile.css";
 import NavBar from "../modules/NavBar";
-
 import tableDrawing from "../modules/Table.svg";
 import shelfDrawing from "../modules/ShelfDrawing.svg";
 import boxDrawing from "../modules/Box.svg";
 import blankProfile from "../modules/BlankProfile.svg";
 import pictureFrame from "../modules/PictureFrame.svg";
-import { get } from "../../utilities";
 
 const Profile = (props) => {
   //   const [userData, setUserData] = useState();

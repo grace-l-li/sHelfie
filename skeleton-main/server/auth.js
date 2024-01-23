@@ -5,7 +5,7 @@ const { getOrCreateUserData } = require("./userdatamanager");
 
 // create a new OAuth client used to verify google sign-in
 //    TODO: replace with your own CLIENT_ID
-const CLIENT_ID = "192850721658-rtiea4puhabg53iaddvb3j0fp455acl8.apps.googleusercontent.com";
+const CLIENT_ID = "454439898905-2ih7o3uj4tvlg6im1oecb4ipfmjg0i9t.apps.googleusercontent.com";
 const client = new OAuth2Client(CLIENT_ID);
 
 // accepts a login token from the frontend, and verifies that it's legit
@@ -33,12 +33,12 @@ function getOrCreateUser(user) {
   });
 }
 
-// const getOrCreateUserWithData = (user) => {
-//   const newUser = getOrCreateUser(user);
-//   const newUserData = getOrCreateUserData(newUser);
+const getOrCreateUserWithData = (user) => {
+  const newUser = getOrCreateUser(user);
+  const newUserData = getOrCreateUserData(newUser);
 
-//   return newUser;
-// };
+  return newUser;
+};
 
 function login(req, res) {
   verify(req.body.token)

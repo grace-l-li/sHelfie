@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 import jwt_decode from "jwt-decode";
 
 import NavBar from "./modules/NavBar.js";
+//import LoginButton from "./modules/Login.js";
+//import LogoutButton from "./modules/Logout.js";
+
 import NotFound from "./pages/NotFound.js";
 import Home from "./pages/Home.js";
 import Profile from "./pages/Profile.js";
-import Read from "./pages/read.js";
+import Landing from "./pages/Landing.js";
 import Curr from "./pages/curr.js";
 import TBR from "./pages/tbr.js";
+import Read from "./pages/read.js";
 
 import "../utilities.css";
 
@@ -22,6 +26,7 @@ import { get, post } from "../utilities";
  */
 const App = () => {
   const [userId, setUserId] = useState(undefined);
+  const navigate = useNavigate();
 
   useEffect(() => {
     get("/api/whoami").then((user) => {
@@ -40,6 +45,7 @@ const App = () => {
       setUserId(user._id);
       post("/api/initsocket", { socketid: socket.id });
     });
+    navigate("/profile");
   };
 
   const handleLogout = () => {
@@ -52,7 +58,18 @@ const App = () => {
       <Route
         path="/"
         element={
-          <Home path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
+          <Landing path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
+        }
+      />
+      <Route
+        path="/home"
+        element={
+          <Home
+            path="home/"
+            handleLogin={handleLogin}
+            handleLogout={handleLogout}
+            userId={userId}
+          />
         }
       />
 
