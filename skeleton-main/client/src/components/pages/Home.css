@@ -2,16 +2,23 @@
   flex-direction: row;
   display: flex;
   width: 100%;
-  align-items: center;
   justify-content: space-between;
 }
 
 .Feed-flex {
   flex: 3;
-  background-color: grey;
+}
+
+.Friends-header {
+  font-family: "Readex Pro";
+  color: var(--darkpurple);
+  font-size: 3.5vh;
+  font-weight: 500;
 }
 
 .Friends-flex {
-  flex: 1;
-  background-color: white;
+  padding: 0 4vh;
+  flex: 2;
+  min-width: 20vw;
+  background-color: var(--white);
 }

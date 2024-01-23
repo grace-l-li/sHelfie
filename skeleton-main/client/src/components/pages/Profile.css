@@ -54,6 +54,8 @@
 
 .add-book-btn {
   margin-left: 22vw;
+  margin-top: 10vh;
+  margin-bottom: 2vh;
 }
 
 .Profile-image {
@@ -76,6 +78,15 @@
   margin-top: 10px;
   font-size: 3vh;
 }
+.Profile-background {
+  height: 57vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--grey);
+  z-index: 0;
+}
 
 .Profile-floor {
   height: 43vh;
@@ -86,10 +97,10 @@
   background-color: var(--darkpurple);
   z-index: 0;
 }
-
+/* 
 body {
   background-color: var(--grey);
-}
+} */
 
 .Profile-name {
   font-family: "Readex Pro";
@@ -105,7 +116,7 @@ body {
 
 .shelf-link {
   z-index: 2;
-  margin-bottom: 12vh;
+  margin-bottom: 0vh;
 }
 
 .box-link,
@@ -132,21 +143,12 @@ body {
 }
 
 .subpage-link {
-  text-align: center;
-  color: var(--white);
-  font-family: "Readex Pro";
-  font-weight: bold;
-  font-size: 4vh;
-  transition: color 0.3s ease;
-  transition: text-decoration 0.3s ease;
-  margin-top: 1vh;
+  margin-top: 5vh;
 }
 
-.subpage-link:hover {
-  color: var(--lightpurple);
-  text-decoration: underline;
+.shelf-shift {
+  margin-top: 4vh;
 }
-
 .flex-container {
   display: flex;
   justify-content: space-evenly;
@@ -198,6 +200,7 @@ body {
 .box-link,
 .table-link {
   position: relative;
+  text-decoration: none;
 }
 
 .flex-container img {
