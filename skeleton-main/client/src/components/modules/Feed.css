@@ -20,9 +20,9 @@
 .post-container {
   display: flex; /* Changed to flex to stack children vertically */
   flex-direction: column; /* Stack flex children vertically */
-  width: 60%;
+  width: 70%;
   background-color: #ffffff;
-  margin: 20px auto; /* Center the post container */
+  margin: 10px auto;
   border-radius: 25px;
   overflow: hidden; /* Ensure the child elements adhere to the border-radius */
 }

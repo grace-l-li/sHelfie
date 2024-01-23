@@ -3,6 +3,7 @@ import { GoogleOAuthProvider, GoogleLogin, googleLogout } from "@react-oauth/goo
 
 import "../../utilities.css";
 import "./Landing.css";
+import shelfieLogo from "../modules/ShelfieLogo.svg";
 
 //TODO: REPLACE WITH YOUR OWN CLIENT_ID
 const GOOGLE_CLIENT_ID = "454439898905-2ih7o3uj4tvlg6im1oecb4ipfmjg0i9t.apps.googleusercontent.com";
@@ -19,18 +20,10 @@ const LandingPage = ({ userId, handleLogin, handleLogout }) => {
                   <ul class="front">
                     <li>
                       <div class="frontcover">
-                        <p class="title">Welcome to s(H)elfie!</p>
-                        <h2 class="heading">Share your bookshelves!</h2>
-                        <p class="sub-title"> </p>
-                        <div class="book-icon">
-                          <img src=".png" alt=""></img>
-                        </div>
-                        <div class="writer">
-                          <img src=".png" alt=""></img>
-                          <p>
-                            <i>Written by </i>Dannell, Grace, and Franklin
-                          </p>
-                        </div>
+                        <h1 class="welcome-text">Welcome to</h1>
+                        <img src={shelfieLogo} alt="Logo" className="logo" />
+                        <h4 class="front-subtext">Written by Grace Li, Franklin Nguyen,</h4>
+                        <h4 class="front-subtext"> and Dannell Lopez</h4>
                       </div>
                     </li>
                     <li></li>
@@ -38,29 +31,29 @@ const LandingPage = ({ userId, handleLogin, handleLogout }) => {
                   <ul class="page">
                     <li />
                     <li>
-                      {/* <a href="#" class="btn">
-                        Login With Google
-                      </a> */}
-                      <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-                        {userId ? (
-                          <button
-                            onClick={() => {
-                              googleLogout();
-                              handleLogout();
-                            }}
-                          >
-                            Logout
-                          </button>
-                        ) : (
-                          <GoogleLogin
-                            clientId={GOOGLE_CLIENT_ID}
-                            buttonText="Login with Google"
-                            onSuccess={handleLogin}
-                            onError={(err) => console.log(err)}
-                            className="NavBar-link NavBar-login"
-                          />
-                        )}
-                      </GoogleOAuthProvider>
+                      <div className="login-button-container">
+                        <h4 class="start-text">Start your story today:</h4>
+                        <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+                          {userId ? (
+                            <button
+                              onClick={() => {
+                                googleLogout();
+                                handleLogout();
+                              }}
+                            >
+                              Logout
+                            </button>
+                          ) : (
+                            <GoogleLogin
+                              clientId={GOOGLE_CLIENT_ID}
+                              buttonText="Login with Google"
+                              onSuccess={handleLogin}
+                              onError={(err) => console.log(err)}
+                              className="NavBar-link NavBar-login"
+                            />
+                          )}
+                        </GoogleOAuthProvider>
+                      </div>
                     </li>
                     <li></li>
                     <li></li>
