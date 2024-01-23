@@ -8,11 +8,11 @@ import "./NavBar.css";
 const NavBar = () => {
   return (
     <nav className="NavBar-container">
-      <NavLink to="/" exact className="NavBar-title">
+      <NavLink to="/home" exact className="NavBar-title">
         <img src={logo} alt="s(H)elfie" />
       </NavLink>
       <div className="NavBar-linkContainer u-inlineBlock">
-        <NavLink to="/" exact className="NavBar-link">
+        <NavLink to="/home" exact className="NavBar-link">
           <img src={homeIcon} alt="Home" />
         </NavLink>
         <NavLink to="/profile/" activeClassName="active" className="NavBar-link">
