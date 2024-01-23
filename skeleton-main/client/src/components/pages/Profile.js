@@ -18,7 +18,7 @@ const Profile = (props) => {
 
   return (
     <>
-      <NavBar />
+      {/* <NavBar /> */}
       <div className="outermost-flex">
         <div className="left-flex">
           <div className="Profile-container">

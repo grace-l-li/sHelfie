@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 
 import jwt_decode from "jwt-decode";
 
@@ -50,79 +50,89 @@ const App = () => {
 
   const handleLogout = () => {
     setUserId(undefined);
-    post("/api/logout");
+    post("/api/logout").then(() => navigate("/")); // Redirect after logout
   };
 
+  const isLandingPage = location.pathname === "/";
+
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <Landing path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
-        }
-      />
-      <Route
-        path="/home"
-        element={
-          <Home
-            path="home/"
-            handleLogin={handleLogin}
-            handleLogout={handleLogout}
-            userId={userId}
-          />
-        }
-      />
+    <>
+      {!isLandingPage && <NavBar userId={userId} handleLogout={handleLogout} />}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Landing
+              path="/"
+              handleLogin={handleLogin}
+              handleLogout={handleLogout}
+              userId={userId}
+            />
+          }
+        />
+        <Route
+          path="/home"
+          element={
+            <Home
+              path="home/"
+              handleLogin={handleLogin}
+              handleLogout={handleLogout}
+              userId={userId}
+            />
+          }
+        />
 
-      <Route
-        path="/profile"
-        element={
-          <Profile
-            path="/profile"
-            handleLogin={handleLogin}
-            handleLogout={handleLogout}
-            userId={userId}
-          />
-        }
-      />
+        <Route
+          path="/profile"
+          element={
+            <Profile
+              path="/profile"
+              handleLogin={handleLogin}
+              handleLogout={handleLogout}
+              userId={userId}
+            />
+          }
+        />
 
-      <Route
-        path="/read"
-        element={
-          <Read
-            path="/read"
-            // handleLogin={handleLogin}
-            // handleLogout={handleLogout}
-            // userId={userId}
-          />
-        }
-      />
+        <Route
+          path="/read"
+          element={
+            <Read
+              path="/read"
+              // handleLogin={handleLogin}
+              // handleLogout={handleLogout}
+              // userId={userId}
+            />
+          }
+        />
 
-      <Route
-        path="/curr"
-        element={
-          <Curr
-            path="/curr"
-            // handleLogin={handleLogin}
-            // handleLogout={handleLogout}
-            // userId={userId}
-          />
-        }
-      />
+        <Route
+          path="/curr"
+          element={
+            <Curr
+              path="/curr"
+              // handleLogin={handleLogin}
+              // handleLogout={handleLogout}
+              // userId={userId}
+            />
+          }
+        />
 
-      <Route
-        path="/tbr"
-        element={
-          <TBR
-            path="/tbr"
-            // handleLogin={handleLogin}
-            // handleLogout={handleLogout}
-            // userId={userId}
-          />
-        }
-      />
+        <Route
+          path="/tbr"
+          element={
+            <TBR
+              path="/tbr"
+              // handleLogin={handleLogin}
+              // handleLogout={handleLogout}
+              // userId={userId}
+            />
+          }
+        />
 
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
   );
 };
 

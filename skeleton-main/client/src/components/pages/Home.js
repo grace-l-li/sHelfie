@@ -18,9 +18,11 @@ const Home = () => {
 
   return (
     <div>
-      <NavBar />
       <div className="Home-container">
-        <Feed className="Feed-flex" />
+        <div className="Feed-flex">
+          <Feed />
+        </div>
+
         <div className="Friends-flex">
           <h3 className="Friends-header">Friend Requests</h3>
 
