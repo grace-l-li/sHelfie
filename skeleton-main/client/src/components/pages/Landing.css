@@ -84,7 +84,7 @@ a {
   margin-top: 2px;
 }
 
-.wrtier i {
+.writer i {
   color: rgb(241, 232, 232, 0.8);
 }
 
@@ -118,40 +118,45 @@ a {
 }
 
 .front {
-  transform: rotateY(-30deg) translateZ(8px);
-}
-
-.back {
-  transform: rotateY(-15deg) translateZ(-8px);
+  transform: rotateY(-16deg) translateZ(8px);
 }
 
 .page li:nth-child(1) {
-  transform: rotateY(-28deg);
+  transform: rotateY(-15deg);
 }
 
 .page li:nth-child(2) {
-  transform: rotateY(-30deg);
+  transform: rotateY(-14deg);
 }
 
 .page li:nth-child(3) {
-  transform: rotateY(-32deg);
+  transform: rotateY(-13deg);
 }
 
 .page li:nth-child(4) {
-  transform: rotateY(-34deg);
+  transform: rotateY(-12deg);
 }
 
 .page li:nth-child(5) {
-  transform: rotateY(-36deg);
+  transform: rotateY(-11deg);
+}
+
+.back {
+  transform: rotateY(-10deg) translateZ(-8px);
 }
 
 .front,
 .back,
 .front li,
-.back li,
-.page {
+.back li {
   position: absolute;
   width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+.page {
+  position: absolute;
+  width: 96%;
   height: 100%;
   transform-style: preserve-3d;
 }
@@ -175,10 +180,9 @@ a {
 }
 
 .page {
-  width: 100%;
-  height: 98%;
-  top: 1%;
-  left: 3%;
+  /* min-width: 95%; */
+  /* width: 100%; */
+  /* height: 98%; */
   z-index: 1;
 }
 
@@ -187,30 +191,30 @@ a {
 }
 
 .book:hover .front {
-  transform: rotateY(-145deg) translateZ(0);
+  transform: rotateY(-150deg) translateZ(0);
 }
 
-.book:hover > .page li:nth-child(1) {
+.book:hover .page li:nth-child(1) {
   transform: rotateY(-30deg);
   transition: 1.5s;
 }
 
-.book:hover > .page li:nth-child(2) {
+.book:hover .page li:nth-child(2) {
   transform: rotateY(-35deg);
   transition: 1.8s;
 }
-.book:hover > .page li:nth-child(3) {
+.book:hover .page li:nth-child(3) {
   transform: rotateY(-118deg);
   transition: 1.6s;
 }
 
-.book:hover > .page li:nth-child(4) {
+.book:hover .page li:nth-child(4) {
   transform: rotateY(-130deg);
   transition: 1.4s;
 }
 
-.book:hover > .page li:nth-child(5) {
-  transform: rotateY(-140deg);
+.book:hover .page li:nth-child(5) {
+  transform: rotateY(-145deg);
   transition: 1.2s;
 }
 
