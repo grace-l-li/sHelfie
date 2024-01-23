@@ -32,8 +32,8 @@ const LandingPage = ({ userId, handleLogin, handleLogout }, props) => {
                   <ul class="front">
                     <li>
                       <div class="frontcover">
-                        <p class="title">Welcome to shelife!</p>
-                        <h2 class="heading">Share your book shelves!</h2>
+                        <p class="title">Welcome to s(H)elfie!</p>
+                        <h2 class="heading">Share your bookshelves!</h2>
                         <p class="sub-title"> </p>
                         <div class="book-icon">
                           <img src=".png" alt=""></img>
