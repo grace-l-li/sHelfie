@@ -6,15 +6,12 @@
 }
 
 .Landing-Page {
-  /* color: red; */
-  /* font-family: "Lato", sans-serif, "Arial"; */
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  min-height: 100vh;
   width: 100%;
-  background-color: green;
-  /* background: rgb(117, 76, 36); */
+  background-color: var(--darkpurple);
 }
 
 ul {
@@ -42,8 +39,8 @@ a {
 
 .book {
   position: relative;
-  width: 190px;
-  height: 270px;
+  width: 60vh;
+  height: 80vh;
   /* perspective: 1000px; */
   transform-style: preserve-3d;
 }
