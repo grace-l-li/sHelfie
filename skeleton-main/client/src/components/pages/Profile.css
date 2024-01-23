@@ -201,24 +201,13 @@ body {
 .table-link {
   position: relative;
   text-decoration: none;
+  z-index: 1;
 }
 
 .flex-container img {
   width: 220px;
 }
 .table-link img {
-  width: 250px;
-  height: auto;
-}
-
-.shelf-link {
-  position: absolute;
-  bottom: 130px; /* Align with the bottom of Profile-floor */
-  right: 120px; /* Align to the right side of the viewport */
-  z-index: 1; /* Ensure it overlaps the floor (adjust as necessary) */
-}
-
-.shelf-link img {
-  width: 250px; /* Adjust as needed */
+  width: 20vw;
   height: auto;
 }
