@@ -56,11 +56,30 @@
   padding: 6px;
   transition: color 0.3s ease;
   transition: background-color 0.3s ease;
+  text-decoration: none !important;
 }
 
 .light-btn:hover {
   background-color: var(--white);
   color: var(--darkpurple);
+}
+.white-btn {
+  font-family: "Readex Pro";
+  font-weight: bold;
+  background-color: var(--white);
+  color: var(--darkpurple);
+  border: none;
+  font-size: 3vh;
+  border-radius: 15px;
+  padding: 6px;
+  transition: color 0.3s ease;
+  transition: background-color 0.3s ease;
+  text-decoration: none !important;
+}
+
+.white-btn:hover {
+  background-color: var(--lightpurple);
+  color: var(--white);
 }
 
 body {
