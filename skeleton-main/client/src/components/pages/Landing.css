@@ -6,12 +6,15 @@
 }
 
 .Landing-Page {
-  color: #34495e;
-  font-family: "Lato", sans-serif, "Arial";
+  /* color: red; */
+  /* font-family: "Lato", sans-serif, "Arial"; */
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgb(117, 76, 36);
+  height: 100%;
+  width: 100%;
+  background-color: green;
+  /* background: rgb(117, 76, 36); */
 }
 
 ul {
@@ -24,22 +27,24 @@ a {
 }
 
 .container {
-  position: relative;
-  width: 1320px;
+  /* position: absolute; */
+  /* width: 1320px; */
   justify-content: center;
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  padding-top: 30%;
-  margin-left: 100px;
+  /* flex-wrap: wrap; */
+  /* padding-top: 30%; */
+  /* margin-left: 100px; */
   text-align: center;
+  height: 100%;
+  width: 100%;
 }
 
 .book {
   position: relative;
   width: 190px;
   height: 270px;
-  perspective: 1000px;
+  /* perspective: 1000px; */
   transform-style: preserve-3d;
 }
 
