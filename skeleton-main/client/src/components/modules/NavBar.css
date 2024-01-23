@@ -11,21 +11,10 @@
   background-color: var(--lightpurple);
 }
 
-<<<<<<< HEAD
-.NavBar-title {
-  color: var(--darkpurple);
-  font-size: 32px;
-  font-family: "Special Elite";
-  font-weight: bold;
-  position: relative;
-  top: 5px;
-  text-decoration: none !important;
-=======
 .NavBar-title img {
   height: auto;
   width: 130px;
   margin-top: 4px;
->>>>>>> main
 }
 
 .NavBar-linkContainer {
@@ -40,10 +29,7 @@
   width: 36px;
   height: auto;
   opacity: 0.6;
-<<<<<<< HEAD
-=======
   transition: opacity 0.3s ease;
->>>>>>> main
 }
 
 .NavBar-link:hover img,

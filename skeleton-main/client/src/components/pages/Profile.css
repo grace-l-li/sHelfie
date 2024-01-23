@@ -89,14 +89,7 @@
 }
 
 .Profile-floor {
-<<<<<<< HEAD
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 35vh;
-=======
   height: 43vh;
->>>>>>> main
   width: 100%;
   position: absolute;
   bottom: 0;

@@ -2,10 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import homeIcon from "./HomeIcon.svg";
 import profileIcon from "./ProfileIcon.svg";
-<<<<<<< HEAD
-=======
 import logo from "./ShelfieLogo.svg";
->>>>>>> main
 import "./NavBar.css";
 
 const NavBar = () => {

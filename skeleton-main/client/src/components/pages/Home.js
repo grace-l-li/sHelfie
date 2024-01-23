@@ -1,9 +1,4 @@
 import React, { useState, useEffect } from "react";
-<<<<<<< HEAD
-import "../../utilities.css";
-import "./Profile.css";
-=======
->>>>>>> main
 import NavBar from "../modules/NavBar.js";
 import Feed from "../modules/Feed.js";
 import "../../utilities.css";
@@ -11,9 +6,7 @@ import "./Home.css";
 
 const Home = () => {
   useEffect(() => {
-<<<<<<< HEAD
     document.title = "Home";
-=======
     // Set the background color when the component mounts
     document.body.style.backgroundColor = "var(--grey)"; // Assuming var(--grey) is defined in your CSS
 
@@ -21,7 +14,6 @@ const Home = () => {
     return () => {
       document.body.style.backgroundColor = ""; // Reset to default or previous color
     };
->>>>>>> main
   }, []);
 
   return (

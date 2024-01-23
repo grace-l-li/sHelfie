@@ -2,11 +2,7 @@ import "./read.css";
 
 import React, { useState, useEffect } from "react";
 import "../../utilities.css";
-<<<<<<< HEAD
-import "./read.css";
-=======
 import "./Profile.css";
->>>>>>> main
 
 const Read = (props) => {
   //   const [userData, setUserData] = useState();
@@ -21,11 +17,7 @@ const Read = (props) => {
       <div>Read</div>
 
       <a href="/profile/">
-<<<<<<< HEAD
-        <button>Back</button>
-=======
         <button class="dark-btn">Back</button>
->>>>>>> main
       </a>
     </>
   );

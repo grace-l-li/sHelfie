@@ -14,9 +14,6 @@ import Landing from "./pages/Landing.js";
 import Curr from "./pages/curr.js";
 import TBR from "./pages/tbr.js";
 import Read from "./pages/read.js";
-import Read from "./pages/read.js";
-import Curr from "./pages/curr.js";
-import TBR from "./pages/tbr.js";
 
 import "../utilities.css";
 

@@ -4,24 +4,9 @@ import "./Profile.css";
 import NavBar from "../modules/NavBar";
 import tableDrawing from "../modules/Table.svg";
 import shelfDrawing from "../modules/ShelfDrawing.svg";
-import { get } from "../../utilities";
-
-const Profile = (props) => {
-  //   const [userData, setUserData] = useState();
-
-  useEffect(() => {
-    document.title = "Profile";
-    // get(`/api/userdata`, { userid: props.userId }).then((userDataObj) => setUserData(userDataObj));
-  }, []);
-
-<<<<<<< HEAD
-=======
-import tableDrawing from "../modules/Table.svg";
-import shelfDrawing from "../modules/ShelfDrawing.svg";
 import boxDrawing from "../modules/Box.svg";
 import blankProfile from "../modules/BlankProfile.svg";
 import pictureFrame from "../modules/PictureFrame.svg";
-import { get } from "../../utilities";
 
 const Profile = (props) => {
   //   const [userData, setUserData] = useState();
@@ -31,7 +16,6 @@ const Profile = (props) => {
     // get(`/api/userdata`, { userid: props.userId }).then((userDataObj) => setUserData(userDataObj));
   }, []);
 
->>>>>>> main
   return (
     <>
       <NavBar />
@@ -56,11 +40,6 @@ const Profile = (props) => {
               <button className="edit-profile-btn dark-btn">edit profile</button>
             </div>
           </div>
-<<<<<<< HEAD
-          <div className="Profile-subContainer u-textCenter">
-            <h4 className="Profile-subTitle">My Favorite Type of Cat</h4>
-            <div id="favorite-cat">corgi</div>
-=======
           <div className="bottomleft-flex">
             {/* Box Link */}
             <a href="/tbr/" className="box-link">
@@ -73,7 +52,6 @@ const Profile = (props) => {
               <img src={tableDrawing} alt="Table" />
               <button className="white-btn subpage-link">currently reading</button>
             </a>
->>>>>>> main
           </div>
         </div>
         <div className="right-flex">
@@ -88,18 +66,6 @@ const Profile = (props) => {
         <div className="Profile-floor" />
         <div className="Profile-background" />
       </div>
-<<<<<<< HEAD
-      <div className="Profile-floor">
-        {/* No Link here yet! */}
-        <a href="/curr/" className="table-link">
-          <img src={tableDrawing} alt="Table" />
-        </a>
-      </div>
-      <a href="/read/" className="shelf-link">
-        <img src={shelfDrawing} alt="Shelf" />
-      </a>
-=======
->>>>>>> main
     </>
   );
 };
