@@ -14,6 +14,10 @@ import Landing from "./pages/Landing.js";
 import Curr from "./pages/curr.js";
 import TBR from "./pages/tbr.js";
 import Read from "./pages/read.js";
+import Read from "./pages/read.js";
+import Curr from "./pages/curr.js";
+import TBR from "./pages/tbr.js";
+
 import "../utilities.css";
 
 import { socket } from "../client-socket.js";
@@ -85,10 +89,10 @@ const App = () => {
       />
 
       <Route
-        path="/Read"
+        path="/read"
         element={
           <Read
-            path="/Read"
+            path="/read"
             // handleLogin={handleLogin}
             // handleLogout={handleLogout}
             // userId={userId}

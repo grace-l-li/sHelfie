@@ -33,12 +33,21 @@ function getOrCreateUser(user) {
   });
 }
 
+<<<<<<< HEAD
 const getOrCreateUserWithData = (user) => {
   const newUser = getOrCreateUser(user);
   const newUserData = getOrCreateUserData(newUser);
 
   return newUser;
 };
+=======
+// const getOrCreateUserWithData = (user) => {
+//   const newUser = getOrCreateUser(user);
+//   const newUserData = getOrCreateUserData(newUser);
+
+//   return newUser;
+// };
+>>>>>>> main
 
 function login(req, res) {
   verify(req.body.token)

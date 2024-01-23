@@ -1,0 +1,73 @@
+/* .review {
+  font-family: "Readex Pro";
+  font-size: 10vw;
+} */
+
+.title {
+  font-family: "Readex Pro";
+  color: var(--darkpurple);
+  font-weight: bold;
+  font-size: 4vh;
+}
+/* .post-container {
+  position: relative; 
+  width: 50%;
+  background-color: #ffffff;
+  margin: 20px 0;
+  border-radius: 25px;
+  overflow: hidden; 
+} */
+.post-container {
+  display: flex; /* Changed to flex to stack children vertically */
+  flex-direction: column; /* Stack flex children vertically */
+  width: 60%;
+  background-color: #ffffff;
+  margin: 20px auto; /* Center the post container */
+  border-radius: 25px;
+  overflow: hidden; /* Ensure the child elements adhere to the border-radius */
+}
+
+/* 
+.post-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8vh;
+  background-color: var(--lightpurple);
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+} */
+.post-top-bar {
+  display: flex; /* Establishes this element as a flex container */
+  align-items: center; /* Centers items vertically within the bar */
+  justify-content: center; /* Centers items horizontally within the bar */
+  width: 100%; /* The bar will take the full width of the post container */
+  height: 6vh; /* The thickness of the bar */
+  background-color: var(--lightpurple); /* Your light purple color */
+  border-top-left-radius: 25px; /* Match the border-radius of the container if needed */
+  border-top-right-radius: 25px; /* Match the border-radius of the container if needed */
+}
+
+.post-bar {
+  padding: 1vh;
+  /* padding-left: 20px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: var(--lightpurple); /* Adjust the color variable as needed */
+}
+
+.post-bottom-bar {
+  height: 4vh; /* Adjust height as needed */
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  background-color: var(--lightpurple); /* Your light purple color */
+}
+
+.post-center {
+  flex: 1; /* Take up the remaining space */
+  padding: 0vh 5vh; /* Padding for content */
+}

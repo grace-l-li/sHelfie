@@ -2,7 +2,11 @@ import "./curr.css";
 
 import React, { useState, useEffect } from "react";
 import "../../utilities.css";
+<<<<<<< HEAD
 import "./curr.css";
+=======
+import "./Profile.css";
+>>>>>>> main
 
 const Curr = (props) => {
   //   const [userData, setUserData] = useState();
@@ -17,7 +21,11 @@ const Curr = (props) => {
       <div>Currently Reading</div>
 
       <a href="/profile/">
+<<<<<<< HEAD
         <button>Back</button>
+=======
+        <button class="dark-btn">Back</button>
+>>>>>>> main
       </a>
     </>
   );
