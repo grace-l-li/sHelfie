@@ -1,7 +1,8 @@
 import React from "react";
-import { useState } from "react/cjs/react.development";
+// import { useState } from "react/cjs/react.development";
 import Modal from "./Modal";
-const Card = ({ book }) => {
+
+const BookCard = ({ book }) => {
   const [show, setShow] = useState(false);
   const [bookItem, setItem] = useState();
   console.log(book);
@@ -34,4 +35,4 @@ const Card = ({ book }) => {
     </>
   );
 };
-export default Card;
+export default BookCard;

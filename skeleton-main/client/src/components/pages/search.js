@@ -1,16 +1,22 @@
 /* Search.js */
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./search.css"; // Import the CSS file
 import Searchbar from "../modules/Searchbar";
+import Bookcard from "../modules/BookCard";
 
-const Search = () => {
+const Search = (props) => {
+  console.log(props.input);
+
   return (
-    <div className="search-container">
-      <h1 className="title">Book Search</h1>
-      <Searchbar />
-      <Bookcard />
-      <div className="results"></div>
-    </div>
+    <>
+      <div>{props.input}</div>
+      <div className="search-container">
+        <h1 className="title">Book Search</h1>
+        <Searchbar />
+        {/* <Bookcard /> */}
+        <div className="results"></div>
+      </div>
+    </>
   );
 };
 
