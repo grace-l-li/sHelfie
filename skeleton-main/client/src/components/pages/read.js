@@ -9,7 +9,7 @@ const Read = (props) => {
 
   useEffect(() => {
     document.title = "Bookshelf";
-    //get(`/api/userdata`, { userid: props.userId }).then((userDataObj) => setUserData(userDataObj));
+    //get(`/api/userdata`, { userId: props.userId }).then((userDataObj) => setUserData(userDataObj));
   }, []);
 
   return (

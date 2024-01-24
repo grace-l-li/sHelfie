@@ -1,7 +1,18 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-//define a story schema for the database
-const BooksSchema = new mongoose.Schema({});
+const bookSchema = mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  author: {
+    type: String,
+    required: true,
+  },
+  publishYear: {
+    type: Number,
+    required: true,
+  },
+});
 
-// compile model from schema
-module.exports = mongoose.model("post", PostSchema);
+module.exports = mongoose.model("bookinfo", BookInfoSchema);

@@ -33,9 +33,9 @@ function getOrCreateUser(user) {
   });
 }
 
-const getOrCreateUserWithData = (user) => {
+const getOrCreateUserWithData = async (user) => {
   const newUser = getOrCreateUser(user);
-  const newUserData = getOrCreateUserData(newUser);
+  const newUserData = getOrCreateUserData(await newUser);
 
   return newUser;
 };

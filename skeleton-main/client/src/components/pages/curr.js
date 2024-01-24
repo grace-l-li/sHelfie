@@ -9,7 +9,7 @@ const Curr = (props) => {
 
   useEffect(() => {
     document.title = "Currently Reading";
-    // get(`/api/userdata`, { userid: props.userId }).then((userDataObj) => setUserData(userDataObj));
+    // get(`/api/userdata`, { userId: props.userId }).then((userDataObj) => setUserData(userDataObj));
   }, []);
 
   return (
