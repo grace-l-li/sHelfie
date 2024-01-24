@@ -4,6 +4,7 @@ import homeIcon from "./HomeIcon.svg";
 import profileIcon from "./ProfileIcon.svg";
 import logo from "./ShelfieLogo.svg";
 import "./NavBar.css";
+import Searchbar from "./Searchbar";
 
 const NavBar = () => {
   return (
@@ -11,6 +12,9 @@ const NavBar = () => {
       <NavLink to="/home" exact className="NavBar-title">
         <img src={logo} alt="s(H)elfie" />
       </NavLink>
+      <div>
+        <Searchbar />
+      </div>
       <div className="NavBar-linkContainer u-inlineBlock">
         <NavLink to="/home" exact className="NavBar-link">
           <img src={homeIcon} alt="Home" />
