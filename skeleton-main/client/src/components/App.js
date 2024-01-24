@@ -121,19 +121,19 @@ const App = () => {
         }
       />
 
-      <Route path="*" element={<NotFound />} />
-
       <Route
         path="/search"
         element={
           <Search
             path="/search"
-            handleLogin={handleLogin}
-            handleLogout={handleLogout}
-            userId={userId}
+            //handleLogin={handleLogin}
+            //handleLogout={handleLogout}
+            //userId={userId}
           />
         }
       />
+
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };

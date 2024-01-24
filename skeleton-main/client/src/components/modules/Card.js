@@ -1,6 +1,7 @@
 import React from "react";
-import { useState } from "react/cjs/react.development";
-import Modal from "./Modal";
+import { useState } from "react";
+import Modal from "./modal.js";
+
 const Card = ({ book }) => {
   const [show, setShow] = useState(false);
   const [bookItem, setItem] = useState();
@@ -23,7 +24,7 @@ const Card = ({ book }) => {
                 <img src={thumbnail} alt="" />
                 <div className="bottom">
                   <h3 className="title">{item.volumeInfo.title}</h3>
-                  <p className="amount">&#8377;{amount}</p>
+                  <p className="amount">${amount}</p>
                 </div>
               </div>
               <Modal show={show} item={bookItem} onClose={() => setShow(false)} />
