@@ -30,13 +30,13 @@ const NavBar = ({ userId, handleLogout }) => {
         >
           <img src={profileIcon} alt="Profile" />
         </NavLink>
-        <div className="NavBar-logoutContainer">
-          {userId && (
-            <button onClick={onLogout} className="logout">
-              log out
-            </button>
-          )}
-        </div>
+      </div>
+      <div className="NavBar-logoutContainer">
+        {userId && (
+          <button onClick={onLogout} className="logout">
+            log out
+          </button>
+        )}
       </div>
     </nav>
   );

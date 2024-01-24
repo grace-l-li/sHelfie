@@ -14,7 +14,7 @@
 
 .NavBar-title {
   flex: 4;
-
+  flex-grow: 100;
   /* background-color: red; */
 }
 
@@ -30,6 +30,8 @@
   align-items: center;
   flex-direction: row;
   justify-content: flex-end;
+  flex-grow: 100;
+  /* background-color: green; */
 }
 
 .NavBar-linkContainer {
@@ -38,18 +40,9 @@
   align-items: center;
   flex-direction: row;
   justify-content: center;
+  flex-grow: 100;
   /* background-color: blue; */
 }
-
-/* .NavBar-linkContainer {
-  display: flex;
-  /* align-self: center; */
-/* align-items: center;
-  background-color: red;
-  flex-direction: row;
-  justify-content: flex-end;
-  flex-grow: 1; */
-/* padding-right: var(--m); Right padding for space inside the container */
 
 .active img {
   fill: var(--darkpurple);
