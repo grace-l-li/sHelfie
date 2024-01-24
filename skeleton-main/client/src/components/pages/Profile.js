@@ -13,7 +13,6 @@ import "../../utilities.css";
 import "./Profile.css";
 
 const Profile = (props) => {
-  // const [user, setUser] = useState();
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
@@ -50,7 +49,7 @@ const Profile = (props) => {
             </div>
             <div className="Profile-image-container">
               <img src={userData.picture} alt="Profile Picture" className="Profile-image" />
-              {/* <img src={pictureFrame} alt="Picture Frame" className="Picture-frame" /> */}
+              <img src={pictureFrame} alt="Picture Frame" className="Picture-frame" />
               <button className="edit-profile-btn dark-btn">edit profile</button>
             </div>
           </div>
