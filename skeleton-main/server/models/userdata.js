@@ -10,9 +10,9 @@ const UserDataSchema = new mongoose.Schema({
   num_followers: Number,
   following: [],
   num_following: Number,
-  TBR: [],
-  current: [],
-  finished: [],
+  tbr: [],
+  curr: [],
+  read: [],
 });
 
 // compile model from schema

@@ -28,6 +28,8 @@ const App = () => {
   const [userId, setUserId] = useState(undefined);
   const navigate = useNavigate();
 
+  const [userData, setUserData] = useState({});
+
   useEffect(() => {
     get("/api/whoami").then((user) => {
       if (user._id) {
@@ -36,6 +38,12 @@ const App = () => {
       }
     });
   }, []);
+
+  useEffect(() => {
+    if (userId) {
+      get(`/api/userdata`, { userId: userId }).then((userDataObj) => setUserData(userDataObj));
+    }
+  }, [userId]);
 
   const handleLogin = (credentialResponse) => {
     const userToken = credentialResponse.credential;
@@ -62,73 +70,31 @@ const App = () => {
         <Route
           path="/"
           element={
-            <Landing
-              path="/"
-              handleLogin={handleLogin}
-              handleLogout={handleLogout}
-              userId={userId}
-            />
+            <Landing handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
           }
         />
         <Route
           path="/home"
-          element={
-            <Home
-              path="home/"
-              handleLogin={handleLogin}
-              handleLogout={handleLogout}
-              userId={userId}
-            />
-          }
+          element={<Home handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />}
         />
 
         <Route
           path="/profile"
           element={
             <Profile
-              path="/profile"
               handleLogin={handleLogin}
               handleLogout={handleLogout}
               userId={userId}
+              userData={userData}
             />
           }
         />
 
-        <Route
-          path="/read"
-          element={
-            <Read
-              path="/read"
-              // handleLogin={handleLogin}
-              // handleLogout={handleLogout}
-              // userId={userId}
-            />
-          }
-        />
+        <Route path="/tbr/" element={<TBR userId={userId} userData={userData} />} />
 
-        <Route
-          path="/curr"
-          element={
-            <Curr
-              path="/curr"
-              // handleLogin={handleLogin}
-              // handleLogout={handleLogout}
-              // userId={userId}
-            />
-          }
-        />
+        <Route path="/curr/" element={<Curr userId={userId} userData={userData} />} />
 
-        <Route
-          path="/tbr"
-          element={
-            <TBR
-              path="/tbr"
-              // handleLogin={handleLogin}
-              // handleLogout={handleLogout}
-              // userId={userId}
-            />
-          }
-        />
+        <Route path="/read/" element={<Read userId={userId} userData={userData} />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

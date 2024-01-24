@@ -13,9 +13,9 @@ const getOrCreateUserData = (user) => {
       num_followers: 0,
       following: [],
       num_following: 0,
-      TBR: [],
-      current: [],
-      finished: [],
+      tbr: [],
+      curr: [],
+      read: [],
     });
 
     return newUserData.save();
