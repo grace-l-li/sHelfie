@@ -19,6 +19,7 @@ const Profile = (props) => {
       {/* <NavBar /> */}
       <div className="outermost-flex">
         <div className="left-flex">
+          <div className="topleft-flex"></div>
           <div className="Profile-container">
             <div className="Profile-details">
               <h1 className="Profile-name">{props.userData.name}</h1>
