@@ -122,13 +122,14 @@ body {
 .Profile-name {
   font-family: "Readex Pro";
   color: var(--darkpurple);
-  font-size: 2.6vw;
+  font-size: 3vw;
+  font-weight: 650;
   margin-bottom: 0vh;
 }
 
 .Username-style {
   color: var(--darkpurple);
-  font-size: 1.7vw;
+  font-size: 1.6vw;
   font-family: "Readex Pro";
   font-weight: 400;
   margin-top: 0vh;
