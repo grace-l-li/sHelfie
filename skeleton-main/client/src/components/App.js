@@ -122,13 +122,13 @@ const App = () => {
       />
 
       <Route
-        path="/search"
+        path="/search/"
         element={
           <Search
-            path="/search"
-            //handleLogin={handleLogin}
-            //handleLogout={handleLogout}
-            //userId={userId}
+            path="/search/"
+            handleLogin={handleLogin}
+            handleLogout={handleLogout}
+            userId={userId}
           />
         }
       />

@@ -12,9 +12,7 @@ const NavBar = () => {
       <NavLink to="/home" exact className="NavBar-title">
         <img src={logo} alt="s(H)elfie" />
       </NavLink>
-      <div>
-        <Searchbar />
-      </div>
+      <div>{/* <Searchbar /> */}</div>
       <div className="NavBar-linkContainer u-inlineBlock">
         <NavLink to="/home" exact className="NavBar-link">
           <img src={homeIcon} alt="Home" />
