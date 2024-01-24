@@ -27,17 +27,24 @@ import { get, post } from "../utilities";
 const App = () => {
   const [userId, setUserId] = useState(undefined);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
     get("/api/whoami").then((user) => {
       if (user._id) {
-        // they are registed in the database, and currently logged in.
         setUserId(user._id);
+        if (location.pathname === "/") {
+          navigate("/profile");
+        }
+      } else {
+        if (location.pathname !== "/") {
+          navigate("/");
+        }
       }
     });
-  }, []);
+  }, [location]);
 
   useEffect(() => {
     if (userId) {
