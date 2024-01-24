@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "../../utilities.css";
-import "./Profile.css";
+import { Routes, Route, NavLink } from "react-router-dom";
+
 import NavBar from "../modules/NavBar";
 import tableDrawing from "../modules/Table.svg";
 import shelfDrawing from "../modules/ShelfDrawing.svg";
@@ -8,34 +8,32 @@ import boxDrawing from "../modules/Box.svg";
 import blankProfile from "../modules/BlankProfile.svg";
 import pictureFrame from "../modules/PictureFrame.svg";
 
+import { get } from "../../utilities.js";
+
+import "../../utilities.css";
+import "./Profile.css";
+
 const Profile = (props) => {
-  //   const [userData, setUserData] = useState();
-
-  useEffect(() => {
-    document.title = "Profile";
-    // get(`/api/userdata`, { userid: props.userId }).then((userDataObj) => setUserData(userDataObj));
-  }, []);
-
   return (
     <>
-      <NavBar />
+      {/* <NavBar /> */}
       <div className="outermost-flex">
         <div className="left-flex">
+          <div className="topleft-flex"></div>
           <div className="Profile-container">
             <div className="Profile-details">
-              <h1 className="Profile-name">Jacob Elordi</h1>
+              <h1 className="Profile-name">{props.userData.name}</h1>
+              <h3 className="Username-style">{props.userData.username}</h3>
               <div className="Friends-container">
-                <h3 className="Friends-style"> Friends </h3>
-                <h3 className="Friends-style"> Following </h3>
+                <h3 className="Friends-style"> {props.userData.num_followers} Friends </h3>
+                <h3 className="Friends-style"> {props.userData.num_following} Following </h3>
               </div>
-              <div className="Friends-container">
-                <h3 className="Friends-style"> 10 </h3>
-                <h3 className="Friends-style"> 5 </h3>
+              <div className="Profile-bio-container">
+                <h4 className="Profile-bio">{props.userData.bio}</h4>
               </div>
-              <h4 className="Profile-bio">full time actor, part time reader ;)</h4>
             </div>
             <div className="Profile-image-container">
-              <img src={blankProfile} alt="Profile Picture" className="Profile-image" />
+              <img src={props.userData.picture} alt="Profile Picture" className="Profile-image" />
               <img src={pictureFrame} alt="Picture Frame" className="Picture-frame" />
               <button className="edit-profile-btn dark-btn">edit profile</button>
             </div>
@@ -61,7 +59,7 @@ const Profile = (props) => {
           <a href="/read/" className="shelf-link">
             <button className="white-btn shelf-shift">read</button>
           </a>
-          <button class="light-btn add-book-btn">add book</button>
+          <button className="light-btn add-book-btn">add book</button>
         </div>
         <div className="Profile-floor" />
         <div className="Profile-background" />

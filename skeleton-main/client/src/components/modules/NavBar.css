@@ -6,9 +6,16 @@
   z-index: 1000;
   display: flex;
   align-items: center;
+  flex-direction: row;
   justify-content: space-between;
   padding: var(--s) var(--m) var(--s) var(--m);
   background-color: var(--lightpurple);
+}
+
+.NavBar-title {
+  flex: 4;
+  flex-grow: 100;
+  /* background-color: red; */
 }
 
 .NavBar-title img {
@@ -17,9 +24,26 @@
   margin-top: 4px;
 }
 
-.NavBar-linkContainer {
-  margin-left: var(--l);
+.NavBar-logoutContainer {
+  display: flex;
+  flex: 4;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-end;
+  flex-grow: 100;
+  /* background-color: green; */
 }
+
+.NavBar-linkContainer {
+  display: flex;
+  flex: 4;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  flex-grow: 100;
+  /* background-color: blue; */
+}
+
 .active img {
   fill: var(--darkpurple);
   opacity: 1;
@@ -28,8 +52,14 @@
 .NavBar-link img {
   width: 36px;
   height: auto;
-  opacity: 0.6;
+  opacity: 0.5;
+  /* flex: 1; */
   transition: opacity 0.3s ease;
+  transition: transform 0.3s ease;
+}
+
+.NavBar-link:hover img {
+  transform: scale(1.2);
 }
 
 .NavBar-link:hover img,
@@ -40,4 +70,24 @@
 
 .NavBar-link + .NavBar-link {
   margin-left: var(--m);
+}
+
+.logout {
+  font-family: "Readex Pro";
+  font-weight: bold;
+  background-color: var(--darkpurple);
+  color: var(--white);
+  border: none;
+  font-size: 3vh;
+  border-radius: 15px;
+  padding: 6px;
+  cursor: pointer;
+  /* padding: px; Adjust padding to your liking */
+  transition: background-color 0.3s ease;
+  transition: color 0.3s ease;
+  margin-left: var(--m);
+}
+.logout:hover {
+  background-color: var(--white);
+  color: var(--darkpurple);
 }

@@ -6,7 +6,10 @@
 }
 
 .Feed-flex {
-  flex: 3;
+  flex: 4; /* Increased from 3 to 4 */
+  /* min-width: 60vw; */
+  /* width: 60vw; */
+  background-color: var(--grey);
 }
 
 .Friends-header {
@@ -17,8 +20,8 @@
 }
 
 .Friends-flex {
-  padding: 0 4vh;
-  flex: 2;
-  min-width: 20vw;
+  padding: 3vh 4vh;
+  flex: 1;
+  /* max-width: 200px; Example maximum width */
   background-color: var(--white);
 }

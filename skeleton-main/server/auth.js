@@ -23,19 +23,19 @@ function getOrCreateUser(user) {
   // the "sub" field means "subject", which is a unique identifier for each user
   return User.findOne({ googleid: user.sub }).then((existingUser) => {
     if (existingUser) return existingUser;
-
     const newUser = new User({
       name: user.name,
       googleid: user.sub,
+      picture: user.picture,
     });
 
     return newUser.save();
   });
 }
 
-const getOrCreateUserWithData = (user) => {
-  const newUser = getOrCreateUser(user);
-  const newUserData = getOrCreateUserData(newUser);
+const getOrCreateUserWithData = async (user) => {
+  const newUser = getOrCreateUser(user); //redundant
+  const newUserData = getOrCreateUserData(await newUser);
 
   return newUser;
 };

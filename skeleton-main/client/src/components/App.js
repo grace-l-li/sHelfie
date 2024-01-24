@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 
 import jwt_decode from "jwt-decode";
 import axios from "axios";
@@ -27,15 +27,30 @@ import { get, post } from "../utilities";
 const App = () => {
   const [userId, setUserId] = useState(undefined);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
     get("/api/whoami").then((user) => {
       if (user._id) {
-        // they are registed in the database, and currently logged in.
         setUserId(user._id);
+        if (location.pathname === "/") {
+          navigate("/profile");
+        }
+      } else {
+        if (location.pathname !== "/") {
+          navigate("/");
+        }
       }
     });
-  }, []);
+  }, [location]);
+
+  useEffect(() => {
+    if (userId) {
+      get(`/api/userdata`, { userId: userId }).then((userDataObj) => setUserData(userDataObj));
+    }
+  }, [userId]);
 
   const handleLogin = (credentialResponse) => {
     const userToken = credentialResponse.credential;
@@ -50,91 +65,52 @@ const App = () => {
 
   const handleLogout = () => {
     setUserId(undefined);
-    post("/api/logout");
+    post("/api/logout").then(() => navigate("/")); // Redirect after logout
   };
 
+  const isLandingPage = location.pathname === "/";
+
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <Landing path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
-        }
-      />
-      <Route
-        path="/home"
-        element={
-          <Home
-            path="home/"
-            handleLogin={handleLogin}
-            handleLogout={handleLogout}
-            userId={userId}
-          />
-        }
-      />
+    <>
+      {!isLandingPage && <NavBar userId={userId} handleLogout={handleLogout} />}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Landing handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
+          }
+        />
+        <Route
+          path="/home"
+          element={<Home handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />}
+        />
 
-      <Route
-        path="/profile"
-        element={
-          <Profile
-            path="/profile"
-            handleLogin={handleLogin}
-            handleLogout={handleLogout}
-            userId={userId}
-          />
-        }
-      />
+        <Route
+          path="/profile"
+          element={
+            <Profile
+              handleLogin={handleLogin}
+              handleLogout={handleLogout}
+              userId={userId}
+              userData={userData}
+            />
+          }
+        />
 
-      <Route
-        path="/read"
-        element={
-          <Read
-            path="/read"
-            // handleLogin={handleLogin}
-            // handleLogout={handleLogout}
-            // userId={userId}
-          />
-        }
-      />
+        <Route path="/tbr/" element={<TBR userId={userId} userData={userData} />} />
 
-      <Route
-        path="/curr"
-        element={
-          <Curr
-            path="/curr"
-            // handleLogin={handleLogin}
-            // handleLogout={handleLogout}
-            // userId={userId}
-          />
-        }
-      />
+        <Route path="/curr/" element={<Curr userId={userId} userData={userData} />} />
 
-      <Route
-        path="/tbr"
-        element={
-          <TBR
-            path="/tbr"
-            // handleLogin={handleLogin}
-            // handleLogout={handleLogout}
-            // userId={userId}
-          />
-        }
-      />
+        <Route path="/read/" element={<Read userId={userId} userData={userData} />} />
 
-      <Route
-        path="/search/"
-        element={
-          <Search
-            path="/search/"
-            handleLogin={handleLogin}
-            handleLogout={handleLogout}
-            userId={userId}
-          />
-        }
-      />
+        <Route
+          path="/search/"
+          element={<Search handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />}
+        />
 
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
   );
 };
 

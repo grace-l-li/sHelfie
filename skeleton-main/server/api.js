@@ -45,7 +45,8 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 
 router.get("/userdata", (req, res) => {
-  UserData.findOne(req.query.userid).then((userData) => {
+  console.log("in /userdata");
+  UserData.findOne({ userId: req.query.userId }).then((userData) => {
     res.send(userData);
   });
 });

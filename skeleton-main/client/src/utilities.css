@@ -22,6 +22,7 @@
   --lightpurple: #e6ceff;
   --white: #fff;
   --grey: #dddddd;
+  --brown: #754c24;
 
   --xs: 4px;
   --s: 8px;
@@ -37,6 +38,8 @@
   font-size: 3vh;
   border-radius: 15px;
   padding: 6px;
+  cursor: pointer;
+
   transition: color 0.3s ease;
   transition: background-color 0.3s ease;
 }
@@ -52,6 +55,8 @@
   color: var(--white);
   border: none;
   font-size: 3vh;
+  cursor: pointer;
+
   border-radius: 15px;
   padding: 6px;
   transition: color 0.3s ease;
@@ -68,6 +73,8 @@
   font-weight: bold;
   background-color: var(--white);
   color: var(--darkpurple);
+  cursor: pointer;
+
   border: none;
   font-size: 3vh;
   border-radius: 15px;

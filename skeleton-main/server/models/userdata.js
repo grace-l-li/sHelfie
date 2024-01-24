@@ -1,15 +1,19 @@
+const { ObjectId } = require("mongodb");
 const mongoose = require("mongoose");
 
 const UserDataSchema = new mongoose.Schema({
   name: String,
-  id: String, //_id of user that this data belongs to
+  userId: String, //_id of user that this data belongs to
+  picture: String,
+  username: String,
   bio: String,
   followers: [],
   num_followers: Number,
   following: [],
-  TBR: [],
-  current: [],
-  finished: [],
+  num_following: Number,
+  tbr: [],
+  curr: [],
+  read: [],
 });
 
 // compile model from schema

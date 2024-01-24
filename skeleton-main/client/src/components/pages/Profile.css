@@ -11,19 +11,20 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
-  width: 100%;
+  justify-content: center;
+  width: 60%;
   margin-bottom: 0px;
+  margin-top: 3vh;
 }
 
 .Friends-style {
   color: var(--darkpurple);
   flex: 1;
-  font-size: 4vh;
+  font-size: 1.4vw;
   font-family: "Readex Pro";
   text-align: center;
   margin: 0 5px;
-  font-weight: bold;
+  font-weight: 550;
 }
 
 .Profile-details {
@@ -71,13 +72,26 @@
   z-index: 2;
 }
 
+.Profile-bio-container {
+  flex: 1;
+  margin-top: 3vh;
+  max-width: 60%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  /* background-color: red; */
+}
+
 .Profile-bio {
   font-family: "Readex Pro";
   color: var(--darkpurple);
-  font-weight: 500;
-  margin-top: 10px;
+  /* position: relative; */
+
+  font-weight: 400;
   font-size: 3vh;
+  text-align: center;
 }
+
 .Profile-background {
   height: 57vh;
   width: 100%;
@@ -102,11 +116,23 @@ body {
   background-color: var(--grey);
 } */
 
+.Friend-count {
+  font-weight: 500 !important;
+}
 .Profile-name {
   font-family: "Readex Pro";
   color: var(--darkpurple);
-  font-size: 8vh;
-  margin-bottom: 5px;
+  font-size: 3vw;
+  font-weight: 650;
+  margin-bottom: 0vh;
+}
+
+.Username-style {
+  color: var(--darkpurple);
+  font-size: 1.6vw;
+  font-family: "Readex Pro";
+  font-weight: 400;
+  margin-top: 0vh;
 }
 
 .table-link img {
@@ -134,7 +160,7 @@ body {
 }
 
 .box-link {
-  margin-bottom: 15vh;
+  margin-bottom: 10vh;
 }
 
 .box-link img {
