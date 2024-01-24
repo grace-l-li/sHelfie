@@ -18,7 +18,7 @@ const Profile = (props) => {
 
   return (
     <>
-      <NavBar />
+      {/* <NavBar /> */}
       <div className="outermost-flex">
         <div className="left-flex">
           <div className="Profile-container">
@@ -61,7 +61,7 @@ const Profile = (props) => {
           <a href="/read/" className="shelf-link">
             <button className="white-btn shelf-shift">read</button>
           </a>
-          <button class="light-btn add-book-btn">add book</button>
+          <button className="light-btn add-book-btn">add book</button>
         </div>
         <div className="Profile-floor" />
         <div className="Profile-background" />
