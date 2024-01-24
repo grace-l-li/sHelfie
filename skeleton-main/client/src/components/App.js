@@ -121,8 +121,6 @@ const App = () => {
         }
       />
 
-      <Route path="*" element={<NotFound />} />
-
       <Route
         path="/search"
         element={
@@ -134,6 +132,8 @@ const App = () => {
           />
         }
       />
+
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };
