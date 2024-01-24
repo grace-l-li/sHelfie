@@ -5,19 +5,16 @@ import "../../utilities.css";
 import "./Profile.css";
 
 const Curr = (props) => {
-  //   const [userData, setUserData] = useState();
-
   useEffect(() => {
     document.title = "Currently Reading";
-    // get(`/api/userdata`, { userId: props.userId }).then((userDataObj) => setUserData(userDataObj));
-  }, []);
+  }, [props]);
 
   return (
     <>
-      <div>Currently Reading</div>
+      <div>{JSON.stringify(props.userData.curr)}</div>
 
       <a href="/profile/">
-        <button class="dark-btn">Back</button>
+        <button className="dark-btn">Back</button>
       </a>
     </>
   );

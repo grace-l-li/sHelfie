@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Routes, Route, NavLink } from "react-router-dom";
 
 import NavBar from "../modules/NavBar";
 import tableDrawing from "../modules/Table.svg";
@@ -13,22 +14,6 @@ import "../../utilities.css";
 import "./Profile.css";
 
 const Profile = (props) => {
-  const [userData, setUserData] = useState({});
-
-  useEffect(() => {
-    document.title = "Profile";
-    if (props.userId) {
-      get(`/api/userdata`, { userId: props.userId }).then((userDataObj) =>
-        setUserData(userDataObj)
-      );
-    }
-    // get(`/api/user`, { userId: props.userId }).then((userObj) => setUser(userObj));
-  }, [props.userId]);
-
-  // if (!props.userId) {
-  //   return <div>Please log in here: (log in page link) </div>;
-  // }
-
   return (
     <>
       {/* <NavBar /> */}
@@ -36,19 +21,19 @@ const Profile = (props) => {
         <div className="left-flex">
           <div className="Profile-container">
             <div className="Profile-details">
-              <h1 className="Profile-name">{userData.name}</h1>
+              <h1 className="Profile-name">{props.userData.name}</h1>
               <div className="Friends-container">
                 <h3 className="Friends-style"> Friends </h3>
                 <h3 className="Friends-style"> Following </h3>
               </div>
               <div className="Friends-container">
-                <h3 className="Friends-style"> {userData.num_followers} </h3>
-                <h3 className="Friends-style"> {userData.num_following} </h3>
+                <h3 className="Friends-style"> {props.userData.num_followers} </h3>
+                <h3 className="Friends-style"> {props.userData.num_following} </h3>
               </div>
-              <h4 className="Profile-bio">{userData.bio}</h4>
+              <h4 className="Profile-bio">{props.userData.bio}</h4>
             </div>
             <div className="Profile-image-container">
-              <img src={userData.picture} alt="Profile Picture" className="Profile-image" />
+              <img src={props.userData.picture} alt="Profile Picture" className="Profile-image" />
               <img src={pictureFrame} alt="Picture Frame" className="Picture-frame" />
               <button className="edit-profile-btn dark-btn">edit profile</button>
             </div>

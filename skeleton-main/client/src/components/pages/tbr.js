@@ -5,19 +5,16 @@ import "../../utilities.css";
 import "./Profile.css";
 
 const TBR = (props) => {
-  const [userData, setUserData] = useState();
-
   useEffect(() => {
     document.title = "TBR";
-    //   get(`/api/userdata`, { userId: props.userId }).then((userDataObj) => setUserData(userDataObj));
-  }, []);
+  }, [props]);
 
   return (
     <>
-      <div>TBR</div>
+      <div>{JSON.stringify(props.userData.tbr)}</div>
 
       <a href="/profile/">
-        <button class="dark-btn">Back</button>
+        <button className="dark-btn">Back</button>
       </a>
     </>
   );
