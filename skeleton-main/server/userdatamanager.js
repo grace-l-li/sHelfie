@@ -9,7 +9,7 @@ const getOrCreateUserData = (user) => {
       userId: user._id,
       picture: user.picture,
       username: "@" + user.name.replace(/\s+/g, "").toLowerCase(),
-      bio: "",
+      bio: "but first, let me take a s(H)elfie ;)",
       followers: [],
       num_followers: 0,
       following: [],
