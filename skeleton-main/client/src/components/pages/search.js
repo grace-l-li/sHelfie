@@ -3,7 +3,7 @@ import Card from "../modules/Card.js";
 import axios from "axios";
 import "./search.css";
 
-const search = () => {
+const Search = () => {
   const [search, setSearch] = useState("");
   const [bookData, setData] = useState([]);
   const searchBook = (evt) => {
@@ -20,12 +20,40 @@ const search = () => {
     }
   };
   return (
-    <div className="search-container">
-      <h1 className="title">Book Search</h1>
-      <Searchbar />
-      <Bookcard />
-      <div className="results"></div>
-    </div>
+    <>
+      {/* <div className="search-container">
+        <h1 className="title">Book Search</h1>
+        <Searchbar />
+        <Bookcard />
+        <div className="results"></div>
+      </div> */}
+
+      <div className="header">
+        <div className="row1">
+          <h1>
+            <br />
+          </h1>
+        </div>
+        <div className="row2">
+          <h2>Find Your Book</h2>
+          <div className="search">
+            <input
+              type="text"
+              placeholder="Enter Your Book Name"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              onKeyPress={searchBook}
+            />
+            <button>
+              <i className="fas fa-search"></i>
+            </button>
+          </div>
+          <img src="" alt="" />
+        </div>
+      </div>
+
+      <div className="container">{<Card book={bookData} />}</div>
+    </>
   );
 };
-export default search;
+export default Search;
