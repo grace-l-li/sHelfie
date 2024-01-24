@@ -3,6 +3,7 @@ import "./curr.css";
 import React, { useState, useEffect } from "react";
 import "../../utilities.css";
 import "./Profile.css";
+import "./subpage.css";
 
 const Curr = (props) => {
   useEffect(() => {
@@ -11,11 +12,17 @@ const Curr = (props) => {
 
   return (
     <>
-      <div>{JSON.stringify(props.userData.curr)}</div>
-
-      <a href="/profile/">
-        <button className="dark-btn">Back</button>
-      </a>
+      <div className="back-container">
+        <a href="/profile/">
+          <button className="dark-btn">Back</button>
+        </a>
+      </div>
+      <div className="outer-flex">
+        <h1 className="page-title">{props.userData.name}'s Currently Reading</h1>
+        <div className="list-container">
+          <div>{JSON.stringify(props.userData.curr)}</div>
+        </div>
+      </div>
     </>
   );
 };
