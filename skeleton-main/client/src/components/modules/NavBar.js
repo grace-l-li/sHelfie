@@ -5,6 +5,7 @@ import homeIcon from "./HomeIcon.svg";
 import profileIcon from "./ProfileIcon.svg";
 import logo from "./ShelfieLogo.svg";
 import "./NavBar.css";
+import Searchbar from "./Searchbar";
 
 const NavBar = ({ userId, handleLogout }) => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const NavBar = ({ userId, handleLogout }) => {
         <img src={logo} alt="s(H)elfie" />
       </NavLink>
       <div className="NavBar-linkContainer">
-        <NavLink to="/home" className="NavBar-link">
+        <NavLink to="/home" exact className="NavBar-link">
           <img src={homeIcon} alt="Home" />
         </NavLink>
         <NavLink

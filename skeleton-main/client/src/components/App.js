@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 
 import jwt_decode from "jwt-decode";
-
+import axios from "axios";
 import NavBar from "./modules/NavBar.js";
 //import LoginButton from "./modules/Login.js";
 //import LogoutButton from "./modules/Logout.js";
@@ -14,8 +14,8 @@ import Landing from "./pages/Landing.js";
 import Curr from "./pages/curr.js";
 import TBR from "./pages/tbr.js";
 import Read from "./pages/read.js";
-
 import "../utilities.css";
+import Search from "./pages/search.js";
 
 import { socket } from "../client-socket.js";
 
@@ -102,6 +102,11 @@ const App = () => {
         <Route path="/curr/" element={<Curr userId={userId} userData={userData} />} />
 
         <Route path="/read/" element={<Read userId={userId} userData={userData} />} />
+
+        <Route
+          path="/search/"
+          element={<Search handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />}
+        />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
