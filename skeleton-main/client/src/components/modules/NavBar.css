@@ -59,9 +59,14 @@
 .NavBar-link img {
   width: 36px;
   height: auto;
-  opacity: 0.6;
+  opacity: 0.5;
   /* flex: 1; */
   transition: opacity 0.3s ease;
+  transition: transform 0.3s ease;
+}
+
+.NavBar-link:hover img {
+  transform: scale(1.2);
 }
 
 .NavBar-link:hover img,
