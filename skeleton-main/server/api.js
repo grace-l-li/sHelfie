@@ -44,13 +44,6 @@ router.post("/initsocket", (req, res) => {
 // | write your API methods below!|
 // |------------------------------|
 
-// router.get("/user", (req, res) => {
-//   //temp fix for no UserData.name
-//   User.findOne(req.query.userId).then((user) => {
-//     res.send(user);
-//   });
-// });
-
 router.get("/userdata", (req, res) => {
   UserData.findOne({ userId: req.query.userId }).then((userData) => {
     res.send(userData);

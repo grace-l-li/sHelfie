@@ -49,8 +49,8 @@ const Profile = (props) => {
               <h4 className="Profile-bio">{userData.bio}</h4>
             </div>
             <div className="Profile-image-container">
-              <img src={blankProfile} alt="Profile Picture" className="Profile-image" />
-              <img src={pictureFrame} alt="Picture Frame" className="Picture-frame" />
+              <img src={userData.picture} alt="Profile Picture" className="Profile-image" />
+              {/* <img src={pictureFrame} alt="Picture Frame" className="Picture-frame" /> */}
               <button className="edit-profile-btn dark-btn">edit profile</button>
             </div>
           </div>
