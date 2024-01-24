@@ -22,15 +22,14 @@ const Profile = (props) => {
           <div className="Profile-container">
             <div className="Profile-details">
               <h1 className="Profile-name">{props.userData.name}</h1>
+              <h3 className="Username-style">@nguyen</h3>
               <div className="Friends-container">
-                <h3 className="Friends-style"> Friends </h3>
-                <h3 className="Friends-style"> Following </h3>
+                <h3 className="Friends-style"> {props.userData.num_followers} Friends </h3>
+                <h3 className="Friends-style"> {props.userData.num_following} Following </h3>
               </div>
-              <div className="Friends-container">
-                <h3 className="Friends-style"> {props.userData.num_followers} </h3>
-                <h3 className="Friends-style"> {props.userData.num_following} </h3>
+              <div className="Profile-bio-container">
+                <h4 className="Profile-bio">i am in ~love~ with the new percy jackson show</h4>
               </div>
-              <h4 className="Profile-bio">{props.userData.bio}</h4>
             </div>
             <div className="Profile-image-container">
               <img src={props.userData.picture} alt="Profile Picture" className="Profile-image" />
