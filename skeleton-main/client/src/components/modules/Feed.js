@@ -7,7 +7,7 @@ import purpleHeart from "./PurpleHeart.svg";
 import purpleComment from "./PurpleComment.svg";
 import blankProfile from "./BlankProfile.svg";
 
-const Feed = () => {
+const Feed = (props) => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -33,10 +33,10 @@ const Feed = () => {
         <div key={index} className="post-container">
           <div className="post-top-bar">
             <div className="post-img">
-              <img src={blankProfile} alt="Profile" />
+              <img src={props.userData.picture} alt="Profile" />
             </div>
             <div className="name-container">
-              <h2>Jacob Elordi</h2>
+              <h2>{props.userData.username}</h2>
             </div>
           </div>
           <div className="post-center">

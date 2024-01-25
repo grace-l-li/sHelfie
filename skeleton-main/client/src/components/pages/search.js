@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Card from "../modules/Card.js";
 import axios from "axios";
 import "./search.css";
+import "../../utilities.css";
 
 const Search = () => {
   const [search, setSearch] = useState("");
@@ -29,11 +30,11 @@ const Search = () => {
       </div> */}
 
       <div className="header">
-        <div className="row1">
+        {/* <div className="row1">
           <h1>
             <br />
           </h1>
-        </div>
+        </div> */}
         <div className="row2">
           <h2>Find Your Book</h2>
           <div className="search">

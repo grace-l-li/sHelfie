@@ -4,7 +4,7 @@ import Feed from "../modules/Feed.js";
 import "../../utilities.css";
 import "./Home.css";
 
-const Home = () => {
+const Home = (props) => {
   useEffect(() => {
     document.title = "Home";
     // Set the background color when the component mounts
@@ -20,7 +20,7 @@ const Home = () => {
     <div>
       <div className="Home-container">
         <div className="Feed-flex">
-          <Feed />
+          <Feed userData={props.userData} />
         </div>
 
         <div className="Friends-flex">

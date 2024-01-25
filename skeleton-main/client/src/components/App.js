@@ -82,7 +82,14 @@ const App = () => {
         />
         <Route
           path="/home"
-          element={<Home handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />}
+          element={
+            <Home
+              handleLogin={handleLogin}
+              handleLogout={handleLogout}
+              userId={userId}
+              userData={userData}
+            />
+          }
         />
 
         <Route
