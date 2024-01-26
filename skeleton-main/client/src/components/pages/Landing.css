@@ -67,7 +67,7 @@ a {
 }
 
 .book {
-  position: relative;
+  /* position: center; */
   width: 60vh;
   height: 80vh;
   /* align-self: center; */
@@ -259,7 +259,7 @@ a {
   justify-content: center; /* This will center the items vertically */
 
   align-items: center;
-  position: absolute;
+  /* position: absolute; */
   /* background: linear-gradient(to bottom, var(--darkpurple), var(--lightpurple)); */
   background: var(--lightpurple);
   /* background: linear-gradient(to bottom, var(--white), var(--lightpurple)); */

@@ -5,7 +5,7 @@ import "../../utilities.css";
 import "./Landing.css";
 import shelfieLogo from "../modules/ShelfieLogo.svg";
 
-//TODO: REPLACE WITH YOUR OWN CLIENT_ID
+//TODO: REPLACE WITH YOUR OWN CLIENT_D
 const GOOGLE_CLIENT_ID = "454439898905-2ih7o3uj4tvlg6im1oecb4ipfmjg0i9t.apps.googleusercontent.com";
 
 const LandingPage = ({ userId, handleLogin, handleLogout }) => {
