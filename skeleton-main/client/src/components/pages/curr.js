@@ -18,9 +18,9 @@ const Curr = (props) => {
         </a>
       </div>
       <div className="outer-flex">
-        <h1 className="page-title">{props.userData.name}'s Currently Reading</h1>
+        <h1 className="page-title">{props.user.name}'s Currently Reading</h1>
         <div className="list-container">
-          <div>{JSON.stringify(props.userData.curr)}</div>
+          <div>{JSON.stringify(props.user.curr)}</div>
         </div>
       </div>
     </>

@@ -14,6 +14,10 @@ import "../../utilities.css";
 import "./Profile.css";
 
 const Profile = (props) => {
+  useEffect(() => {
+    console.log(`profile props: ${JSON.stringify(props)}`);
+  }, []);
+
   return (
     <>
       {/* <NavBar /> */}
@@ -22,18 +26,18 @@ const Profile = (props) => {
           <div className="topleft-flex"></div>
           <div className="Profile-container">
             <div className="Profile-details">
-              <h1 className="Profile-name">{props.userData.name}</h1>
-              <h3 className="Username-style">{props.userData.username}</h3>
+              <h1 className="Profile-name">{props.user.name}</h1>
+              <h3 className="Username-style">{props.user.username}</h3>
               <div className="Friends-container">
-                <h3 className="Friends-style"> {props.userData.num_followers} Friends </h3>
-                <h3 className="Friends-style"> {props.userData.num_following} Following </h3>
+                <h3 className="Friends-style"> {props.user.num_followers} Friends </h3>
+                <h3 className="Friends-style"> {props.user.num_following} Following </h3>
               </div>
               <div className="Profile-bio-container">
-                <h4 className="Profile-bio">{props.userData.bio}</h4>
+                <h4 className="Profile-bio">{props.user.bio}</h4>
               </div>
             </div>
             <div className="Profile-image-container">
-              <img src={props.userData.picture} alt="Profile Picture" className="Profile-image" />
+              <img src={props.user.picture} alt="Profile Picture" className="Profile-image" />
               <img src={pictureFrame} alt="Picture Frame" className="Picture-frame" />
               <button className="edit-profile-btn dark-btn">edit profile</button>
             </div>

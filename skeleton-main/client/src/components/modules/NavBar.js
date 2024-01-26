@@ -23,7 +23,7 @@ const NavBar = ({ userId, handleLogout }) => {
         <img src={logo} alt="s(H)elfie" />
       </NavLink>
       <div className="NavBar-linkContainer">
-        <NavLink to="/home" exact className="NavBar-link">
+        <NavLink to="/home" className="NavBar-link">
           <img src={homeIcon} alt="Home" />
         </NavLink>
         <NavLink
@@ -32,7 +32,7 @@ const NavBar = ({ userId, handleLogout }) => {
         >
           <img src={profileIcon} alt="Profile" />
         </NavLink>
-        <NavLink to="/search" exact className="NavBar-link">
+        <NavLink to="/search" className="NavBar-link">
           <img src={searchIcon} alt="Search" />
         </NavLink>
       </div>
