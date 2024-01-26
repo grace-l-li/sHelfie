@@ -60,15 +60,18 @@ a {
   display: flex;
   align-items: center;
   text-align: center;
+  /* background-color: red; */
   height: 100%;
   width: 100%;
-  padding: 2vh;
+  /* padding: 2vh; */
 }
 
 .book {
   position: relative;
   width: 60vh;
   height: 80vh;
+  /* align-self: center; */
+  /* justify-content: center; */
   /* perspective: 1000px; */
   transform-style: preserve-3d;
 }

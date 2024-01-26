@@ -27,7 +27,7 @@
   flex-direction: column;
   width: 60%;
   height: 40vh;
-  background-color: var(--lightpurple);
+  background-color: var(--white);
   margin: 10px auto;
   border-radius: 25px;
   overflow: hidden;
@@ -87,22 +87,23 @@
 .react-img img {
   height: 4vh;
   /* padding-right: 1vh; */
-  transition: transform 0.3s ease;
+  transition: transform 1s ease;
 }
+
 .react-img {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   /* margin-right: 10px; */
   flex-shrink: 0;
-  padding-right: 3vh;
+  padding-right: 5vh;
   /* padding: 5px; */
   transition: transform 0.3s ease;
 }
 
 .react-img:hover img.default-img,
 .react-img:hover .react-btn {
-  transform: scale(1.1);
+  transform: scale(1.2);
   color: var(--white);
 }
 
@@ -129,6 +130,15 @@
 
 .react-img:hover .image-container img.hover-img {
   opacity: 1;
+  transform: scale(1.1);
+}
+.react-img .default-img {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.react-img .hover-img {
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .react-img:hover .image-container img.default-img {
@@ -144,7 +154,7 @@
   font-weight: bold;
   font-size: 500;
 
-  margin-left: 1vh;
+  margin-left: 1.5vh;
 
   transition: color 0.3s ease, transform 0.3s ease;
 }
@@ -155,7 +165,7 @@
 }
 
 .comment-btn {
-  margin-left: 3vh;
+  margin-left: 3.6vh;
 }
 
 .likes-style {

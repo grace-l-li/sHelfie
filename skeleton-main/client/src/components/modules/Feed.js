@@ -6,6 +6,8 @@ import commentIcon from "./CommentButton.svg";
 import purpleHeart from "./PurpleHeart.svg";
 import purpleComment from "./PurpleComment.svg";
 import blankProfile from "./BlankProfile.svg";
+import lightpurpleHeart from "./LightPurpleHeart.svg";
+import lightpurpleComment from "./LightPurpleComment.svg";
 
 const Feed = (props) => {
   const [posts, setPosts] = useState([]);
@@ -52,8 +54,8 @@ const Feed = (props) => {
                 onMouseLeave={() => handleMouseLeave(index)}
               >
                 <div className="image-container">
-                  <img src={heartIcon} alt="Like" className="default-img" />
-                  <img src={purpleHeart} alt="Like" className="hover-img" />
+                  <img src={lightpurpleHeart} alt="Like" className="default-img" />
+                  <img src={heartIcon} alt="Like" className="hover-img" />
                 </div>
                 <button className="react-btn">Like</button>
               </div>
@@ -63,8 +65,8 @@ const Feed = (props) => {
                 onMouseLeave={() => handleMouseLeave(index)}
               >
                 <div className="image-container">
-                  <img src={commentIcon} alt="Comment" className="default-img" />
-                  <img src={purpleComment} alt="Comment" className="hover-img" />
+                  <img src={lightpurpleComment} alt="Comment" className="default-img" />
+                  <img src={commentIcon} alt="Comment" className="hover-img" />
                 </div>
                 <button className="react-btn comment-btn">Comment</button>
               </div>
