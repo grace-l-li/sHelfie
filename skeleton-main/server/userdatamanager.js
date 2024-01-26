@@ -1,23 +1,25 @@
 const UserData = require("./models/userdata");
 
-const getOrCreateUserData = (user) => {
-  return UserData.findOne({ userId: user._id }).then((existingUserData) => {
+const getOrCreateUserData = async (user) => {
+  return UserData.findOne({ userId: user._id }).then(async (existingUserData) => {
     if (existingUserData) return existingUserData;
 
     let unique = true;
     let finalUsername = "";
 
+    console.log("here");
+
     while (unique) {
       let rand = Math.floor(Math.random() * 10000);
       let tempUsername = `@${user.name.replace(/\s+/g, "").toLowerCase()}${rand}`;
 
-      UserData.findOne({ username: tempUsername }).then((user) => {
-        if (!user) {
-          unique = false;
-          finalUsername = tempUsername;
-        }
-      });
+      const userData = await UserData.findOne({ username: tempUsername });
+      if (!userData) {
+        unique = false;
+        finalUsername = tempUsername;
+      }
     }
+    console.log(finalUsername);
 
     const newUserData = new UserData({
       name: user.name,
