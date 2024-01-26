@@ -12,10 +12,14 @@ const GOOGLE_CLIENT_ID = "454439898905-2ih7o3uj4tvlg6im1oecb4ipfmjg0i9t.apps.goo
 const LandingPage = ({ handleLogin, handleLogout, userId, user }) => {
   const navigate = useNavigate();
   useEffect(() => {
-    if (Object.keys(user).length !== 0) {
+    if (Object.keys(user).length !== 0 && userId !== undefined) {
+      // Sometimes when you log in new users it stays stuck on the log in page
+      // What this useEffect is doing is essentially redirecting nonempty users to their profile
+      // We also had a bug such that log out spazzed between the prof and log out page but in order to fix this
+      // we check for undefined user ids which change instantenously rather than just a nonempty user
       navigate("/profile");
     }
-  }, [user]);
+  }, [userId, user]);
 
   return (
     <>
