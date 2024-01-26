@@ -5,13 +5,13 @@ const getOrCreateUserData = async (user) => {
     if (existingUserData) return existingUserData;
 
     let unique = true;
-    let finalUsername = "";
+    let Username = `@${user.name.replace(/\s+/g, "").toLowerCase()}`;
 
     console.log("here");
 
     while (unique) {
       let rand = Math.floor(Math.random() * 10000);
-      let tempUsername = `@${user.name.replace(/\s+/g, "").toLowerCase()}${rand}`;
+      let tempUsername = `${Username}${rand}`;
 
       const userData = await UserData.findOne({ username: tempUsername });
       if (!userData) {
