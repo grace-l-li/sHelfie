@@ -7,8 +7,6 @@ const getOrCreateUserData = async (user) => {
     let unique = true;
     let Username = `@${user.name.replace(/\s+/g, "").toLowerCase()}`;
 
-    console.log("here");
-
     while (unique) {
       let rand = Math.floor(Math.random() * 10000);
       let tempUsername = `${Username}${rand}`;
@@ -19,7 +17,6 @@ const getOrCreateUserData = async (user) => {
         finalUsername = tempUsername;
       }
     }
-    console.log(finalUsername);
 
     const newUserData = new UserData({
       name: user.name,
