@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { GoogleOAuthProvider, GoogleLogin, googleLogout } from "@react-oauth/google";
 
 import "../../utilities.css";
@@ -8,7 +9,14 @@ import shelfieLogo from "../modules/ShelfieLogo.svg";
 //TODO: REPLACE WITH YOUR OWN CLIENT_D
 const GOOGLE_CLIENT_ID = "454439898905-2ih7o3uj4tvlg6im1oecb4ipfmjg0i9t.apps.googleusercontent.com";
 
-const LandingPage = ({ userId, handleLogin, handleLogout }) => {
+const LandingPage = ({ handleLogin, handleLogout, userId, user }) => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (Object.keys(user).length !== 0) {
+      navigate("/profile");
+    }
+  }, [user]);
+
   return (
     <>
       <div className="Landing-Page">
