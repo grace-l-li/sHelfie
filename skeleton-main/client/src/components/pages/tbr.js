@@ -18,9 +18,9 @@ const TBR = (props) => {
         </a>
       </div>
       <div className="outer-flex">
-        <h1 className="page-title">{props.userData.name}'s To Be Read</h1>
+        <h1 className="page-title">{props.user.name}'s To Be Read</h1>
         <div className="list-container">
-          <div>{JSON.stringify(props.userData.tbr)}</div>
+          <div>{JSON.stringify(props.user.tbr)}</div>
         </div>
       </div>
     </>

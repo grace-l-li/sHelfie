@@ -29,7 +29,7 @@ const App = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [userData, setUserData] = useState({});
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     get("/api/whoami").then((user) => {
@@ -48,7 +48,12 @@ const App = () => {
 
   useEffect(() => {
     if (userId) {
-      get(`/api/userdata`, { userId: userId }).then((userDataObj) => setUserData(userDataObj));
+      get(`/api/user`, { userId: userId }).then(({ user: userObj }) => {
+        if (userObj !== null) {
+          setUser(userObj);
+          // console.log(JSON.stringify(userObj));
+        }
+      });
     }
   }, [userId]);
 
@@ -77,7 +82,12 @@ const App = () => {
         <Route
           path="/"
           element={
-            <Landing handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
+            <Landing
+              handleLogin={handleLogin}
+              handleLogout={handleLogout}
+              userId={userId}
+              user={user}
+            />
           }
         />
         <Route
@@ -87,7 +97,7 @@ const App = () => {
               handleLogin={handleLogin}
               handleLogout={handleLogout}
               userId={userId}
-              userData={userData}
+              user={user}
             />
           }
         />
@@ -99,19 +109,19 @@ const App = () => {
               handleLogin={handleLogin}
               handleLogout={handleLogout}
               userId={userId}
-              userData={userData}
+              user={user}
             />
           }
         />
 
-        <Route path="/tbr/" element={<TBR userId={userId} userData={userData} />} />
+        <Route path="/tbr" element={<TBR userId={userId} user={user} />} />
 
-        <Route path="/curr/" element={<Curr userId={userId} userData={userData} />} />
+        <Route path="/curr" element={<Curr userId={userId} user={user} />} />
 
-        <Route path="/read/" element={<Read userId={userId} userData={userData} />} />
+        <Route path="/read" element={<Read userId={userId} user={user} />} />
 
         <Route
-          path="/search/"
+          path="/search"
           element={<Search handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />}
         />
 

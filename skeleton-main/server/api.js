@@ -11,7 +11,6 @@ const express = require("express");
 
 // import models so we can interact with the database
 const User = require("./models/user");
-const UserData = require("./models/userdata");
 
 // import authentication library
 const auth = require("./auth");
@@ -44,10 +43,9 @@ router.post("/initsocket", (req, res) => {
 // | write your API methods below!|
 // |------------------------------|
 
-router.get("/userdata", (req, res) => {
-  UserData.findOne({ userId: req.query.userId }).then((userData) => {
-    // console.log(userData);
-    res.send(JSON.stringify(userData));
+router.get("/user", (req, res) => {
+  User.findById(req.user._id).then((user) => {
+    res.send({ user });
   });
 });
 

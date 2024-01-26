@@ -1,7 +1,6 @@
 const { OAuth2Client } = require("google-auth-library");
 const User = require("./models/user");
 const socketManager = require("./server-socket");
-const { getOrCreateUserData } = require("./userdatamanager");
 
 // create a new OAuth client used to verify google sign-in
 //    TODO: replace with your own CLIENT_ID
@@ -19,37 +18,55 @@ function verify(token) {
 }
 
 // gets user from DB, or makes a new account if it doesn't exist yet
-function getOrCreateUser(user) {
+const getOrCreateUser = (user) => {
   // the "sub" field means "subject", which is a unique identifier for each user
-  return User.findOne({ googleid: user.sub }).then((existingUser) => {
+  console.log(user.name);
+
+  return User.findOne({ googleid: user.sub }).then(async (existingUser) => {
     if (existingUser) return existingUser;
+
+    let unique = true;
+    let finalUsername = "";
+
+    while (unique) {
+      let rand = Math.floor(Math.random() * 10000);
+      let tempUsername = `@${user.name.replace(/\s+/g, "").toLowerCase()}${rand}`;
+
+      const user2 = await User.findOne({ username: tempUsername });
+      if (!user2) {
+        unique = false;
+        finalUsername = tempUsername;
+      }
+    }
     const newUser = new User({
       name: user.name,
       googleid: user.sub,
       picture: user.picture,
+      username: finalUsername,
+      bio: "but first, let me take a s(H)elfie ;)",
+      followers: [],
+      num_followers: 0,
+      following: [],
+      num_following: 0,
+      tbr: [],
+      curr: [],
+      read: [],
     });
-
     return newUser.save();
   });
-}
-
-const getOrCreateUserWithData = async (user) => {
-  const newUser = getOrCreateUser(user); //redundant
-  const newUserData = getOrCreateUserData(await newUser);
-
-  return newUser;
 };
 
 function login(req, res) {
   verify(req.body.token)
-    .then((user) => getOrCreateUserWithData(user))
+    .then((user) => getOrCreateUser(user))
     .then((user) => {
+      console.log(user);
       // persist user in the session
       req.session.user = user;
       res.send(user);
     })
     .catch((err) => {
-      console.log(`Failed to log in: ${err}`);
+      console.log(`Failed to log in: ${err}, stack: ${err.stack}`);
       res.status(401).send({ err });
     });
 }

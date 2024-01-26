@@ -35,10 +35,10 @@ const Feed = (props) => {
         <div key={index} className="post-container">
           <div className="post-top-bar">
             <div className="post-img">
-              <img src={props.userData.picture} alt="Profile" />
+              <img src={props.user.picture} alt="Profile" />
             </div>
             <div className="name-container">
-              <h2>{props.userData.username}</h2>
+              <h2>{props.user.username}</h2>
             </div>
           </div>
           <div className="post-center">
