@@ -10,6 +10,7 @@
   justify-content: space-between;
   padding: var(--s) var(--m) var(--s) var(--m);
   background-color: var(--lightpurple);
+  height: 7vh;
 }
 
 .NavBar-title {

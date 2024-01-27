@@ -38,20 +38,30 @@ const Profile = (props) => {
             <div className="Profile-image-container">
               <img src={props.user.picture} alt="Profile Picture" className="Profile-image" />
               <img src={pictureFrame} alt="Picture Frame" className="Picture-frame" />
-              <button className="edit-profile-btn dark-btn">edit profile</button>
+              <a href="/profile/edit">
+                <button className="edit-profile-btn dark-btn">edit profile</button>
+              </a>
             </div>
           </div>
           <div className="bottomleft-flex">
             {/* Box Link */}
-            <a href="/tbr" className="box-link">
-              <img src={boxDrawing} alt="Box" />
-              <button className="white-btn subpage-link">to be read</button>
+            <a className="box-link">
+              <a href="/tbr">
+                <img src={boxDrawing} alt="Box" />
+              </a>
+              <a href="/tbr">
+                <button className="white-btn subpage-link">to be read</button>
+              </a>
             </a>
 
             {/* Table Link */}
-            <a href="/curr" className="table-link">
-              <img src={tableDrawing} alt="Table" />
-              <button className="white-btn subpage-link">currently reading</button>
+            <a className="table-link">
+              <a href="/curr">
+                <img src={tableDrawing} alt="Table" />
+              </a>
+              <a href="/curr">
+                <button className="white-btn subpage-link">currently reading</button>
+              </a>
             </a>
           </div>
         </div>

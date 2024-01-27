@@ -10,6 +10,7 @@ import NavBar from "./modules/NavBar.js";
 import NotFound from "./pages/NotFound.js";
 import Home from "./pages/Home.js";
 import Profile from "./pages/Profile.js";
+import EditProfile from "./pages/EditProfile.js";
 import Landing from "./pages/Landing.js";
 import Curr from "./pages/curr.js";
 import TBR from "./pages/tbr.js";
@@ -74,10 +75,11 @@ const App = () => {
   };
 
   const isLandingPage = location.pathname === "/";
+  const isEditProfile = location.pathname === "/profile/edit";
 
   return (
     <>
-      {!isLandingPage && <NavBar userId={userId} handleLogout={handleLogout} />}
+      {!isLandingPage && !isEditProfile && <NavBar userId={userId} handleLogout={handleLogout} />}
       <Routes>
         <Route
           path="/"
@@ -106,6 +108,18 @@ const App = () => {
           path="/profile"
           element={
             <Profile
+              handleLogin={handleLogin}
+              handleLogout={handleLogout}
+              userId={userId}
+              user={user}
+            />
+          }
+        />
+
+        <Route
+          path="/profile/edit"
+          element={
+            <EditProfile
               handleLogin={handleLogin}
               handleLogout={handleLogout}
               userId={userId}
