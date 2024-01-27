@@ -2,36 +2,24 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: "Poppins", sans-serif;
 }
-/* :root {
-  --primary-color: #755139ff;
-  --secondary-color: #d4b996ff;
-} */
+
 body {
   background-color: var(--darkpurple);
 }
 
-html {
-  font-size: 75.5%;
-}
 .header {
   width: 100%;
   height: 20vh;
   padding-top: 4vh;
   color: var(--white);
   justify-content: center;
-  /* background-color: red; */
-  /* box-shadow: 0 5px 10px var(--secondary-color); */
   display: flex;
   align-items: center;
   position: relative;
 }
 
 .row2 {
-  /* position: absolute; */
-  /* top: 10px; */
-  /* right: 150px; */
   text-align: center;
 }
 .row2 h2 {
@@ -57,7 +45,6 @@ html {
   width: 30vw;
   height: 5vh;
   padding: 1vh 2vh;
-  /* padding: 0 0.5rem; */
   font-size: 3vh;
   font-family: "Readex Pro";
   font-weight: 400;
@@ -70,78 +57,97 @@ html {
 }
 
 .container {
-  width: 100%;
-  padding: 0vh 10vh;
-  /* margin: 0 auto; */
-  /* margin-top: 25px; */
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 0.5fr));
-  grid-gap: 4vh;
-  box-sizing: border-box;
+  display: flex;
   /* background-color: red; */
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  width: 100%;
+  padding: 1.5vw 3vw;
+  /* padding: 5vh 8vw; */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-row-gap: 2vw;
+  /* grid-template-columns: repeat(auto-fit, minmax(10vw, 0.5fr)); */
+
+  /* grid-template-columns: repeat(auto-fit, minmax(200px, 0.5fr)); */
+  /* grid-gap: 10vw; */
+  box-sizing: border-box;
 }
+
 .card {
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
   background-color: var(--lightpurple);
-  border-radius: 2rem;
+  border-radius: 5px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
   padding: 2vh;
   outline: none;
-  /* margin-bottom: 10px; */
-  /* box-shadow: 0 5px 5px rgba(212, 185, 150, 0.5); */
-  /* transition: transform 0.3s ease; */
-  /* transition: background-color 0.3s ease; */
   text-align: center;
   position: relative;
-  height: 45vh;
-  width: 20vh;
+  height: 25vw;
+  width: 16vw;
   cursor: pointer;
 }
 .card:hover {
-  /* outline: var(--lightpurple); */
   transform: scale(1.07);
   background-color: var(--white);
 }
 .card img {
-  max-width: 30vh;
-  /* width: 30vh; */
-  height: 40vh;
-  width: 30vh;
-  /* max-height: 40vh; */
-  /* height: 200px; */
-  /* border-radius: 1rem 1rem 0 0; */
-}
-.card .bottom {
-  display: flex;
-  align-items: center;
-  /* margin-top: 0vh; */
-  justify-content: center;
-  /* padding-top: 0px; */
-  height: 20vh;
-  width: 100%;
-  /* background-color: green; */
-  /* white-space: nowrap; */
-  overflow: hidden;
-  text-overflow: ellipsis;
+  height: 20vw;
+  width: 14vw;
 }
 
-.card .bottom .title {
-  /* display: flex;
+.bottom {
+  /* background-color: red; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: center; */
-  font-size: 3vh;
+  height: 5vw;
+  padding: 0;
+  margin: 0;
+}
+.title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; /* Number of lines you want */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1.2vw;
   font-family: "Readex Pro";
   color: var(--darkpurple);
   font-weight: 600;
-  /* padding: 10vh; */
-  /* flex-grow: 100; */
-  /* line-height: 1.2; */
-
-  /* flex: 100; */
-  /* word-wrap: break-word; */
+  line-height: 1.2; /* Adjust line height for proper spacing between lines */
+  height: 3.8; /* line-height * number of lines */
+  padding: 0;
+  margin: 0;
+  /* font-size: 1.2vw;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: "Readex Pro";
+  color: var(--darkpurple);
+  font-weight: 600;
+  line-height: 1.5vw;
+  transform: translateY(-13%); */
 }
+
+/* 
+.card .bottom .title {
+  /* display: flex; */
+/* align-items: center; */
+/* justify-content: center; */
+/* background-color: red;
+  height: 5vw;
+  width: 16vw;
+  text-overflow: ellipsis;
+  font-size: 1.2vw;
+  font-family: "Readex Pro";
+  color: var(--darkpurple);
+  font-weight: 600; */
 
 .overlay {
   min-height: 100vh;
@@ -156,6 +162,7 @@ html {
   align-items: center;
   justify-content: center;
 }
+
 .overlay-inner {
   background: var(--darkpurple);
   width: 100vw;
@@ -220,24 +227,10 @@ html {
   text-decoration-line: none;
 }
 
-/* .container {
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  /* background-color: red; */
-/* height: 100%;
-  width: 100%; */
-/* padding: 2vh; 
-} */
-
 .BookModal .book {
   position: relative;
   width: 60vh;
   height: 80vh;
-  /* align-self: center; */
-  /* justify-content: center; */
-  /* perspective: 1000px; */
   transform-style: preserve-3d;
 }
 
@@ -298,7 +291,6 @@ html {
 }
 
 .BookModal .back li {
-  /* background: linear-gradient(to bottom, var(--darkpurple), var(--lightpurple)); */
   background: var(--lightpurple);
   border-radius: 15px;
   width: 97.5% !important;
@@ -380,9 +372,6 @@ html {
 }
 
 .BookModal .page {
-  /* min-width: 95%; */
-  /* width: 100%; */
-  /* height: 98%; */
   z-index: 1;
 }
 
@@ -421,15 +410,10 @@ html {
 .BookModal .frontcover {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-around; */
-  justify-content: center; /* This will center the items vertically */
-
+  justify-content: center;
   align-items: center;
   position: absolute;
-  /* background: linear-gradient(to bottom, var(--darkpurple), var(--lightpurple)); */
   background: var(--lightpurple);
-  /* background: linear-gradient(to bottom, var(--white), var(--lightpurple)); */
-
   height: 100%;
   width: 100%;
   border-radius: 5px;

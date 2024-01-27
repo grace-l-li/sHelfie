@@ -22,19 +22,7 @@ const Search = () => {
   };
   return (
     <>
-      {/* <div className="search-container">
-        <h1 className="title">Book Search</h1>
-        <Searchbar />
-        <Bookcard />
-        <div className="results"></div>
-      </div> */}
-
       <div className="header">
-        {/* <div className="row1">
-          <h1>
-            <br />
-          </h1>
-        </div> */}
         <div className="row2">
           <h2>Find Your Book</h2>
           <div className="search">
