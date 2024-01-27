@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { googleLogout } from "@react-oauth/google";
 import homeIcon from "./HomeIcon.svg";
 import profileIcon from "./ProfileIcon.svg";
@@ -11,12 +11,17 @@ import addIcon from "./AddButton.svg";
 
 const NavBar = ({ userId, handleLogout }) => {
   const navigate = useNavigate();
-
+  const location = useLocation();
   const onLogout = () => {
     googleLogout();
     handleLogout();
     navigate("/");
   };
+  // const showLogout = () => {
+  //   // Check if the current pathname includes '/profile-edit/'
+  //   // Adjust the condition based on your routing
+  //   return !location.pathname.includes("/profile/edit");
+  // };
 
   return (
     <nav className="NavBar-container">

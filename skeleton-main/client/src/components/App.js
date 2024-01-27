@@ -10,6 +10,7 @@ import NavBar from "./modules/NavBar.js";
 import NotFound from "./pages/NotFound.js";
 import Home from "./pages/Home.js";
 import Profile from "./pages/Profile.js";
+import EditProfile from "./pages/EditProfile.js";
 import Landing from "./pages/Landing.js";
 import Curr from "./pages/curr.js";
 import TBR from "./pages/tbr.js";
@@ -47,15 +48,20 @@ const App = () => {
     });
   }, [location]);
 
-  useEffect(() => {
+  const fetchUser = () => {
     if (userId) {
       get(`/api/user`, { userId: userId }).then(({ user: userObj }) => {
         if (userObj !== null) {
           setUser(userObj);
+          return userObj;
           // console.log(JSON.stringify(userObj));
         }
       });
     }
+  };
+
+  useEffect(() => {
+    fetchUser();
   }, [userId]);
 
   const handleLogin = (credentialResponse) => {
@@ -75,10 +81,11 @@ const App = () => {
   };
 
   const isLandingPage = location.pathname === "/";
+  const isEditProfile = location.pathname === "/profile/edit";
 
   return (
     <>
-      {!isLandingPage && <NavBar userId={userId} handleLogout={handleLogout} />}
+      {!isLandingPage && !isEditProfile && <NavBar userId={userId} handleLogout={handleLogout} />}
       <Routes>
         <Route
           path="/"
@@ -111,6 +118,20 @@ const App = () => {
               handleLogout={handleLogout}
               userId={userId}
               user={user}
+              setUser={setUser}
+            />
+          }
+        />
+
+        <Route
+          path="/profile/edit"
+          element={
+            <EditProfile
+              handleLogin={handleLogin}
+              handleLogout={handleLogout}
+              userId={userId}
+              user={user}
+              setUser={setUser}
             />
           }
         />

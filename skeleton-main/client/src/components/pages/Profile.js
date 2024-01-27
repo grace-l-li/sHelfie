@@ -18,6 +18,18 @@ const Profile = (props) => {
   //   console.log(Object.keys(props.user).length);
   // }
   // if (props.user && Object.keys(props.user).length) {
+
+  useEffect(() => {
+    if (props.userId) {
+      get(`/api/user`, { userId: props.userId }).then(({ user: userObj }) => {
+        if (userObj !== null) {
+          props.setUser(userObj);
+          // console.log(JSON.stringify(userObj));
+        }
+      });
+    }
+  }, [props]);
+
   return (
     <>
       <div className="outermost-flex">
@@ -26,7 +38,7 @@ const Profile = (props) => {
           <div className="Profile-container">
             <div className="Profile-details">
               <h1 className="Profile-name">{props.user.name}</h1>
-              <h3 className="Username-style">{props.user.username}</h3>
+              <h3 className="Username-style">@{props.user.username}</h3>
               <div className="Friends-container">
                 <h3 className="Friends-style"> {props.user.num_followers} Friends </h3>
                 <h3 className="Friends-style"> {props.user.num_following} Following </h3>
@@ -38,20 +50,30 @@ const Profile = (props) => {
             <div className="Profile-image-container">
               <img src={props.user.picture} alt="Profile Picture" className="Profile-image" />
               <img src={pictureFrame} alt="Picture Frame" className="Picture-frame" />
-              <button className="edit-profile-btn dark-btn">edit profile</button>
+              <a href="/profile/edit">
+                <button className="edit-profile-btn dark-btn">edit profile</button>
+              </a>
             </div>
           </div>
           <div className="bottomleft-flex">
             {/* Box Link */}
-            <a href="/tbr" className="box-link">
-              <img src={boxDrawing} alt="Box" />
-              <button className="white-btn subpage-link">to be read</button>
+            <a className="box-link">
+              <a href="/tbr">
+                <img src={boxDrawing} alt="Box" />
+              </a>
+              <a href="/tbr">
+                <button className="white-btn subpage-link">to be read</button>
+              </a>
             </a>
 
             {/* Table Link */}
-            <a href="/curr" className="table-link">
-              <img src={tableDrawing} alt="Table" />
-              <button className="white-btn subpage-link">currently reading</button>
+            <a className="table-link">
+              <a href="/curr">
+                <img src={tableDrawing} alt="Table" />
+              </a>
+              <a href="/curr">
+                <button className="white-btn subpage-link">currently reading</button>
+              </a>
             </a>
           </div>
         </div>

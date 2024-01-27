@@ -58,8 +58,9 @@ a {
 .container {
   justify-content: center;
   display: flex;
+
   align-items: center;
-  text-align: center;
+  /* text-align: center; */
   /* background-color: red; */
   height: 100%;
   width: 100%;
@@ -67,6 +68,9 @@ a {
 }
 
 .book {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   /* position: center; */
   width: 60vh;
   height: 80vh;
