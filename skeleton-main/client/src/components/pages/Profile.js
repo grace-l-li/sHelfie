@@ -85,7 +85,7 @@ const Profile = (props) => {
             <button className="white-btn shelf-shift">read</button>
           </a>
 
-          <a href="/search/" className="add-link">
+          <a href="/search-books" className="add-link">
             <button className="light-btn add-book-btn">add book</button>
           </a>
         </div>
