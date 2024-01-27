@@ -1,16 +1,17 @@
 import React from "react";
 import { useState } from "react";
+import BookModal from "./BookModal.js";
 import Modal from "./modal.js";
 
 const Card = ({ book }) => {
   const [show, setShow] = useState(false);
   const [bookItem, setItem] = useState();
-  console.log(book);
+  // console.log(book);
+
   return (
     <>
       {book.map((item) => {
         let thumbnail = item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
-        // let amount = item.saleInfo.listPrice && item.saleInfo.listPrice.amount;
         if (thumbnail != undefined) {
           return (
             <>
@@ -24,10 +25,9 @@ const Card = ({ book }) => {
                 <img src={thumbnail} alt="" />
                 <div className="bottom">
                   <h3 className="title">{item.volumeInfo.title}</h3>
-                  {/* <p className="amount">${amount}</p> */}
                 </div>
               </div>
-              <Modal show={show} item={bookItem} onClose={() => setShow(false)} />
+              <BookModal show={show} item={bookItem} onClose={() => setShow(false)} />
             </>
           );
         }

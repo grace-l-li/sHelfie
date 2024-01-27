@@ -24,10 +24,10 @@ const BookCard = ({ book }) => {
                 <img src={thumbnail} alt="" />
                 <div className="bottom">
                   <h3 className="title">{item.volumeInfo.title}</h3>
-                  <p className="amount">${amount}</p>
+                  {/* <p className="amount">${amount}</p> */}
+                  <Modal show={show} item={bookItem} onClose={() => setShow(false)} />
                 </div>
               </div>
-              <Modal show={show} item={bookItem} onClose={() => setShow(false)} />
             </>
           );
         }

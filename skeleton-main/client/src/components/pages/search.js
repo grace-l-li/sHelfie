@@ -14,7 +14,7 @@ const Search = () => {
           "https://www.googleapis.com/books/v1/volumes?q=" +
             search +
             "&key= AIzaSyC2SHH8dBbSnfwXSOlpI1KUi8gnq4nJASU" +
-            "&maxResults=25"
+            "&maxResults=40"
         )
         .then((res) => setData(res.data.items))
         .catch((err) => console.log(err));
@@ -49,7 +49,6 @@ const Search = () => {
               <i className="fas fa-search"></i>
             </button>
           </div>
-          <img src="" alt="" />
         </div>
       </div>
 
