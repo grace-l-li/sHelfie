@@ -51,8 +51,7 @@ router.get("/user", (req, res) => {
 
 router.post("/user", async (req, res) => {
   let foundUserId = await auth.getIdFromUsername(req.body.username);
-  console.log(foundUserId);
-  console.log(req.user._id);
+  
   if (foundUserId === undefined || foundUserId == req.user._id) {
     User.findById(req.user._id).then((user) => {
       user.name = req.body.name;

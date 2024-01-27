@@ -34,18 +34,19 @@ const getOrCreateUser = (user) => {
   return User.findOne({ googleid: user.sub }).then(async (existingUser) => {
     if (existingUser) return existingUser;
 
-
     let foundUserId = true;
-    let finalUsername = "";
     let tempUsername = "";
+    let finalUsername = "";
 
-    while (foundUserId) {
+    while (!(foundUserId === undefined)) {
       let rand = Math.floor(Math.random() * 10000);
       tempUsername = `${user.name.replace(/\s+/g, "").toLowerCase()}${rand}`;
 
-      foundUserId = getIdFromUsername(tempUsername);
+      foundUserId = await getIdFromUsername(tempUsername);
+      if (foundUserId === undefined) {
+        finalUsername = tempUsername;
+      }
     }
-    finalUsername = tempUsername;
 
     const newUser = new User({
       name: user.name,
