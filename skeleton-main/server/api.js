@@ -11,7 +11,6 @@ const express = require("express");
 
 // import models so we can interact with the database
 const User = require("./models/user");
-const UserData = require("./models/userdata");
 
 // import authentication library
 const auth = require("./auth");
@@ -44,11 +43,29 @@ router.post("/initsocket", (req, res) => {
 // | write your API methods below!|
 // |------------------------------|
 
-router.get("/userdata", (req, res) => {
-  console.log("in /userdata");
-  UserData.findOne({ userId: req.query.userId }).then((userData) => {
-    res.send(userData);
+router.get("/user", (req, res) => {
+  User.findById(req.user._id).then((user) => {
+    res.send({ user });
   });
+});
+
+router.post("/user", async (req, res) => {
+  let foundUserId = await auth.getIdFromUsername(req.body.username);
+  
+  if (foundUserId === undefined || foundUserId == req.user._id) {
+    User.findById(req.user._id).then((user) => {
+      user.name = req.body.name;
+      user.username = req.body.username;
+      user.bio = req.body.bio;
+      user.picture = req.body.picture;
+
+      user.save().then(() => {
+        res.send({ user });
+      });
+    });
+  } else {
+    res.send({ error: "Username already taken" });
+  }
 });
 
 // anything else falls to this "not found" case

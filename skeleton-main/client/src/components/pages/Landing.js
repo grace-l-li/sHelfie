@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { GoogleOAuthProvider, GoogleLogin, googleLogout } from "@react-oauth/google";
 
 import "../../utilities.css";
 import "./Landing.css";
 import shelfieLogo from "../modules/ShelfieLogo.svg";
 
-//TODO: REPLACE WITH YOUR OWN CLIENT_ID
+//TODO: REPLACE WITH YOUR OWN CLIENT_D
 const GOOGLE_CLIENT_ID = "454439898905-2ih7o3uj4tvlg6im1oecb4ipfmjg0i9t.apps.googleusercontent.com";
 
-const LandingPage = ({ userId, handleLogin, handleLogout }) => {
+const LandingPage = ({ handleLogin, handleLogout, userId, user }) => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (Object.keys(user).length !== 0 && userId !== undefined) {
+      // Sometimes when you log in new users it stays stuck on the log in page
+      // What this useEffect is doing is essentially redirecting nonempty users to their profile
+      // We also had a bug such that log out spazzed between the prof and log out page but in order to fix this
+      // we check for undefined user ids which change instantenously rather than just a nonempty user
+      navigate("/profile");
+    }
+  }, [userId, user]);
+
   return (
     <>
       <div className="Landing-Page">

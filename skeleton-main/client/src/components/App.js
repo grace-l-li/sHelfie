@@ -10,12 +10,14 @@ import NavBar from "./modules/NavBar.js";
 import NotFound from "./pages/NotFound.js";
 import Home from "./pages/Home.js";
 import Profile from "./pages/Profile.js";
+import EditProfile from "./pages/EditProfile.js";
 import Landing from "./pages/Landing.js";
 import Curr from "./pages/curr.js";
 import TBR from "./pages/tbr.js";
 import Read from "./pages/read.js";
 import "../utilities.css";
-import Search from "./pages/search.js";
+import SearchBooks from "./pages/search.js";
+import SearchFriends from "./pages/SearchFriends.js";
 
 import { socket } from "../client-socket.js";
 
@@ -29,7 +31,7 @@ const App = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [userData, setUserData] = useState({});
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     get("/api/whoami").then((user) => {
@@ -46,10 +48,20 @@ const App = () => {
     });
   }, [location]);
 
-  useEffect(() => {
+  const fetchUser = () => {
     if (userId) {
-      get(`/api/userdata`, { userId: userId }).then((userDataObj) => setUserData(userDataObj));
+      get(`/api/user`, { userId: userId }).then(({ user: userObj }) => {
+        if (userObj !== null) {
+          setUser(userObj);
+          return userObj;
+          // console.log(JSON.stringify(userObj));
+        }
+      });
     }
+  };
+
+  useEffect(() => {
+    fetchUser();
   }, [userId]);
 
   const handleLogin = (credentialResponse) => {
@@ -69,15 +81,21 @@ const App = () => {
   };
 
   const isLandingPage = location.pathname === "/";
+  const isEditProfile = location.pathname === "/profile/edit";
 
   return (
     <>
-      {!isLandingPage && <NavBar userId={userId} handleLogout={handleLogout} />}
+      {!isLandingPage && !isEditProfile && <NavBar userId={userId} handleLogout={handleLogout} />}
       <Routes>
         <Route
           path="/"
           element={
-            <Landing handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
+            <Landing
+              handleLogin={handleLogin}
+              handleLogout={handleLogout}
+              userId={userId}
+              user={user}
+            />
           }
         />
         <Route
@@ -87,7 +105,7 @@ const App = () => {
               handleLogin={handleLogin}
               handleLogout={handleLogout}
               userId={userId}
-              userData={userData}
+              user={user}
             />
           }
         />
@@ -99,20 +117,43 @@ const App = () => {
               handleLogin={handleLogin}
               handleLogout={handleLogout}
               userId={userId}
-              userData={userData}
+              user={user}
+              setUser={setUser}
             />
           }
         />
 
-        <Route path="/tbr/" element={<TBR userId={userId} userData={userData} />} />
+        <Route
+          path="/profile/edit"
+          element={
+            <EditProfile
+              handleLogin={handleLogin}
+              handleLogout={handleLogout}
+              userId={userId}
+              user={user}
+              setUser={setUser}
+            />
+          }
+        />
 
-        <Route path="/curr/" element={<Curr userId={userId} userData={userData} />} />
+        <Route path="/tbr" element={<TBR userId={userId} user={user} />} />
 
-        <Route path="/read/" element={<Read userId={userId} userData={userData} />} />
+        <Route path="/curr" element={<Curr userId={userId} user={user} />} />
+
+        <Route path="/read" element={<Read userId={userId} user={user} />} />
 
         <Route
-          path="/search/"
-          element={<Search handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />}
+          path="/search-books"
+          element={
+            <SearchBooks handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
+          }
+        />
+
+        <Route
+          path="/search-friends"
+          element={
+            <SearchFriends handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
+          }
         />
 
         <Route path="*" element={<NotFound />} />

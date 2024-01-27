@@ -18,9 +18,9 @@ const Read = (props) => {
         </a>
       </div>
       <div className="outer-flex">
-        <h1 className="page-title">{props.userData.name}'s Read</h1>
+        <h1 className="page-title">{props.user.name}'s Read</h1>
         <div className="list-container">
-          <div>{JSON.stringify(props.userData.read)}</div>
+          <div>{JSON.stringify(props.user.read)}</div>
         </div>
       </div>
     </>
