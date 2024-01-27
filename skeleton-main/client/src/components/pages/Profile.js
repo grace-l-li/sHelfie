@@ -18,6 +18,18 @@ const Profile = (props) => {
   //   console.log(Object.keys(props.user).length);
   // }
   // if (props.user && Object.keys(props.user).length) {
+
+  useEffect(() => {
+    if (props.userId) {
+      get(`/api/user`, { userId: props.userId }).then(({ user: userObj }) => {
+        if (userObj !== null) {
+          props.setUser(userObj);
+          // console.log(JSON.stringify(userObj));
+        }
+      });
+    }
+  }, [props]);
+
   return (
     <>
       <div className="outermost-flex">
@@ -26,7 +38,7 @@ const Profile = (props) => {
           <div className="Profile-container">
             <div className="Profile-details">
               <h1 className="Profile-name">{props.user.name}</h1>
-              <h3 className="Username-style">{props.user.username}</h3>
+              <h3 className="Username-style">@{props.user.username}</h3>
               <div className="Friends-container">
                 <h3 className="Friends-style"> {props.user.num_followers} Friends </h3>
                 <h3 className="Friends-style"> {props.user.num_following} Following </h3>

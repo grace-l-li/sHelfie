@@ -17,6 +17,15 @@ function verify(token) {
     .then((ticket) => ticket.getPayload());
 }
 
+const getIdFromUsername = async (username) => {
+  const user = await User.findOne({ username: username });
+  if (user) {
+    return user._id;
+  } else {
+    return undefined;
+  }
+};
+
 // gets user from DB, or makes a new account if it doesn't exist yet
 const getOrCreateUser = (user) => {
   // the "sub" field means "subject", which is a unique identifier for each user
@@ -25,25 +34,26 @@ const getOrCreateUser = (user) => {
   return User.findOne({ googleid: user.sub }).then(async (existingUser) => {
     if (existingUser) return existingUser;
 
-    let unique = true;
+
+    let foundUserId = true;
     let finalUsername = "";
+    let tempUsername = "";
 
-    while (unique) {
+    while (foundUserId) {
       let rand = Math.floor(Math.random() * 10000);
-      let tempUsername = `@${user.name.replace(/\s+/g, "").toLowerCase()}${rand}`;
+      tempUsername = `${user.name.replace(/\s+/g, "").toLowerCase()}${rand}`;
 
-      const user2 = await User.findOne({ username: tempUsername });
-      if (!user2) {
-        unique = false;
-        finalUsername = tempUsername;
-      }
+      foundUserId = getIdFromUsername(tempUsername);
     }
+    finalUsername = tempUsername;
+
     const newUser = new User({
       name: user.name,
       googleid: user.sub,
       picture: user.picture,
       username: finalUsername,
       bio: "but first, let me take a s(H)elfie ;)",
+      follow_reqs: [],
       followers: [],
       num_followers: 0,
       following: [],
@@ -95,4 +105,5 @@ module.exports = {
   logout,
   populateCurrentUser,
   ensureLoggedIn,
+  getIdFromUsername,
 };

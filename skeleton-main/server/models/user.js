@@ -6,6 +6,7 @@ const UserSchema = new mongoose.Schema({
   picture: String,
   username: String,
   bio: String,
+  follow_reqs: [],
   followers: [],
   num_followers: Number,
   following: [],

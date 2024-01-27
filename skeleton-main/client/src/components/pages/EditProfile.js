@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, NavLink } from "react-router-dom";
+import { Routes, Route, NavLink, useNavigate } from "react-router-dom";
 
 import NavBar from "../modules/NavBar";
 import tableDrawing from "../modules/Table.svg";
@@ -8,22 +8,25 @@ import boxDrawing from "../modules/Box.svg";
 import blankProfile from "../modules/BlankProfile.svg";
 import pictureFrame from "../modules/PictureFrame.svg";
 
-import { get } from "../../utilities.js";
+import { get, post } from "../../utilities.js";
 
 import "../../utilities.css";
 import "./Profile.css";
 import "./EditProfile.css";
 
 const Profile = (props) => {
-  const [editableName, setEditableName] = useState("");
-  const [editableUsername, setEditableUsername] = useState("");
-  const [editableBio, setEditableBio] = useState("");
+  const [newName, setNewName] = useState("");
+  const [newUsername, setNewUsername] = useState("");
+  const [newBio, setNewBio] = useState("");
+  const [newPicture, setNewPicture] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (props.user) {
-      setEditableName(props.user.name || "");
-      setEditableUsername(props.user.username || "");
-      setEditableBio(props.user.bio || "");
+      setNewName(props.user.name || "");
+      setNewUsername(props.user.username || "");
+      setNewBio(props.user.bio || "");
+      // setNewPicture(props.user.picture || "");
     }
   }, [props.user]);
 
@@ -60,6 +63,32 @@ const Profile = (props) => {
   //       });
   //   };
 
+  // called when the user hits "Submit" for a new post
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    let sendPicture = newPicture === "" ? props.user.picture : newPicture;
+    post("/api/user", {
+      name: newName,
+      username: newUsername,
+      bio: newBio,
+      picture: sendPicture,
+    }).then((res) => {
+      if (!res.error) {
+        get(`/api/user`, { userId: props.userId }).then(({ user: userObj }) => {
+          if (userObj !== null) {
+            props.setUser(userObj);
+            navigate("/profile");
+            // console.log(JSON.stringify(userObj));
+          }
+        });
+        // props.fetchUser().then(() => {
+        // });
+      } else {
+        alert("username taken");
+      }
+    });
+  };
+
   return (
     <>
       <div className="emptyNavBar" />
@@ -71,16 +100,18 @@ const Profile = (props) => {
               <input
                 type="text"
                 className="Profile-name editable-field"
-                value={editableName}
-                onChange={(e) => setEditableName(e.target.value)}
+                value={newName}
+                onChange={(e) => {
+                  setNewName(e.target.value);
+                }}
                 maxLength={20}
               />
               <input
                 type="text"
                 className="Username-style editable-field"
-                value={editableUsername}
-                onChange={(e) => setEditableUsername(e.target.value)}
-                maxLength={15}
+                value={newUsername}
+                onChange={(e) => setNewUsername(e.target.value)}
+                maxLength={30}
               />
               {/* <h1 className="Profile-name">{props.user.name}</h1> */}
               {/* <h3 className="Username-style">{props.user.username}</h3> */}
@@ -91,8 +122,8 @@ const Profile = (props) => {
               <div className="Profile-bio-container">
                 <textarea
                   className="Profile-bio editable-field"
-                  value={editableBio}
-                  onChange={(e) => setEditableBio(e.target.value)}
+                  value={newBio}
+                  onChange={(e) => setNewBio(e.target.value)}
                   rows="4" // This sets the initial visible number of lines in the textarea
                   maxLength={100}
                 />
@@ -107,14 +138,15 @@ const Profile = (props) => {
                 placeholder="Insert new image link"
                 className="image-field Profile-bio"
                 // className="Username-style editable-field"
-                // value={editableUsername}
-                // onChange={(e) => setEditableUsername(e.target.value)}
-                // maxLength={15}
+                value={newPicture}
+                onChange={(e) => setNewPicture(e.target.value)}
               />
               {/* <img src={props.user.picture} alt="Profile Picture" className="Profile-image" /> */}
               {/* <img src={pictureFrame} alt="Picture Frame" className="Picture-frame" /> */}
               <a href="/profile">
-                <button className="edit-profile-btn dark-btn">save changes</button>
+                <button className="edit-profile-btn dark-btn" onClick={handleSubmit}>
+                  save changes
+                </button>
               </a>
             </div>
           </div>

@@ -47,15 +47,20 @@ const App = () => {
     });
   }, [location]);
 
-  useEffect(() => {
+  const fetchUser = () => {
     if (userId) {
       get(`/api/user`, { userId: userId }).then(({ user: userObj }) => {
         if (userObj !== null) {
           setUser(userObj);
+          return userObj;
           // console.log(JSON.stringify(userObj));
         }
       });
     }
+  };
+
+  useEffect(() => {
+    fetchUser();
   }, [userId]);
 
   const handleLogin = (credentialResponse) => {
@@ -112,6 +117,7 @@ const App = () => {
               handleLogout={handleLogout}
               userId={userId}
               user={user}
+              setUser={setUser}
             />
           }
         />
@@ -124,6 +130,7 @@ const App = () => {
               handleLogout={handleLogout}
               userId={userId}
               user={user}
+              setUser={setUser}
             />
           }
         />

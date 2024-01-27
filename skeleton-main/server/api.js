@@ -49,6 +49,26 @@ router.get("/user", (req, res) => {
   });
 });
 
+router.post("/user", async (req, res) => {
+  let foundUserId = await auth.getIdFromUsername(req.body.username);
+  console.log(foundUserId);
+  console.log(req.user._id);
+  if (foundUserId === undefined || foundUserId == req.user._id) {
+    User.findById(req.user._id).then((user) => {
+      user.name = req.body.name;
+      user.username = req.body.username;
+      user.bio = req.body.bio;
+      user.picture = req.body.picture;
+
+      user.save().then(() => {
+        res.send({ user });
+      });
+    });
+  } else {
+    res.send({ error: "Username already taken" });
+  }
+});
+
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
   console.log(`API route not found: ${req.method} ${req.url}`);
