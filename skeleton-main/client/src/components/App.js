@@ -15,7 +15,8 @@ import Curr from "./pages/curr.js";
 import TBR from "./pages/tbr.js";
 import Read from "./pages/read.js";
 import "../utilities.css";
-import Search from "./pages/search.js";
+import SearchBooks from "./pages/search.js";
+import SearchFriends from "./pages/SearchFriends.js";
 
 import { socket } from "../client-socket.js";
 
@@ -121,8 +122,17 @@ const App = () => {
         <Route path="/read" element={<Read userId={userId} user={user} />} />
 
         <Route
-          path="/search"
-          element={<Search handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />}
+          path="/search-books"
+          element={
+            <SearchBooks handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
+          }
+        />
+
+        <Route
+          path="/search-friends"
+          element={
+            <SearchFriends handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
+          }
         />
 
         <Route path="*" element={<NotFound />} />

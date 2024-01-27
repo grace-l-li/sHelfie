@@ -7,6 +7,7 @@ import logo from "./ShelfieLogo.svg";
 import "./NavBar.css";
 import Searchbar from "./Searchbar";
 import searchIcon from "./Search.svg";
+import addIcon from "./AddButton.svg";
 
 const NavBar = ({ userId, handleLogout }) => {
   const navigate = useNavigate();
@@ -32,8 +33,11 @@ const NavBar = ({ userId, handleLogout }) => {
         >
           <img src={profileIcon} alt="Profile" />
         </NavLink>
-        <NavLink to="/search" className="NavBar-link">
-          <img src={searchIcon} alt="Search" />
+        <NavLink to="/search-books" className="NavBar-link">
+          <img src={searchIcon} alt="Search Books" />
+        </NavLink>
+        <NavLink to="/search-friends" className="NavBar-link">
+          <img src={addIcon} alt="Search Friends" />
         </NavLink>
       </div>
       <div className="NavBar-logoutContainer">
