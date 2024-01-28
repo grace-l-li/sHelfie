@@ -59,9 +59,10 @@ const getOrCreateUser = (user) => {
       num_followers: 0,
       following: [],
       num_following: 0,
-      tbr: [],
-      curr: [],
-      read: [],
+      tbr: [],          //[{bookId: String}, rating: -1, review: ""]
+      curr: [],         //[{bookId: String}, rating: -1, review: ""]
+      read: [],         //[{bookId: String}, rating: Number, review: ""]
+
     });
     return newUser.save();
   });

@@ -16,7 +16,7 @@ import Curr from "./pages/curr.js";
 import TBR from "./pages/tbr.js";
 import Read from "./pages/read.js";
 import "../utilities.css";
-import SearchBooks from "./pages/search.js";
+import SearchBooks from "./pages/SearchBooks.js";
 import SearchFriends from "./pages/SearchFriends.js";
 
 import { socket } from "../client-socket.js";
