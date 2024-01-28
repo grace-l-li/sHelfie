@@ -38,7 +38,7 @@ const Feed = (props) => {
               <img src={props.user.picture} alt="Profile" />
             </div>
             <div className="name-container">
-              <h2>{props.user.username}</h2>
+              <h2>@{props.user.username}</h2>
             </div>
           </div>
           <div className="post-center">

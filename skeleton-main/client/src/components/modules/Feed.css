@@ -7,7 +7,10 @@
 
 .post-img img {
   width: 8vh;
+  height: 8vh;
   border-radius: 50%;
+  overflow: hidden;
+  object-fit: cover;
 }
 
 .name-container {
@@ -117,6 +120,7 @@
 
 .image-container img {
   position: absolute;
+
   top: 0;
   left: 0;
   transition: opacity 0.3s ease;

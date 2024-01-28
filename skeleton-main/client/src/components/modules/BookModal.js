@@ -15,14 +15,8 @@ const BookModal = ({ show, item, onClose }) => {
               <ul class="front">
                 <li>
                   <div class="frontcover">
-                    <h2 class="heading"></h2>
-                    <p class="sub-title"> </p>
                     <div class="book-icon">
                       <img src={thumbnail} alt=""></img>
-                    </div>
-                    <div class="writer">
-                      <img src="" alt=""></img>
-                      <p></p>
                     </div>
                   </div>
                 </li>
@@ -31,25 +25,34 @@ const BookModal = ({ show, item, onClose }) => {
               <ul class="page">
                 <li />
                 <li>
-                  <p class="Title"> {item.volumeInfo.title}</p>
-                  <p>Published in {item.volumeInfo.publishedDate}</p>
-                  <i>Written by </i> {item.volumeInfo.authors}
-                  {
-                    <p>
-                      <button className="close" onClick={onClose}>
+                  <div className="info-container">
+                    <div className="close-container">
+                      <button className="dark-btn" onClick={onClose}>
                         Close
                         <i class="fas fa-times"></i>
                       </button>
-                    </p>
-                  }
-                  <a href={item.volumeInfo.previewLink}>
-                    <button>More</button>
-                  </a>
-                  <h4 className="description">Description: {item.volumeInfo.description}</h4>
-                  <button className="AddBook" onClick>
-                    Add Book
-                    <i class="fas fa-times"></i>
-                  </button>
+                    </div>
+                    <div></div>
+                    {/* {
+                      <p>
+                        <button className="close" onClick={onClose}>
+                          Close
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </p>
+                    } */}
+                    {/* <p class="booktitle"> {item.volumeInfo.title}</p>
+                    <p>Published in {item.volumeInfo.publishedDate}</p>
+                    <i>Written by </i> {item.volumeInfo.authors}
+                    <a href={item.volumeInfo.previewLink}>
+                      <button>More</button>
+                    </a>
+                    <h4 className="description">Description: {item.volumeInfo.description}</h4>
+                    <button className="AddBook" onClick>
+                      Add Book
+                      <i class="fas fa-times"></i>
+                    </button> */}
+                  </div>
                 </li>
                 <li></li>
                 <li></li>
