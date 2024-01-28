@@ -21,6 +21,16 @@ const BookModal = ({ show, item, onClose }) => {
               Close
               <i class="fas fa-times"></i>
             </button>
+            <div class="dropdown">
+              <span>Add Book</span>
+              <div class="dropdown-content">
+                <button>Currently reading!</button>
+
+                <button>To be read!</button>
+
+                <button>Read!</button>
+              </div>
+            </div>
             <div class="book">
               <ul class="front">
                 <li>
@@ -40,12 +50,6 @@ const BookModal = ({ show, item, onClose }) => {
                       <p className="booktitle"> {item.volumeInfo.title}</p>{" "}
                       <p className="author">Written by {authorNames} </p>
                       <div className="buttons-container">
-                        <div className="btn-subcontainer">
-                          <button className="dark-btn add-more-btn" onClick>
-                            Add Book
-                            <i class="fas fa-times"></i>
-                          </button>
-                        </div>
                         <div className="btn-subcontainer">
                           <a href={item.volumeInfo.previewLink}>
                             <button className="dark-btn add-more-btn">More Info</button>
