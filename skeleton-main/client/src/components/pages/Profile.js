@@ -18,6 +18,20 @@ const Profile = (props) => {
   //   console.log(Object.keys(props.user).length);
   // }
   // if (props.user && Object.keys(props.user).length) {
+  const [profileImage, setProfileImage] = useState(props.user.picture || blankProfile);
+
+  // Function to handle the image loading error
+  const handleImageError = () => {
+    setProfileImage(blankProfile);
+  };
+
+  useEffect(() => {
+    // Fetch user data and other logic here
+    // ...
+
+    // Update the profile image URL when the component mounts or when props.user.picture changes
+    setProfileImage(props.user.picture || blankProfile);
+  }, [props.userId, props.user.picture]);
 
   useEffect(() => {
     if (props.userId) {
@@ -48,7 +62,12 @@ const Profile = (props) => {
               </div>
             </div>
             <div className="Profile-image-container">
-              <img src={props.user.picture} alt="Profile Picture" className="Profile-image" />
+              <img
+                src={profileImage}
+                alt="Profile Picture"
+                className="Profile-image"
+                onError={handleImageError} // Add the onError handler here
+              />{" "}
               <img src={pictureFrame} alt="Picture Frame" className="Picture-frame" />
               <a href="/profile/edit">
                 <button className="edit-profile-btn dark-btn">edit profile</button>
