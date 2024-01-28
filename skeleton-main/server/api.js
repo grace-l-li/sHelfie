@@ -51,7 +51,7 @@ router.get("/user", (req, res) => {
 
 router.post("/user", async (req, res) => {
   let foundUserId = await auth.getIdFromUsername(req.body.username);
-  
+
   if (foundUserId === undefined || foundUserId == req.user._id) {
     User.findById(req.user._id).then((user) => {
       user.name = req.body.name;
@@ -66,6 +66,38 @@ router.post("/user", async (req, res) => {
   } else {
     res.send({ error: "Username already taken" });
   }
+});
+
+router.post("/tbr", (req, res) => {
+  User.updateOne(
+    { _id: req.user._id },
+    { $push: { bookId: req.body.bookId, rating: -1, review: "" } }
+  ).then((user) => {
+    res.send({ user });
+  });
+  // res.send(user)
+
+  // User.findById(req.user._id).then((user) => {
+  //   user.updateOne()
+  // })
+});
+
+router.post("/curr", (req, res) => {
+  User.updateOne(
+    { _id: req.user._id },
+    { $push: { bookId: req.body.bookId, rating: -1, review: "" } }
+  ).then((user) => {
+    res.send({ user });
+  });
+});
+
+router.post("/read", (req, res) => {
+  User.updateOne(
+    { _id: req.user._id },
+    { $push: { bookId: req.body.bookId, rating: req.body.rating, review: req.body.review } }
+  ).then((user) => {
+    res.send({ user });
+  });
 });
 
 // anything else falls to this "not found" case

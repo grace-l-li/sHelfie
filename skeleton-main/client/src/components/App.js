@@ -50,7 +50,7 @@ const App = () => {
 
   const fetchUser = () => {
     if (userId) {
-      get(`/api/user`, { userId: userId }).then(({ user: userObj }) => {
+      get("/api/user", { userId: userId }).then(({ user: userObj }) => {
         if (userObj !== null) {
           setUser(userObj);
           return userObj;

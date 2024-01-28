@@ -1,4 +1,5 @@
 import React from "react";
+import "../pages/SearchBooks.js";
 
 const BookModal = ({ show, item, onClose }) => {
   if (!show) {
@@ -11,6 +12,18 @@ const BookModal = ({ show, item, onClose }) => {
   let description = item.volumeInfo.description
     ? item.volumeInfo.description
     : "No description available.";
+
+  const handleSubmit = (event, page) => {
+    //depending on button: <button onClick={handleSubmit(page: "/tbr")}>
+    //                        tbr
+    //                     </button>
+    let sendPicture = newPicture === "" ? props.user.picture : newPicture;
+    post(`/api${page}`, { bookId: item.id, rating: -1, review: "" }).then((res) => {
+      if (!res.error) {
+        navigate(`${page}`);
+      }
+    });
+  };
 
   return (
     <>
@@ -43,7 +56,7 @@ const BookModal = ({ show, item, onClose }) => {
                         <div className="btn-subcontainer">
                           <button className="dark-btn add-more-btn" onClick>
                             Add Book
-                            <i class="fas fa-times"></i>
+                            {/* <i class="fas fa-times"></i> */}
                           </button>
                         </div>
                         <div className="btn-subcontainer">

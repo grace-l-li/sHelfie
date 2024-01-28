@@ -30,39 +30,6 @@ const Profile = (props) => {
     }
   }, [props.user]);
 
-  // if (props.user) {
-  //   console.log(Object.keys(props.user).length);
-  // }
-  // if (props.user && Object.keys(props.user).length) {
-  //   const saveChanges = () => {
-  //     // Prevent default navigation behavior
-  //     event.preventDefault();
-
-  //     // Implement save logic here. For example, an HTTP request to your API endpoint:
-  //     const updatedUser = {
-  //       name: editableName,
-  //       username: editableUsername,
-  //       bio: editableBio,
-  //     };
-
-  //     // Example POST request with fetch API
-  //     fetch("/api/user/update", {
-  //       method: "POST", // or 'PUT'
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(updatedUser),
-  //     })
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         console.log("Success:", data);
-  //         // Optionally, navigate to the profile page or give feedback to the user
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error:", error);
-  //       });
-  //   };
-
   // called when the user hits "Submit" for a new post
   const handleSubmit = (event) => {
     event.preventDefault();

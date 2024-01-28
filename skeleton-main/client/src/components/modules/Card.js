@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import BookModal from "./BookModal.js";
 import Modal from "./modal.js";
-import "../pages/search.css";
+import "../pages/SearchBooks.js";
 
 const Card = ({ book }) => {
   const [show, setShow] = useState(false);

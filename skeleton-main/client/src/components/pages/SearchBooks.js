@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "../modules/Card.js";
 import axios from "axios";
-import "./search.css";
+import "./SearchBooks.css";
 import "../../utilities.css";
 
-const Search = () => {
+const BookSearch = () => {
   const [search, setSearch] = useState("");
   const [bookData, setbookData] = useState([]);
   // const navigate = useNavigate();
@@ -50,4 +50,4 @@ const Search = () => {
     </>
   );
 };
-export default Search;
+export default BookSearch;
