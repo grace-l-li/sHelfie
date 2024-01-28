@@ -16,11 +16,12 @@ const BookModal = ({ show, item, onClose }) => {
     <>
       {show ? (
         <div className="overlay">
-          <div className="overlay-inner">
-            <button className="white-btn" onClick={onClose}>
+          <div className="close-container">
+            <button className="white-btn close-btn" onClick={onClose}>
               Close
-              <i class="fas fa-times"></i>
             </button>
+          </div>
+          <div className="overlay-inner">
             <div class="book">
               <ul class="front">
                 <li>

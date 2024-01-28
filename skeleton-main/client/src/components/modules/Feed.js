@@ -41,14 +41,7 @@ const Feed = (props) => {
               <h2>@{props.user.username}</h2>
             </div>
           </div>
-          <div className="post-center">
-            {/* Main content */}
-            {/* <h2 className="title">{post.title}</h2> */}
-            {/* <p className="review">{post.bookReview}</p> */}
-
-            {/* {props.tbr.rating !== -1 && }
-            {/* {props.tbr.review !== "" && } */}
-          </div>
+          <div className="post-center"></div>
           <div className="post-bottom-bar">
             <div className="buttons-container">
               <div

@@ -58,20 +58,14 @@ body {
 
 .container {
   display: flex;
-  /* background-color: red; */
   align-items: center;
   justify-content: center;
   justify-items: center;
   width: 100%;
   padding: 1.5vw 3vw;
-  /* padding: 5vh 8vw; */
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-row-gap: 2vw;
-  /* grid-template-columns: repeat(auto-fit, minmax(10vw, 0.5fr)); */
-
-  /* grid-template-columns: repeat(auto-fit, minmax(200px, 0.5fr)); */
-  /* grid-gap: 10vw; */
   box-sizing: border-box;
 }
 
@@ -103,7 +97,6 @@ body {
 }
 
 .top {
-  /* background-color: pink; */
   flex: 1;
   height: 100%;
   width: 100%;
@@ -117,20 +110,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: red; */
   flex: 1;
   height: 100%;
   width: 100%;
 }
 
 .thumbnail-container {
-  /* background-color: blue; */
   flex: 6;
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: center;
-  /* height: 30vw; */
   padding: 0.7vw 0vw;
 }
 .title {
@@ -143,8 +133,6 @@ body {
   font-family: "Readex Pro";
   color: var(--darkpurple);
   font-weight: 600;
-  line-height: 1.2; /* Adjust line height for proper spacing between lines */
-  height: 2.4; /* line-height * number of lines */
   padding: 0;
   margin: 0;
 }
@@ -155,7 +143,6 @@ body {
   width: 100%;
   height: 100%;
   align-items: center;
-  /* background-color: red; */
 }
 
 .title-container {
@@ -163,12 +150,12 @@ body {
   height: 100%;
   margin-top: 3vh;
   width: 90%;
-  /* background-color: blue; */
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
+
 .buttons-container {
   flex: 0.25;
   flex-direction: row;
@@ -176,13 +163,13 @@ body {
   align-items: center;
   justify-content: center;
   height: 100%;
-  /* margin-top: 2vh; */
-  /* margin-bottom: 2vh; */
-  /* background-color: pink; */
+  margin: 0vh 2vh;
   width: 80%;
   height: 100%;
 }
 .btn-subcontainer {
+  margin-top: 2vh;
+  margin-bottom: 2vh;
   display: flex;
   flex: 1;
   width: 100%;
@@ -190,21 +177,13 @@ body {
   align-items: center;
   justify-content: center;
 }
-/* .author-container {
-  height: 100%;
-  width: 100%;
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
 
 .booktitle {
   color: var(--darkpurple);
   font-family: Readex Pro;
   font-weight: bold;
   text-align: center;
-  font-size: 6vh;
+  font-size: 5vh;
 }
 
 .author {
@@ -219,24 +198,30 @@ body {
   flex: 0.5;
   display: flex;
   justify-content: center;
-
   align-items: center;
-  /* margin-top: 1vh; */
-  width: 95%;
-  /* background-color: green; */
+  width: 90%;
   margin-bottom: 5vh;
 }
 .desc-text {
-  text-align: center;
-  font-family: "Readex Pro";
-  color: var(--darkpurple);
-  font-size: 3.1vh;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 7; /* Number of lines you want */
   overflow: hidden;
   text-overflow: ellipsis;
-
-  line-height: 1.4em; /* Adjust as needed */
-  height: 5.4em; /* For 3 lines, as an example */
+  font-size: 2.5vh;
+  font-family: "Readex Pro";
+  color: var(--darkpurple);
+  font-weight: 600;
+  padding: 0;
+  margin: 0;
+  font-weight: 400;
 }
+
+.close-btn {
+  margin-right: 1vh;
+  margin-top: 1vh;
+}
+
 .overlay {
   min-height: 100%;
   width: 100%;
@@ -245,17 +230,17 @@ body {
   top: 0;
   bottom: 0;
   right: 0;
-  margin-top: 5vh;
+  z-index: 1001;
   background-color: var(--darkpurple);
-  /* background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)); */
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 .overlay-inner {
+  flex: 10;
   transform: translateZ(0);
-  /* background: var(--darkpurple); */
   width: 100vw;
   height: 100vh;
   padding: 1.5rem;
@@ -266,35 +251,19 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 9vh;
 }
-/* .overlay {
-  min-height: 100vh;
+
+.close-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  height: 100%;
   width: 100%;
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  /* background-color: red; */
 }
-
-.overlay-inner {
-  background: var(--darkpurple);
-  width: 100vw;
-  height: 100vh;
-  padding: 1.5rem;
-  position: relative;
-  box-sizing: border-box;
-  overflow: hidden;
-  font-size: 1.3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
-
 .overlay-inner .close {
   position: absolute;
   top: 1rem;
