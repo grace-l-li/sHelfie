@@ -6,11 +6,21 @@ const BookModal = ({ show, item, onClose }) => {
   }
 
   let thumbnail = item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
+  let authors = item.volumeInfo.authors; // assuming authors is an array
+  let authorNames = authors ? authors.join(", ") : "Unknown Author"; // Join multiple authors with comma or use a placeholder
+  let description = item.volumeInfo.description
+    ? item.volumeInfo.description
+    : "No description available.";
+
   return (
     <>
       {show ? (
         <div className="overlay">
           <div className="overlay-inner">
+            <button className="white-btn" onClick={onClose}>
+              Close
+              <i class="fas fa-times"></i>
+            </button>
             <div class="book">
               <ul class="front">
                 <li>
@@ -26,13 +36,27 @@ const BookModal = ({ show, item, onClose }) => {
                 <li />
                 <li>
                   <div className="info-container">
-                    <div className="close-container">
-                      <button className="dark-btn" onClick={onClose}>
-                        Close
-                        <i class="fas fa-times"></i>
-                      </button>
+                    <div className="title-container">
+                      <p className="booktitle"> {item.volumeInfo.title}</p>{" "}
+                      <p className="author">Written by {authorNames} </p>
+                      <div className="buttons-container">
+                        <div className="btn-subcontainer">
+                          <button className="dark-btn add-more-btn" onClick>
+                            Add Book
+                            <i class="fas fa-times"></i>
+                          </button>
+                        </div>
+                        <div className="btn-subcontainer">
+                          <a href={item.volumeInfo.previewLink}>
+                            <button className="dark-btn add-more-btn">More Info</button>
+                          </a>
+                        </div>
+                      </div>
+                      <div className="description-container">
+                        <p className="desc-text">Description: {description}</p>
+                      </div>
                     </div>
-                    <div></div>
+
                     {/* {
                       <p>
                         <button className="close" onClick={onClose}>
@@ -41,7 +65,7 @@ const BookModal = ({ show, item, onClose }) => {
                         </button>
                       </p>
                     } */}
-                    {/* <p class="booktitle"> {item.volumeInfo.title}</p>
+                    {/* 
                     <p>Published in {item.volumeInfo.publishedDate}</p>
                     <i>Written by </i> {item.volumeInfo.authors}
                     <a href={item.volumeInfo.previewLink}>
