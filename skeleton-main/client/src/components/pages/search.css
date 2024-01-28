@@ -84,13 +84,14 @@ body {
   border-radius: 5px;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  padding: 2vh;
+  padding: 1vw;
   outline: none;
   text-align: center;
-  position: relative;
-  height: 25vw;
-  width: 16vw;
+  height: 27vw;
+  width: 18vw;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+  transition: transform 0.3s ease;
 }
 .card:hover {
   transform: scale(1.07);
@@ -101,55 +102,106 @@ body {
   width: 14vw;
 }
 
-.bottom {
-  /* background-color: red; */
+.top {
+  /* background-color: pink; */
+  flex: 1;
+  height: 100%;
   width: 100%;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 5vw;
-  padding: 0;
-  margin: 0;
+}
+
+.bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: red; */
+  flex: 1;
+  height: 100%;
+  width: 100%;
+}
+
+.thumbnail-container {
+  /* background-color: blue; */
+  flex: 6;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  /* height: 30vw; */
+  padding: 0.7vw 0vw;
 }
 .title {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3; /* Number of lines you want */
+  -webkit-line-clamp: 2; /* Number of lines you want */
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 1.2vw;
+  font-size: 1.3vw;
   font-family: "Readex Pro";
   color: var(--darkpurple);
   font-weight: 600;
   line-height: 1.2; /* Adjust line height for proper spacing between lines */
-  height: 3.8; /* line-height * number of lines */
+  height: 2.4; /* line-height * number of lines */
   padding: 0;
   margin: 0;
-  /* font-size: 1.2vw;
-  margin-top: 0;
-  margin-bottom: 0;
-  font-family: "Readex Pro";
-  color: var(--darkpurple);
-  font-weight: 600;
-  line-height: 1.5vw;
-  transform: translateY(-13%); */
 }
 
-/* 
-.card .bottom .title {
-  /* display: flex; */
-/* align-items: center; */
-/* justify-content: center; */
-/* background-color: red;
-  height: 5vw;
-  width: 16vw;
-  text-overflow: ellipsis;
-  font-size: 1.2vw;
-  font-family: "Readex Pro";
+.info-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  /* background-color: red; */
+}
+.close-container {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  /* background-color: pink; */
+  margin-top: 2vh;
+  margin-right: 2vh;
+}
+.booktitle {
   color: var(--darkpurple);
-  font-weight: 600; */
-
+  font-family: Readex Pro;
+  font-weight: bold;
+  text-align: center;
+}
 .overlay {
+  min-height: 100%;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin-top: 5vh;
+  background-color: var(--darkpurple);
+  /* background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay-inner {
+  transform: translateZ(0);
+  /* background: var(--darkpurple); */
+  width: 100vw;
+  height: 100vh;
+  padding: 1.5rem;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* .overlay {
   min-height: 100vh;
   width: 100%;
   position: fixed;
@@ -175,7 +227,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} */
+
 .overlay-inner .close {
   position: absolute;
   top: 1rem;
@@ -234,9 +287,10 @@ body {
   transform-style: preserve-3d;
 }
 
-.BookModal .book-icon img {
-  width: 110px;
-  height: 40px;
+.book-icon img {
+  width: 20vw;
+  height: auto;
+  max-height: 75vh;
   margin-top: 5x;
 }
 
@@ -286,7 +340,7 @@ body {
 }
 
 .BookModal .front li {
-  background: linear-gradient(left, #e1ddd8 0%, #fffbf6 100%);
+  background: white;
   border-radius: 15px;
 }
 
@@ -299,9 +353,7 @@ body {
 }
 
 .BookModal .page > li {
-  background: -webkit-linear-gradient(left, #e1ddd8 0%, #fffbf6 100%);
-  background: linear-gradient(left, #e1ddd8 0%, #fffbf6 100%);
-  box-shadow: inset 0px -1px 2px rgba(50, 50, 50, 0.1), inset -1px 0px 1px rgba(150, 150, 150, 0.2);
+  background-color: var(--white);
   border-radius: 5px 15px 15px 5px;
   width: 100%;
   height: 100%;
@@ -407,13 +459,11 @@ body {
   transition: 1s;
 }
 
-.BookModal .frontcover {
+.frontcover {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  background: var(--lightpurple);
   height: 100%;
   width: 100%;
   border-radius: 5px;
@@ -432,12 +482,10 @@ body {
   font-weight: bolder;
   background: rgb(217, 216, 218);
   border-radius: 4px;
-  box-shadow: -3px -3px 5px 0px #ffffffa6, 3px 3px 5px 0px #0000004a;
   text-align: center;
   transition: color 0.3s, border-color 0.3s;
 }
 
 .BookModal .btn:hover {
-  box-shadow: -3px -3px 5px 0px #ffffffa6 inset, 3px 3px 5px 0px #0000004a inset;
   color: rgb(39, 7, 246);
 }

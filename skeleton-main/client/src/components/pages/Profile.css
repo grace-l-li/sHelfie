@@ -75,8 +75,10 @@
 
 .Profile-image {
   width: 22vh;
-  height: auto;
+  height: 22vh;
   z-index: 1;
+  overflow: hidden;
+  object-fit: cover;
 }
 
 .Picture-frame {

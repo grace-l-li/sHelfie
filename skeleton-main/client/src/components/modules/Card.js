@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import BookModal from "./BookModal.js";
 import Modal from "./modal.js";
+import "../pages/search.css";
 
 const Card = ({ book }) => {
   const [show, setShow] = useState(false);
@@ -12,6 +13,8 @@ const Card = ({ book }) => {
     <>
       {book.map((item) => {
         let thumbnail = item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
+        let authors = item.volumeInfo.authors; // assuming authors is an array
+        let authorNames = authors ? authors.join(", ") : "Unknown Author"; // Join multiple authors with comma or use a placeholder
         if (thumbnail != undefined) {
           return (
             <>
@@ -22,9 +25,14 @@ const Card = ({ book }) => {
                   setItem(item);
                 }}
               >
-                <img src={thumbnail} alt="" />
-                <div className="bottom">
+                <div className="top">
                   <h3 className="title">{item.volumeInfo.title}</h3>
+                </div>
+                <div className="thumbnail-container">
+                  <img src={thumbnail} alt="" />
+                </div>
+                <div className="bottom">
+                  <h3 className="title">By {authorNames}</h3>
                 </div>
               </div>
               <BookModal show={show} item={bookItem} onClose={() => setShow(false)} />
