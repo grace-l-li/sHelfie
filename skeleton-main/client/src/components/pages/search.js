@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Card from "../modules/Card.js";
 import axios from "axios";
 import "./search.css";
@@ -6,9 +7,11 @@ import "../../utilities.css";
 
 const Search = () => {
   const [search, setSearch] = useState("");
-  const [bookData, setData] = useState([]);
+  const [bookData, setbookData] = useState([]);
+  // const navigate = useNavigate();
+
   const searchBook = (evt) => {
-    if (evt.key === "Enter") {
+    if (evt.key === "Enter" || evt.key === " ") {
       axios
         .get(
           "https://www.googleapis.com/books/v1/volumes?q=" +
@@ -16,10 +19,11 @@ const Search = () => {
             "&key= AIzaSyC2SHH8dBbSnfwXSOlpI1KUi8gnq4nJASU" +
             "&maxResults=40"
         )
-        .then((res) => setData(res.data.items))
+        .then((res) => setbookData(res.data.items))
         .catch((err) => console.log(err));
     }
   };
+
   return (
     <>
       <div className="header">
@@ -40,7 +44,9 @@ const Search = () => {
         </div>
       </div>
 
-      <div className="container">{<Card book={bookData} />}</div>
+      {search !== "" && bookData !== undefined && (
+        <div className="container">{<Card book={bookData} />}</div>
+      )}
     </>
   );
 };

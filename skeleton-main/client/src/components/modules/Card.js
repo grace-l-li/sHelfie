@@ -6,9 +6,8 @@ import "../pages/search.css";
 
 const Card = ({ book }) => {
   const [show, setShow] = useState(false);
-  const [bookItem, setItem] = useState();
-  // console.log(book);
-
+  const [bookItem, setBookItem] = useState();
+  console.log(book);
   return (
     <>
       {book.map((item) => {
@@ -22,7 +21,7 @@ const Card = ({ book }) => {
                 className="card"
                 onClick={() => {
                   setShow(true);
-                  setItem(item);
+                  setBookItem(item);
                 }}
               >
                 <div className="top">
