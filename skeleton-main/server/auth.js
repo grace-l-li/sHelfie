@@ -29,7 +29,6 @@ const getIdFromUsername = async (username) => {
 // gets user from DB, or makes a new account if it doesn't exist yet
 const getOrCreateUser = (user) => {
   // the "sub" field means "subject", which is a unique identifier for each user
-  console.log(user.name);
 
   return User.findOne({ googleid: user.sub }).then(async (existingUser) => {
     if (existingUser) return existingUser;
@@ -71,7 +70,6 @@ function login(req, res) {
   verify(req.body.token)
     .then((user) => getOrCreateUser(user))
     .then((user) => {
-      console.log(user);
       // persist user in the session
       req.session.user = user;
       res.send(user);

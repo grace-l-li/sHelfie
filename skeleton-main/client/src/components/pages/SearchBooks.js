@@ -4,10 +4,11 @@ import Card from "../modules/Card.js";
 import axios from "axios";
 import "./SearchBooks.css";
 import "../../utilities.css";
+import { get } from "../../utilities.js";
 
-const BookSearch = () => {
+const BookSearch = (props) => {
   const [search, setSearch] = useState("");
-  const [bookData, setbookData] = useState([]);
+  const [bookData, setBookData] = useState([]);
   // const navigate = useNavigate();
 
   const searchBook = (evt) => {
@@ -19,7 +20,10 @@ const BookSearch = () => {
             "&key= AIzaSyC2SHH8dBbSnfwXSOlpI1KUi8gnq4nJASU" +
             "&maxResults=40"
         )
-        .then((res) => setbookData(res.data.items))
+        .then((res) => {
+          console.log(res);
+          setBookData(res.data.items);
+        })
         .catch((err) => console.log(err));
     }
   };
@@ -37,16 +41,13 @@ const BookSearch = () => {
               onChange={(e) => setSearch(e.target.value)}
               onKeyPress={searchBook}
             />
-            <button>
-              <i className="fas fa-search"></i>
-            </button>
           </div>
         </div>
       </div>
-
       {search !== "" && bookData !== undefined && (
-        <div className="container">{<Card book={bookData} />}</div>
+        <div className="container">{<Card book={bookData} setUser={props.setUser} />}</div>
       )}
+      ;
     </>
   );
 };

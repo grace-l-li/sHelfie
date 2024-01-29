@@ -145,14 +145,24 @@ const App = () => {
         <Route
           path="/search-books"
           element={
-            <SearchBooks handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
+            <SearchBooks
+              handleLogin={handleLogin}
+              handleLogout={handleLogout}
+              userId={userId}
+              setUser={setUser}
+            />
           }
         />
 
         <Route
           path="/search-friends"
           element={
-            <SearchFriends handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
+            <SearchFriends
+              handleLogin={handleLogin}
+              handleLogout={handleLogout}
+              userId={userId}
+              setUser={setUser}
+            />
           }
         />
 

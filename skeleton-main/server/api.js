@@ -69,34 +69,52 @@ router.post("/user", async (req, res) => {
 });
 
 router.post("/tbr", (req, res) => {
-  User.updateOne(
-    { _id: req.user._id },
-    { $push: { bookId: req.body.bookId, rating: -1, review: "" } }
-  ).then((user) => {
-    res.send({ user });
-  });
-  // res.send(user)
+  User.findById(req.user._id).then((user) => {
+    user.tbr.push({
+      bookId: req.body.bookId,
+      rating: req.body.rating,
+      review: req.body.review,
+    });
 
-  // User.findById(req.user._id).then((user) => {
-  //   user.updateOne()
-  // })
+    user.save().then(() => {
+      res.send({ user });
+    });
+  });
+  // User.updateOne(
+  //   { _id: req.user._id },
+  //   {
+  //     $push: { tbr: { bookId: req.body.bookId, rating: req.body.rating, review: req.body.rating } },
+  //   }
+  // ).then((user) => {
+  //   res.send({ user });
+  // });
 });
 
 router.post("/curr", (req, res) => {
-  User.updateOne(
-    { _id: req.user._id },
-    { $push: { bookId: req.body.bookId, rating: -1, review: "" } }
-  ).then((user) => {
-    res.send({ user });
+  User.findById(req.user._id).then((user) => {
+    user.curr.push({
+      bookId: req.body.bookId,
+      rating: req.body.rating,
+      review: req.body.review,
+    });
+
+    user.save().then(() => {
+      res.send({ user });
+    });
   });
 });
 
 router.post("/read", (req, res) => {
-  User.updateOne(
-    { _id: req.user._id },
-    { $push: { bookId: req.body.bookId, rating: req.body.rating, review: req.body.review } }
-  ).then((user) => {
-    res.send({ user });
+  User.findById(req.user._id).then((user) => {
+    user.read.push({
+      bookId: req.body.bookId,
+      rating: req.body.rating,
+      review: req.body.review,
+    });
+
+    user.save().then(() => {
+      res.send({ user });
+    });
   });
 });
 
