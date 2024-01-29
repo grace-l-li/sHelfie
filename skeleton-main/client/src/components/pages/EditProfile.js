@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import NavBar from "../modules/NavBar";
 import tableDrawing from "../modules/purpleTable.svg";
 import shelfDrawing from "../modules/ShelfDrawing.svg";
 import boxDrawing from "../modules/Box.svg";
-import blankProfile from "../modules/BlankProfile.svg";
-import pictureFrame from "../modules/PictureFrame.svg";
 
 import { get, post } from "../../utilities.js";
 
@@ -26,7 +24,6 @@ const Profile = (props) => {
       setNewName(props.user.name || "");
       setNewUsername(props.user.username || "");
       setNewBio(props.user.bio || "");
-      // setNewPicture(props.user.picture || "");
     }
   }, [props.user]);
 
@@ -45,11 +42,8 @@ const Profile = (props) => {
           if (userObj !== null) {
             props.setUser(userObj);
             navigate("/profile");
-            // console.log(JSON.stringify(userObj));
           }
         });
-        // props.fetchUser().then(() => {
-        // });
       } else {
         alert("username taken");
       }
@@ -104,7 +98,6 @@ const Profile = (props) => {
                 type="text"
                 placeholder="Insert new image link"
                 className="image-field Profile-bio"
-                // className="Username-style editable-field"
                 value={newPicture}
                 onChange={(e) => setNewPicture(e.target.value)}
               />

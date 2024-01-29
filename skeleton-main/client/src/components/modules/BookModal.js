@@ -20,9 +20,8 @@ const BookModal = ({ show, item, onClose, setUser }) => {
   const handleSubmitTbr = () => {
     post("/api/tbr", { bookId: item.id, rating: -1, review: "" }).then((res) => {
       if (!res.error) {
-        console.log(res.user);
         setUser(res.user);
-        navigate("/tbr"); //navigates correctly but have to manually refresh to see updated book
+        navigate("/tbr");
       }
     });
   };

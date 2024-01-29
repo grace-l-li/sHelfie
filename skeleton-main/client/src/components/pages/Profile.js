@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, NavLink } from "react-router-dom";
-
-import NavBar from "../modules/NavBar";
 import tableDrawing from "../modules/purpleTable.svg";
 import shelfDrawing from "../modules/ShelfDrawing.svg";
 import boxDrawing from "../modules/Box.svg";
@@ -31,7 +28,6 @@ const Profile = (props) => {
       get(`/api/user`, { userId: props.userId }).then(({ user: userObj }) => {
         if (userObj !== null) {
           props.setUser(userObj);
-          // console.log(JSON.stringify(userObj));
         }
       });
     }

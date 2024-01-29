@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import NavBar from "../modules/NavBar.js";
 import Feed from "../modules/Feed.js";
 import "../../utilities.css";
 import "./Home.css";

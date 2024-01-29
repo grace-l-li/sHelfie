@@ -2,10 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 
 import jwt_decode from "jwt-decode";
-import axios from "axios";
 import NavBar from "./modules/NavBar.js";
-//import LoginButton from "./modules/Login.js";
-//import LogoutButton from "./modules/Logout.js";
 
 import NotFound from "./pages/NotFound.js";
 import Home from "./pages/Home.js";
@@ -54,7 +51,6 @@ const App = () => {
         if (userObj !== null) {
           setUser(userObj);
           return userObj;
-          // console.log(JSON.stringify(userObj));
         }
       });
     }

@@ -80,14 +80,6 @@ router.post("/tbr", (req, res) => {
       res.send({ user });
     });
   });
-  // User.updateOne(
-  //   { _id: req.user._id },
-  //   {
-  //     $push: { tbr: { bookId: req.body.bookId, rating: req.body.rating, review: req.body.rating } },
-  //   }
-  // ).then((user) => {
-  //   res.send({ user });
-  // });
 });
 
 router.post("/curr", (req, res) => {

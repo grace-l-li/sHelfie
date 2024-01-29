@@ -11,7 +11,6 @@ import "./SearchBooks.css";
 const Curr = (props) => {
   useEffect(() => {
     document.title = "Currently Reading";
-    // console.log(props.userId);
   }, [props.userId]);
 
   const [bookData, setBookData] = useState([]);
@@ -20,17 +19,13 @@ const Curr = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       if (props.user.curr !== undefined) {
-        //  curr = [{bookId:"", rating:, review:""}]
         for (const book of props.user.curr) {
-          //props.user.tbr is array
 
           await axios
             .get(`https://www.googleapis.com/books/v1/volumes/${book.bookId}`)
             .then((info) => {
-              // console.log(info);
               infoList.push(info.data);
 
-              // console.log(infoList);
             });
         }
         setBookData(infoList);

@@ -1,13 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import BookModal from "./BookModal.js";
-import Modal from "./modal.js";
 import "../pages/SearchBooks.js";
 
 const Card = ({ book, setUser }) => {
   const [show, setShow] = useState(false);
   const [bookItem, setBookItem] = useState();
-  console.log(book);
   return (
     <>
       {book.map((item) => {

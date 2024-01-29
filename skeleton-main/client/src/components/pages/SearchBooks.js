@@ -1,15 +1,12 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Card from "../modules/Card.js";
 import axios from "axios";
 import "./SearchBooks.css";
 import "../../utilities.css";
-import { get } from "../../utilities.js";
 
 const BookSearch = (props) => {
   const [search, setSearch] = useState("");
   const [bookData, setBookData] = useState([]);
-  // const navigate = useNavigate();
 
   const searchBook = (evt) => {
     if (evt.key === "Enter" || evt.key === " ") {
@@ -21,7 +18,6 @@ const BookSearch = (props) => {
             "&maxResults=40"
         )
         .then((res) => {
-          console.log(res);
           setBookData(res.data.items);
         })
         .catch((err) => console.log(err));

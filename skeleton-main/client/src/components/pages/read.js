@@ -19,10 +19,7 @@ const Read = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       if (props.user.read !== undefined) {
-        //  tbr = [{bookId:"", rating:, review:""}]
         for (const book of props.user.read) {
-          //props.user.read is array
-
           await axios
             .get(`https://www.googleapis.com/books/v1/volumes/${book.bookId}`)
             .then((info) => {
