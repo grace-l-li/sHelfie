@@ -5,6 +5,18 @@
   padding: 0;
 }
 
+.wood img {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  object-fit: cover;
+
+  left: 0;
+  top: 0;
+  position: fixed;
+  z-index: 0;
+  background-size: cover;
+}
 .welcome-text {
   color: var(--darkpurple);
   font-family: "Special Elite";
@@ -62,6 +74,7 @@ a {
   /* position: center; */
   width: 60vh;
   height: 80vh;
+  z-index: 1;
   /* align-self: center; */
   /* justify-content: center; */
   /* perspective: 1000px; */
@@ -255,6 +268,7 @@ a {
 }
 
 .frontcover {
+  z-index: 2;
   display: flex;
   flex-direction: column;
   /* justify-content: space-around; */

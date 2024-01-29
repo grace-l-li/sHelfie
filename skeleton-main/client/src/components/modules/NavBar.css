@@ -20,8 +20,7 @@
 }
 
 .NavBar-title img {
-  height: auto;
-  width: 130px;
+  height: 5.5vh;
   margin-top: 4px;
 }
 
@@ -51,8 +50,7 @@
 }
 
 .NavBar-link img {
-  width: 36px;
-  height: auto;
+  height: 6.2vh;
   opacity: 0.5;
   /* flex: 1; */
   transition: opacity 0.3s ease;

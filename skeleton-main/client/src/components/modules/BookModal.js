@@ -48,10 +48,9 @@ const BookModal = ({ show, item, onClose, setUser }) => {
     <>
       {show ? (
         <div className="overlay">
-          <div className="overlay-inner">
-            <button className="white-btn" onClick={onClose}>
+          <div className="close-container">
+            <button className="white-btn close-btn" onClick={onClose}>
               Close
-              <i className="fas fa-times"></i>
             </button>
             <div className="dropdown">
               <span>Add Book</span>

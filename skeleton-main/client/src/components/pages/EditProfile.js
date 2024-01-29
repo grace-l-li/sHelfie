@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route, NavLink, useNavigate } from "react-router-dom";
 
 import NavBar from "../modules/NavBar";
-import tableDrawing from "../modules/Table.svg";
+import tableDrawing from "../modules/purpleTable.svg";
 import shelfDrawing from "../modules/ShelfDrawing.svg";
 import boxDrawing from "../modules/Box.svg";
 import blankProfile from "../modules/BlankProfile.svg";

@@ -30,7 +30,7 @@ const App = () => {
   const [userId, setUserId] = useState(undefined);
   const navigate = useNavigate();
   const location = useLocation();
-
+  const [justLoggedIn, setJustLoggedIn] = useState(false);
   const [user, setUser] = useState({});
 
   useEffect(() => {
@@ -72,12 +72,14 @@ const App = () => {
       setUserId(user._id);
       post("/api/initsocket", { socketid: socket.id });
     });
+    setJustLoggedIn(true);
     navigate("/profile");
   };
 
   const handleLogout = () => {
     setUserId(undefined);
     post("/api/logout").then(() => navigate("/")); // Redirect after logout
+    setJustLoggedIn(false);
   };
 
   const isLandingPage = location.pathname === "/";
@@ -119,6 +121,8 @@ const App = () => {
               userId={userId}
               user={user}
               setUser={setUser}
+              justLoggedIn={justLoggedIn}
+              setJustLoggedIn={setJustLoggedIn}
             />
           }
         />

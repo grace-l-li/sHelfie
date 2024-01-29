@@ -5,6 +5,7 @@ import { GoogleOAuthProvider, GoogleLogin, googleLogout } from "@react-oauth/goo
 import "../../utilities.css";
 import "./Landing.css";
 import shelfieLogo from "../modules/ShelfieLogo.svg";
+import wood from "../modules/Wood.svg";
 
 //TODO: REPLACE WITH YOUR OWN CLIENT_D
 const GOOGLE_CLIENT_ID = "454439898905-2ih7o3uj4tvlg6im1oecb4ipfmjg0i9t.apps.googleusercontent.com";
@@ -26,6 +27,9 @@ const LandingPage = ({ handleLogin, handleLogout, userId, user }) => {
       <div className="content">
         <ul>
           <li>
+            <div className="wood">
+              <img src={wood} />
+            </div>
             <div className="book">
               <ul className="front">
                 <li>

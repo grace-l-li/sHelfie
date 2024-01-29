@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route, NavLink } from "react-router-dom";
 
 import NavBar from "../modules/NavBar";
-import tableDrawing from "../modules/Table.svg";
+import tableDrawing from "../modules/purpleTable.svg";
 import shelfDrawing from "../modules/ShelfDrawing.svg";
 import boxDrawing from "../modules/Box.svg";
 import blankProfile from "../modules/BlankProfile.svg";
@@ -14,22 +14,15 @@ import "../../utilities.css";
 import "./Profile.css";
 
 const Profile = (props) => {
-  // if (props.user) {
-  //   console.log(Object.keys(props.user).length);
-  // }
-  // if (props.user && Object.keys(props.user).length) {
   const [profileImage, setProfileImage] = useState(props.user.picture || blankProfile);
+  // const [playAnimation, setPlayAnimation] = useState(false);
+  const [animationClass, setAnimationClass] = useState("");
 
-  // Function to handle the image loading error
   const handleImageError = () => {
     setProfileImage(blankProfile);
   };
 
   useEffect(() => {
-    // Fetch user data and other logic here
-    // ...
-
-    // Update the profile image URL when the component mounts or when props.user.picture changes
     setProfileImage(props.user.picture || blankProfile);
   }, [props.userId, props.user.picture]);
 
@@ -44,9 +37,22 @@ const Profile = (props) => {
     }
   }, [props.userId]);
 
+  useEffect(() => {
+    if (props.justLoggedIn) {
+      setAnimationClass("zoom-out");
+      props.setJustLoggedIn(false);
+    }
+  }, [props.justLoggedIn]);
+
+  useEffect(() => {
+    return () => {
+      setAnimationClass("");
+    };
+  }, []);
+
   return (
     <>
-      <div className="outermost-flex">
+      <div className={`outermost-flex ${animationClass}`}>
         <div className="left-flex">
           <div className="topleft-flex"></div>
           <div className="Profile-container">
