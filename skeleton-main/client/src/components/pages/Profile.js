@@ -82,24 +82,24 @@ const Profile = (props) => {
           </div>
           <div className="bottomleft-flex">
             {/* Box Link */}
-            <a className="box-link">
+            <div className="box-link">
               <a href="/tbr">
                 <img src={boxDrawing} alt="Box" />
               </a>
               <a href="/tbr">
                 <button className="white-btn subpage-link">to be read</button>
               </a>
-            </a>
+            </div>
 
             {/* Table Link */}
-            <a className="table-link">
+            <div className="table-link">
               <a href="/curr">
                 <img src={tableDrawing} alt="Table" />
               </a>
               <a href="/curr">
                 <button className="white-btn subpage-link">currently reading</button>
               </a>
-            </a>
+            </div>
           </div>
         </div>
         <div className="right-flex">
