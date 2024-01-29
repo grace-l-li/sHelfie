@@ -50,6 +50,7 @@ const BookModal = ({ show, item, onClose, setUser }) => {
           <div className="close-container">
             <button className="white-btn close-btn" onClick={onClose}>
               Close
+              <button className="dark-btn">Remove Book</button>
             </button>
           </div>
           <div className="overlay-inner">

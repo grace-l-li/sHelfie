@@ -20,7 +20,6 @@ const TBR = (props) => {
     const fetchData = async () => {
       if (props.user.tbr !== undefined) {
         for (const book of props.user.tbr) {
-
           await axios
             .get(`https://www.googleapis.com/books/v1/volumes/${book.bookId}`)
             .then((info) => {
