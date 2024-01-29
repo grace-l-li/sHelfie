@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "../modules/Card.js";
 import axios from "axios";
-import "./SearchBooks.css";
+import "./search.css";
 import "../../utilities.css";
-import { get } from "../../utilities.js";
 
-const BookSearch = (props) => {
+const Search = () => {
   const [search, setSearch] = useState("");
-  const [bookData, setBookData] = useState([]);
+  const [bookData, setbookData] = useState([]);
   // const navigate = useNavigate();
 
   const searchBook = (evt) => {
@@ -20,10 +19,7 @@ const BookSearch = (props) => {
             "&key= AIzaSyC2SHH8dBbSnfwXSOlpI1KUi8gnq4nJASU" +
             "&maxResults=40"
         )
-        .then((res) => {
-          console.log(res);
-          setBookData(res.data.items);
-        })
+        .then((res) => setbookData(res.data.items))
         .catch((err) => console.log(err));
     }
   };
@@ -41,14 +37,17 @@ const BookSearch = (props) => {
               onChange={(e) => setSearch(e.target.value)}
               onKeyPress={searchBook}
             />
+            <button>
+              <i className="fas fa-search"></i>
+            </button>
           </div>
         </div>
       </div>
+
       {search !== "" && bookData !== undefined && (
-        <div className="container">{<Card book={bookData} setUser={props.setUser} />}</div>
+        <div className="container">{<Card book={bookData} />}</div>
       )}
-      ;
     </>
   );
 };
-export default BookSearch;
+export default Search;

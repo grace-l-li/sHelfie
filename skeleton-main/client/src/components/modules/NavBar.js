@@ -5,7 +5,6 @@ import homeIcon from "./HomeIcon.svg";
 import profileIcon from "./ProfileIcon.svg";
 import logo from "./ShelfieLogo.svg";
 import "./NavBar.css";
-import Searchbar from "./Searchbar";
 import searchIcon from "./Search.svg";
 import addIcon from "./AddButton.svg";
 
@@ -32,17 +31,17 @@ const NavBar = ({ userId, handleLogout }) => {
         <NavLink to="/home" className="NavBar-link">
           <img src={homeIcon} alt="Home" />
         </NavLink>
-        <NavLink
-          to="/profile"
-          className={({ isActive }) => (isActive ? "NavBar-link active" : "NavBar-link")}
-        >
-          <img src={profileIcon} alt="Profile" />
-        </NavLink>
         <NavLink to="/search-books" className="NavBar-link">
           <img src={searchIcon} alt="Search Books" />
         </NavLink>
         <NavLink to="/search-friends" className="NavBar-link">
           <img src={addIcon} alt="Search Friends" />
+        </NavLink>
+        <NavLink
+          to="/profile"
+          className={({ isActive }) => (isActive ? "NavBar-link active" : "NavBar-link")}
+        >
+          <img src={profileIcon} alt="Profile" />
         </NavLink>
       </div>
       <div className="NavBar-logoutContainer">

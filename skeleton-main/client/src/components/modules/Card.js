@@ -2,9 +2,9 @@ import React from "react";
 import { useState } from "react";
 import BookModal from "./BookModal.js";
 import Modal from "./modal.js";
-import "../pages/search.css";
+import "../pages/SearchBooks.js";
 
-const Card = ({ book }) => {
+const Card = ({ book, setUser }) => {
   const [show, setShow] = useState(false);
   const [bookItem, setBookItem] = useState();
   console.log(book);
@@ -34,7 +34,12 @@ const Card = ({ book }) => {
                   <h3 className="title">By {authorNames}</h3>
                 </div>
               </div>
-              <BookModal show={show} item={bookItem} onClose={() => setShow(false)} />
+              <BookModal
+                show={show}
+                item={bookItem}
+                onClose={() => setShow(false)}
+                setUser={setUser}
+              />
             </>
           );
         }
