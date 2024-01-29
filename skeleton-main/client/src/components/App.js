@@ -79,11 +79,12 @@ const App = () => {
   };
 
   const isLandingPage = location.pathname === "/";
-  const isEditProfile = location.pathname === "/profile/edit";
+  const pathsWithoutNavBar = ["/profile/edit", "/curr", "/tbr", "/read"];
+  const shouldShowNavBar = !pathsWithoutNavBar.includes(location.pathname);
 
   return (
     <>
-      {!isLandingPage && !isEditProfile && <NavBar userId={userId} handleLogout={handleLogout} />}
+      {!isLandingPage && shouldShowNavBar && <NavBar userId={userId} handleLogout={handleLogout} />}
       <Routes>
         <Route
           path="/"
