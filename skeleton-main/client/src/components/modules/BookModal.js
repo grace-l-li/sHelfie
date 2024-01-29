@@ -52,19 +52,8 @@ const BookModal = ({ show, item, onClose, setUser }) => {
             <button className="white-btn close-btn" onClick={onClose}>
               Close
             </button>
-            <div className="dropdown">
-              <span>Add Book</span>
-              <div className="dropdown-content">
-                {/* <button>Currently reading!</button> */}
-                <button onClick={handleSubmitCurr}>Currently Reading</button>
-
-                {/* <button>To be read!</button> */}
-                <button onClick={handleSubmitTbr}>To Be Read</button>
-
-                {/* <button>Read!</button> */}
-                <button onClick={handleSubmitRead}>Finished Reading</button>
-              </div>
-            </div>
+          </div>
+          <div className="overlay-inner">
             <div className="book">
               <ul className="front">
                 <li>
@@ -85,9 +74,21 @@ const BookModal = ({ show, item, onClose, setUser }) => {
                       <p className="author">Written by {authorNames} </p>
                       <div className="buttons-container">
                         <div className="btn-subcontainer">
-                          <a href={item.volumeInfo.previewLink}>
-                            <button className="dark-btn add-more-btn">More Info</button>
-                          </a>
+                          <div className="dropdown">
+                            <span className="dark-btn">Add Book</span>
+                            <div className="dropdown-content add-more-btn">
+                              <button onClick={handleSubmitCurr}>Currently Reading</button>
+
+                              <button onClick={handleSubmitTbr}>To Be Read</button>
+
+                              <button onClick={handleSubmitRead}>Finished Reading</button>
+                            </div>
+                          </div>
+                          <div>
+                            <a href={item.volumeInfo.previewLink}>
+                              <button className="dark-btn add-more-btn">More Info</button>
+                            </a>
+                          </div>
                         </div>
                       </div>
                       <div className="description-container">
