@@ -530,6 +530,9 @@ body {
   display: inline-block;
 }
 
+.add-more-btn {
+  margin-left: 2vh;
+}
 .dropdown-content {
   display: none;
   position: absolute;
