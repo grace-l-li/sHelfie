@@ -71,7 +71,7 @@ router.post("/user", async (req, res) => {
 
 router.post("/tbr", (req, res) => {
   User.findById(req.user._id).then((user) => {
-    if (user.tbr.includes({ bookId: req.body.bookId, rating: "-1", review: "" })) {
+    if (user.tbr.find((book) => book.bookId === req.body.bookId)) {
       //check if element in array already
       res.send({ error: "book already added" });
     } else {
@@ -90,7 +90,7 @@ router.post("/tbr", (req, res) => {
 
 router.post("/curr", (req, res) => {
   User.findById(req.user._id).then((user) => {
-    if (user.tbr.includes({ bookId: req.body.bookId, rating: "-1", review: "" })) {
+    if (user.tbr.find((book) => book.bookId === req.body.bookId)) {
       res.send({ error: "book already added" });
     } else {
       user.curr.push({
@@ -108,7 +108,7 @@ router.post("/curr", (req, res) => {
 
 router.post("/read", (req, res) => {
   User.findById(req.user._id).then((user) => {
-    if (!user.tbr.includes({ bookId: req.body.bookId, rating: "-1", review: "" })) {
+    if (user.tbr.find((book) => book.bookId === req.body.bookId)) {
       user.read.push({
         bookId: req.body.bookId,
         rating: req.body.rating,

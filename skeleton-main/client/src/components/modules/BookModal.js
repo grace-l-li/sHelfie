@@ -18,36 +18,44 @@ const BookModal = ({ show, item, onClose, setUser }) => {
     ? item.volumeInfo.description
     : "No description available.";
 
-  const handleSubmitTbr = () => {
-    post("/api/tbr", { bookId: item.id, rating: -1, review: "" }).then((res) => {
+  const handleAddBook = (page) => {
+    post(`/api${page}`, { bookId: item.id, rating: -1, review: "" }).then((res) => {
       if (res.error) {
         alert(res.error);
       } else {
         setUser(res.user);
-        navigate("/tbr");
+        navigate(page);
       }
     });
   };
 
-  const handleSubmitCurr = () => {
-    post("/api/curr", { bookId: item.id, rating: -1, review: "" }).then((res) => {
-      if (!res.error) {
-        setUser(res.user);
-        navigate("/curr");
-      } else {
-        alert(res.error);
-      }
-    });
-  };
+  // const handleSubmitCurr = () => {
+  //   post("/api/curr", { bookId: item.id, rating: -1, review: "" }).then((res) => {
+  //     if (!res.error) {
+  //       setUser(res.user);
+  //       navigate(page);
+  //     } else {
+  //       alert(res.error);
+  //     }
+  //   });
+  // };
 
-  const handleSubmitRead = () => {
-    post("/api/read", { bookId: item.id, rating: -1, review: "" }).then((res) => {
-      if (!res.error) {
-        navigate("/read");
-      } else {
-        alert(res.error);
-      }
-    });
+  // const handleSubmitRead = (page) => {
+  //   post(`/api${page}`, { bookId: item.id, rating: -1, review: "" }).then((res) => {
+  //     if (!res.error) {
+  //       navigate("/read");
+  //     } else {
+  //       alert(res.error);
+  //     }
+  //   });
+  // };
+
+  const handleRemoveBook = () => {
+    post("/remove", {});
+
+    if (!res.erro) {
+      onClose();
+    }
   };
 
   return (
@@ -57,7 +65,10 @@ const BookModal = ({ show, item, onClose, setUser }) => {
           <div className="close-container">
             <button className="white-btn close-btn" onClick={onClose}>
               Close
-              <button className="dark-btn">Remove Book</button>
+            </button>
+
+            <button className="dark-btn" onClick={handleRemoveBook}>
+              Remove Book
             </button>
           </div>
           <div className="overlay-inner">
@@ -84,11 +95,15 @@ const BookModal = ({ show, item, onClose, setUser }) => {
                           <div className="dropdown">
                             <span className="dark-btn">Add Book</span>
                             <div className="dropdown-content add-more-btn">
-                              <button onClick={handleSubmitCurr}>Currently Reading</button>
+                              <button onClick={() => handleAddBook("/curr")}>
+                                Currently Reading
+                              </button>
 
-                              <button onClick={handleSubmitTbr}>To Be Read</button>
+                              <button onClick={() => handleAddBook("/tbr")}>To Be Read</button>
 
-                              <button onClick={handleSubmitRead}>Finished Reading</button>
+                              <button onClick={() => handleAddBook("/read")}>
+                                Finished Reading
+                              </button>
                             </div>
                           </div>
                           <div>
