@@ -39,7 +39,7 @@ const BookModal = ({ show, item, onClose, setUser }) => {
     post("/api/remove", { bookId: item.id, page: currentPage }).then((res) => {
       if (!res.error) {
         console.log(res.user);
-        setUser(res.user);   //Why is setUser not a function??
+        // setUser(res.user);   //Why is setUser not a function??
         onClose(); //have to refresh to see updated changes
         // navigate(currentPage);
       }
