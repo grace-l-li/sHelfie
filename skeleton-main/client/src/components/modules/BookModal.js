@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../pages/SearchBooks.js";
 import { post } from "../../utilities.js";
+import { useLocation } from "react-router-dom";
 
 const BookModal = ({ show, item, onClose, setUser }) => {
   //add prop that checks if we were on search or not
@@ -29,27 +30,6 @@ const BookModal = ({ show, item, onClose, setUser }) => {
     });
   };
 
-  // const handleSubmitCurr = () => {
-  //   post("/api/curr", { bookId: item.id, rating: -1, review: "" }).then((res) => {
-  //     if (!res.error) {
-  //       setUser(res.user);
-  //       navigate(page);
-  //     } else {
-  //       alert(res.error);
-  //     }
-  //   });
-  // };
-
-  // const handleSubmitRead = (page) => {
-  //   post(`/api${page}`, { bookId: item.id, rating: -1, review: "" }).then((res) => {
-  //     if (!res.error) {
-  //       navigate("/read");
-  //     } else {
-  //       alert(res.error);
-  //     }
-  //   });
-  // };
-
   const handleRemoveBook = () => {
     post("/remove", {});
 
@@ -57,6 +37,9 @@ const BookModal = ({ show, item, onClose, setUser }) => {
       onClose();
     }
   };
+
+  const location = useLocation();
+  const currentPage = location.pathname;
 
   return (
     <>
@@ -66,11 +49,13 @@ const BookModal = ({ show, item, onClose, setUser }) => {
             <button className="white-btn close-btn" onClick={onClose}>
               Close
             </button>
-
-            <button className="dark-btn" onClick={handleRemoveBook}>
-              Remove Book
-            </button>
           </div>
+          {["/tbr", "/read", "/curr"].includes(currentPage) && (
+            <div className="remove-container">
+              <button className="dark-btn">Remove Book</button>
+            </div>
+          )}
+
           <div className="overlay-inner">
             <div className="book">
               <ul className="front">
@@ -95,13 +80,15 @@ const BookModal = ({ show, item, onClose, setUser }) => {
                           <div className="dropdown">
                             <span className="dark-btn">Add Book</span>
                             <div className="dropdown-content add-more-btn">
-                              <button onClick={() => handleAddBook("/curr")}>
+                              <button className="dark-btn" onClick={() => handleAddBook("/curr")}>
                                 Currently Reading
                               </button>
 
-                              <button onClick={() => handleAddBook("/tbr")}>To Be Read</button>
+                              <button className="dark-btn" onClick={() => handleAddBook("/tbr")}>
+                                To Be Read
+                              </button>
 
-                              <button onClick={() => handleAddBook("/read")}>
+                              <button className="dark-btn" onClick={() => handleAddBook("/read")}>
                                 Finished Reading
                               </button>
                             </div>

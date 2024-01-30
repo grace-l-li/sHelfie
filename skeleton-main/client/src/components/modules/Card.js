@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import BookModal from "./BookModal.js";
 import "../pages/SearchBooks.js";
 
@@ -15,32 +14,38 @@ const Card = ({ book, setUser }) => {
         if (thumbnail != undefined) {
           return (
             <>
-              <div
-                className="card"
-                onClick={() => {
-                  setShow(true);
-                  setBookItem(item);
-                }}
-              >
-                <div className="top">
-                  <h3 className="title">{item.volumeInfo.title}</h3>
+              <div key={item.id}>
+                <div
+                  className="card"
+                  onClick={() => {
+                    setShow(true);
+                    setBookItem(item);
+                  }}
+                >
+                  <div className="top">
+                    <h3 className="title">{item.volumeInfo.title}</h3>
+                  </div>
+                  <div className="thumbnail-container">
+                    <img src={thumbnail} alt="" />
+                  </div>
+                  <div className="bottom">
+                    <h3 className="title">By {authorNames}</h3>
+                  </div>
                 </div>
-                <div className="thumbnail-container">
-                  <img src={thumbnail} alt="" />
-                </div>
-                <div className="bottom">
-                  <h3 className="title">By {authorNames}</h3>
-                </div>
+                {show && bookItem === item && (
+                  <BookModal
+                    show={show}
+                    item={bookItem}
+                    onClose={() => setShow(false)}
+                    setUser={setUser}
+                    currentPage="search-books"
+                  />
+                )}
               </div>
-              <BookModal
-                show={show}
-                item={bookItem}
-                onClose={() => setShow(false)}
-                setUser={setUser}
-              />
             </>
           );
         }
+        return null;
       })}
     </>
   );
