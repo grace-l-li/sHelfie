@@ -20,6 +20,7 @@ const router = express.Router();
 
 //initialize socket
 const socketManager = require("./server-socket");
+const user = require("./models/user");
 
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
@@ -70,43 +71,63 @@ router.post("/user", async (req, res) => {
 
 router.post("/tbr", (req, res) => {
   User.findById(req.user._id).then((user) => {
-    user.tbr.push({
-      bookId: req.body.bookId,
-      rating: req.body.rating,
-      review: req.body.review,
-    });
+    if (user.tbr.find((book) => book.bookId === req.body.bookId)) {
+      //check if element in array already
+      res.send({ error: "book already added" });
+    } else {
+      user.tbr.push({
+        bookId: req.body.bookId,
+        rating: req.body.rating,
+        review: req.body.review,
+      });
 
-    user.save().then(() => {
-      res.send({ user });
-    });
+      user.save().then(() => {
+        res.send({ user });
+      });
+    }
   });
 });
 
 router.post("/curr", (req, res) => {
   User.findById(req.user._id).then((user) => {
-    user.curr.push({
-      bookId: req.body.bookId,
-      rating: req.body.rating,
-      review: req.body.review,
-    });
+    if (user.tbr.find((book) => book.bookId === req.body.bookId)) {
+      res.send({ error: "book already added" });
+    } else {
+      user.curr.push({
+        bookId: req.body.bookId,
+        rating: req.body.rating,
+        review: req.body.review,
+      });
 
-    user.save().then(() => {
-      res.send({ user });
-    });
+      user.save().then(() => {
+        res.send({ user });
+      });
+    }
   });
 });
 
 router.post("/read", (req, res) => {
   User.findById(req.user._id).then((user) => {
-    user.read.push({
-      bookId: req.body.bookId,
-      rating: req.body.rating,
-      review: req.body.review,
-    });
+    if (user.tbr.find((book) => book.bookId === req.body.bookId)) {
+      user.read.push({
+        bookId: req.body.bookId,
+        rating: req.body.rating,
+        review: req.body.review,
+      });
 
-    user.save().then(() => {
-      res.send({ user });
-    });
+      user.save().then(() => {
+        res.send({ user });
+      });
+    } else {
+      res.send({ error: "book already added" });
+    }
+  });
+});
+
+router.post("/remove", (req, res) => {
+  //delete book
+  User.findById(req.user._id).then((user) => {
+    // user.tbr.
   });
 });
 

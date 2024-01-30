@@ -5,6 +5,7 @@ import { post } from "../../utilities.js";
 import { useLocation } from "react-router-dom";
 
 const BookModal = ({ show, item, onClose, setUser }) => {
+  //add prop that checks if we were on search or not
   if (!show) {
     return null;
   }
@@ -18,30 +19,44 @@ const BookModal = ({ show, item, onClose, setUser }) => {
     ? item.volumeInfo.description
     : "No description available.";
 
-  const handleSubmitTbr = () => {
-    post("/api/tbr", { bookId: item.id, rating: -1, review: "" }).then((res) => {
-      if (!res.error) {
+  const handleAddBook = (page) => {
+    post(`/api${page}`, { bookId: item.id, rating: -1, review: "" }).then((res) => {
+      if (res.error) {
+        alert(res.error);
+      } else {
         setUser(res.user);
-        navigate("/tbr");
+        navigate(page);
       }
     });
   };
 
-  const handleSubmitCurr = () => {
-    post("/api/curr", { bookId: item.id, rating: -1, review: "" }).then((res) => {
-      if (!res.error) {
-        setUser(res.user);
-        navigate("/curr");
-      }
-    });
-  };
+  // const handleSubmitCurr = () => {
+  //   post("/api/curr", { bookId: item.id, rating: -1, review: "" }).then((res) => {
+  //     if (!res.error) {
+  //       setUser(res.user);
+  //       navigate(page);
+  //     } else {
+  //       alert(res.error);
+  //     }
+  //   });
+  // };
 
-  const handleSubmitRead = () => {
-    post("/api/read", { bookId: item.id, rating: -1, review: "" }).then((res) => {
-      if (!res.error) {
-        navigate("/read");
-      }
-    });
+  // const handleSubmitRead = (page) => {
+  //   post(`/api${page}`, { bookId: item.id, rating: -1, review: "" }).then((res) => {
+  //     if (!res.error) {
+  //       navigate("/read");
+  //     } else {
+  //       alert(res.error);
+  //     }
+  //   });
+  // };
+
+  const handleRemoveBook = () => {
+    post("/remove", {});
+
+    if (!res.erro) {
+      onClose();
+    }
   };
   const location = useLocation();
   const currentPage = location.pathname;
@@ -52,6 +67,13 @@ const BookModal = ({ show, item, onClose, setUser }) => {
           <div className="close-container">
             <button className="white-btn close-btn" onClick={onClose}>
               Close
+<<<<<<< HEAD
+=======
+            </button>
+
+            <button className="dark-btn" onClick={handleRemoveBook}>
+              Remove Book
+>>>>>>> 17114678e497cc3a5b57955d7c0a0fb3142c92f3
             </button>
           </div>
           {["/tbr", "/read", "/curr"].includes(currentPage) && (
@@ -83,6 +105,7 @@ const BookModal = ({ show, item, onClose, setUser }) => {
                           <div className="dropdown">
                             <span className="dark-btn">Add Book</span>
                             <div className="dropdown-content add-more-btn">
+<<<<<<< HEAD
                               <button className="dark-btn" onClick={handleSubmitCurr}>
                                 Currently Reading
                               </button>
@@ -93,6 +116,16 @@ const BookModal = ({ show, item, onClose, setUser }) => {
 
                               <button className="dark-btn" onClick={handleSubmitRead}>
                                 Read
+=======
+                              <button onClick={() => handleAddBook("/curr")}>
+                                Currently Reading
+                              </button>
+
+                              <button onClick={() => handleAddBook("/tbr")}>To Be Read</button>
+
+                              <button onClick={() => handleAddBook("/read")}>
+                                Finished Reading
+>>>>>>> 17114678e497cc3a5b57955d7c0a0fb3142c92f3
                               </button>
                             </div>
                           </div>
