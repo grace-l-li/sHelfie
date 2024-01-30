@@ -5,6 +5,7 @@ import "../pages/SearchBooks.js";
 const Card = ({ book, setUser }) => {
   const [show, setShow] = useState(false);
   const [bookItem, setBookItem] = useState();
+
   return (
     <>
       {book.map((item) => {
@@ -47,7 +48,9 @@ const Card = ({ book, setUser }) => {
         }
         return null;
       })}
+      return null;
     </>
   );
 };
+
 export default Card;
