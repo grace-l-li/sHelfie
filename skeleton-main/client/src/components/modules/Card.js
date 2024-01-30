@@ -46,9 +46,9 @@ const Card = ({ book, setUser }) => {
             </>
           );
         }
-
         return null;
       })}
+      return null;
     </>
   );
 };
