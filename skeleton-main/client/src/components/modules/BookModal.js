@@ -67,13 +67,10 @@ const BookModal = ({ show, item, onClose, setUser }) => {
           <div className="close-container">
             <button className="white-btn close-btn" onClick={onClose}>
               Close
-<<<<<<< HEAD
-=======
             </button>
 
             <button className="dark-btn" onClick={handleRemoveBook}>
               Remove Book
->>>>>>> 17114678e497cc3a5b57955d7c0a0fb3142c92f3
             </button>
           </div>
           {["/tbr", "/read", "/curr"].includes(currentPage) && (
@@ -105,27 +102,16 @@ const BookModal = ({ show, item, onClose, setUser }) => {
                           <div className="dropdown">
                             <span className="dark-btn">Add Book</span>
                             <div className="dropdown-content add-more-btn">
-<<<<<<< HEAD
-                              <button className="dark-btn" onClick={handleSubmitCurr}>
+                              <button className="dark-btn" onClick={() => handleAddBook("/curr")}>
                                 Currently Reading
                               </button>
 
-                              <button className="dark-btn" onClick={handleSubmitTbr}>
+                              <button className="dark-btn" onClick={() => handleAddBook("/tbr")}>
                                 To Be Read
                               </button>
 
-                              <button className="dark-btn" onClick={handleSubmitRead}>
-                                Read
-=======
-                              <button onClick={() => handleAddBook("/curr")}>
-                                Currently Reading
-                              </button>
-
-                              <button onClick={() => handleAddBook("/tbr")}>To Be Read</button>
-
-                              <button onClick={() => handleAddBook("/read")}>
+                              <button className="dark-btn" onClick={() => handleAddBook("/read")}>
                                 Finished Reading
->>>>>>> 17114678e497cc3a5b57955d7c0a0fb3142c92f3
                               </button>
                             </div>
                           </div>
