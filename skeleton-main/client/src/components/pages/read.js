@@ -31,20 +31,20 @@ const Read = (props) => {
     };
     fetchData();
   }, [props.user.read]);
-
   return (
     <>
-      <div className="back-container">
-        <a href="/profile/">
-          <button className="dark-btn">Back</button>
-        </a>
+      <a href="/profile">
+        <button className="dark-btn back-btn">Back</button>
+      </a>
+      <div className="top-container">
+        <h1 className="read-title">{props.user.name}'s Read</h1>
       </div>
-      <div className="outer-flex">
-        <h1 className="page-title">{props.user.name}'s Read</h1>
-        <div className="list-container">
-          <div className="container">{<Card book={bookData} />}</div>
-        </div>
+      <div className="shelf-flex">
+        <div className="left-right"></div>
+        <div className="read-container">{<Card book={bookData} />}</div>
+        <div className="left-right" />
       </div>
+      <div className="top-container" />
     </>
   );
 };

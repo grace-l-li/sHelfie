@@ -28,3 +28,10 @@
   background-color: var(--grey);
   padding: 3vh;
 }
+
+.back-btn {
+  position: absolute;
+  left: 2vh;
+  top: 2vh;
+  z-index: 6;
+}

@@ -1,0 +1,69 @@
+.toptbr-container {
+  background-color: #915d2b;
+  width: 100%;
+  height: 20vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+  z-index: 2;
+}
+.bottomtbr-container {
+  background-color: var(--medbrown);
+  width: 100%;
+  height: 20vh;
+  clip-path: polygon(10% 0, 90% 0, 100% 100%, 0 100%);
+  z-index: 2;
+}
+.lefttbr-container,
+.righttbr-container {
+  position: absolute; /* Positioned absolutely within .everything */
+  top: 0;
+  bottom: 0;
+  width: 10%;
+  background-color: var(--brown);
+  z-index: 1;
+}
+
+.lefttbr-container {
+  left: 0;
+}
+
+.righttbr-container {
+  right: 0;
+}
+
+.tbr-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2vw;
+  width: 80%;
+  padding: 5vw 15vw;
+  align-items: start;
+  justify-items: center;
+  overflow: auto;
+}
+.tbr-outer {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.everything {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--darkbrown);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.tbr-title {
+  font-family: "Readex Pro";
+  color: var(--white);
+  font-weight: 600;
+  font-size: 6vh;
+}

@@ -7,6 +7,7 @@ import "./subpage.css";
 import Card from "../modules/Card.js";
 import axios from "axios";
 import "./SearchBooks.css";
+import Wood from "../modules/Wood.svg";
 
 const Curr = (props) => {
   useEffect(() => {
@@ -20,12 +21,10 @@ const Curr = (props) => {
     const fetchData = async () => {
       if (props.user.curr !== undefined) {
         for (const book of props.user.curr) {
-
           await axios
             .get(`https://www.googleapis.com/books/v1/volumes/${book.bookId}`)
             .then((info) => {
               infoList.push(info.data);
-
             });
         }
         setBookData(infoList);
@@ -36,15 +35,18 @@ const Curr = (props) => {
 
   return (
     <>
-      <div className="back-container">
-        <a href="/profile/">
-          <button className="dark-btn">Back</button>
-        </a>
+      <a href="/profile">
+        <button className="white-btn back-btn">Back</button>
+      </a>
+      <div className="currtop-container">
+        <h1 className="curr-title">{props.user.name}'s Currently Reading</h1>
       </div>
-      <div className="outer-flex">
-        <h1 className="page-title">{props.user.name}'s Currently Reading</h1>
-        <div className="list-container">
-          <div className="container">{<Card book={bookData} />}</div>
+      <div className="curr-container">
+        <div className="circle">
+          <div className="woodstyling">
+            <img src={Wood} />
+          </div>
+          <div className="currbooks-container">{<Card book={bookData} />}</div>
         </div>
       </div>
     </>

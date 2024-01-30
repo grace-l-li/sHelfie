@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import BookModal from "./BookModal.js";
 import "../pages/SearchBooks.js";
+import "../pages/read.css";
 
 const Card = ({ book, setUser }) => {
   const [show, setShow] = useState(false);
