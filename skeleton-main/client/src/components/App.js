@@ -66,10 +66,10 @@ const App = () => {
     console.log(`Logged in as ${decodedCredential.name}`);
     post("/api/login", { token: userToken }).then((user) => {
       setUserId(user._id);
-      post("/api/initsocket", { socketid: socket.id });
+      // post("/api/initsocket", { socketid: socket.id });
+      setJustLoggedIn(true);
+      navigate("/profile");
     });
-    setJustLoggedIn(true);
-    navigate("/profile");
   };
 
   const handleLogout = () => {

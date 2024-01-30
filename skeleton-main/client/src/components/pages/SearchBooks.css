@@ -538,7 +538,7 @@ body {
   position: absolute;
   background-color: var(--lightpurple);
   min-width: 160px;
-  top: 44px;
+  top: 4vh;
   padding: 12px 16px;
   left: 60%;
   transform: translateX(-60%);
