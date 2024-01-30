@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../pages/SearchBooks.js";
 import { post } from "../../utilities.js";
+import { useLocation } from "react-router-dom";
 
 const BookModal = ({ show, item, onClose, setUser }) => {
   if (!show) {
@@ -42,7 +43,8 @@ const BookModal = ({ show, item, onClose, setUser }) => {
       }
     });
   };
-
+  const location = useLocation();
+  const currentPage = location.pathname;
   return (
     <>
       {show ? (
@@ -50,9 +52,13 @@ const BookModal = ({ show, item, onClose, setUser }) => {
           <div className="close-container">
             <button className="white-btn close-btn" onClick={onClose}>
               Close
-              <button className="dark-btn">Remove Book</button>
             </button>
           </div>
+          {["/tbr", "/read", "/curr"].includes(currentPage) && (
+            <div className="remove-container">
+              <button className="dark-btn">Remove Book</button>
+            </div>
+          )}
           <div className="overlay-inner">
             <div className="book">
               <ul className="front">
@@ -77,11 +83,17 @@ const BookModal = ({ show, item, onClose, setUser }) => {
                           <div className="dropdown">
                             <span className="dark-btn">Add Book</span>
                             <div className="dropdown-content add-more-btn">
-                              <button onClick={handleSubmitCurr}>Currently Reading</button>
+                              <button className="dark-btn" onClick={handleSubmitCurr}>
+                                Currently Reading
+                              </button>
 
-                              <button onClick={handleSubmitTbr}>To Be Read</button>
+                              <button className="dark-btn" onClick={handleSubmitTbr}>
+                                To Be Read
+                              </button>
 
-                              <button onClick={handleSubmitRead}>Finished Reading</button>
+                              <button className="dark-btn" onClick={handleSubmitRead}>
+                                Read
+                              </button>
                             </div>
                           </div>
                           <div>

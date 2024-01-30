@@ -8,7 +8,7 @@
 }
 
 .zoom-out {
-  animation: zoomOutAnimation 1s ease forwards;
+  animation: zoomOutAnimation 2s ease forwards;
 }
 
 .Profile-container {
