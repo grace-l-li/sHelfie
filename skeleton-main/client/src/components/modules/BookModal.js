@@ -55,6 +55,11 @@ const BookModal = ({ show, item, onClose, setUser }) => {
               <button className="dark-btn">Remove Book</button>
             </div>
           )}
+          {["/read"].includes(currentPage) && (
+            <div className="review-container">
+              <button className="dark-btn">Write a review</button>
+            </div>
+          )}
           <div className="overlay-inner">
             <div className="book">
               <ul className="front">
