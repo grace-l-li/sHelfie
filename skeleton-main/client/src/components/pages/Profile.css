@@ -8,7 +8,7 @@
 }
 
 .zoom-out {
-  animation: zoomOutAnimation 1s ease forwards;
+  animation: zoomOutAnimation 2s ease forwards;
 }
 
 .Profile-container {
@@ -219,6 +219,7 @@ body {
 
 .outermost-flex {
   /* animation: zoomOutAnimation 1s ease forwards; */
+  /* transform: scale(5); */
   transform-origin: 52% 63%;
   display: flex;
   flex-direction: row;

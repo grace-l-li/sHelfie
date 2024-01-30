@@ -36,7 +36,10 @@ const Profile = (props) => {
   useEffect(() => {
     if (props.justLoggedIn) {
       setAnimationClass("zoom-out");
-      props.setJustLoggedIn(false);
+      // props.setJustLoggedIn(false);
+      setTimeout(() => {
+        props.setJustLoggedIn(false);
+      }, 3000);
     }
   }, [props.justLoggedIn]);
 
@@ -48,7 +51,7 @@ const Profile = (props) => {
 
   return (
     <>
-      <div className={`outermost-flex ${animationClass}`}>
+      <div className={`outermost-flex ${props.justLoggedIn ? "zoom-out" : ""}`}>
         <div className="left-flex">
           <div className="topleft-flex"></div>
           <div className="Profile-container">

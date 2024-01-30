@@ -4,10 +4,9 @@ const mongoose = require("mongoose");
 const PostSchema = new mongoose.Schema({
   user_id: String,
   user_name: String,
-  book_state: String, //'tbr', 'current', 'read'
-  bookinfo: String,
-  content: String,
+  bookTitle: String,
   rating: Number, //-1 if tbr or current
+  review: String,
 });
 
 // compile model from schema

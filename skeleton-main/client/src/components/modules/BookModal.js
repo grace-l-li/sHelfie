@@ -2,13 +2,19 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../pages/SearchBooks.js";
 import { post } from "../../utilities.js";
+import { useLocation } from "react-router-dom";
 
 const BookModal = ({ show, item, onClose, setUser }) => {
+  //add prop that checks if we were on search or not
   if (!show) {
     return null;
   }
 
   const navigate = useNavigate();
+
+  const location = useLocation();
+  const currentPage = location.pathname;
+  console.log(currentPage === "/curr");
 
   let thumbnail = item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
   let authors = item.volumeInfo.authors; // assuming authors is an array
@@ -17,28 +23,25 @@ const BookModal = ({ show, item, onClose, setUser }) => {
     ? item.volumeInfo.description
     : "No description available.";
 
-  const handleSubmitTbr = () => {
-    post("/api/tbr", { bookId: item.id, rating: -1, review: "" }).then((res) => {
-      if (!res.error) {
+  const handleAddBook = (page) => {
+    post(`/api${page}`, { bookId: item.id, rating: -1, review: "" }).then((res) => {
+      if (res.error) {
+        alert(res.error);
+      } else {
         setUser(res.user);
-        navigate("/tbr");
+        // navigate(page);
+        onClose();
       }
     });
   };
 
-  const handleSubmitCurr = () => {
-    post("/api/curr", { bookId: item.id, rating: -1, review: "" }).then((res) => {
+  const handleRemoveBook = () => {
+    post("/api/remove", { bookId: item.id, page: currentPage }).then((res) => {
       if (!res.error) {
-        setUser(res.user);
-        navigate("/curr");
-      }
-    });
-  };
-
-  const handleSubmitRead = () => {
-    post("/api/read", { bookId: item.id, rating: -1, review: "" }).then((res) => {
-      if (!res.error) {
-        navigate("/read");
+        console.log(res.user);
+        setUser(res.user);   //Why is setUser not a function??
+        onClose(); //have to refresh to see updated changes
+        // navigate(currentPage);
       }
     });
   };
@@ -52,6 +55,18 @@ const BookModal = ({ show, item, onClose, setUser }) => {
               Close
             </button>
           </div>
+          {["/tbr", "/read", "/curr"].includes(currentPage) && (
+            <div className="remove-container">
+              <button className="dark-btn" onClick={() => handleRemoveBook()}>
+                Remove Book
+              </button>
+            </div>
+          )}
+          {["/read"].includes(currentPage) && (
+            <div className="review-container">
+              <button className="dark-btn">Write a review</button>
+            </div>
+          )}
           <div className="overlay-inner">
             <div className="book">
               <ul className="front">
@@ -76,11 +91,17 @@ const BookModal = ({ show, item, onClose, setUser }) => {
                           <div className="dropdown">
                             <span className="dark-btn">Add Book</span>
                             <div className="dropdown-content add-more-btn">
-                              <button onClick={handleSubmitCurr}>Currently Reading</button>
+                              <button className="dark-btn" onClick={() => handleAddBook("/curr")}>
+                                Currently Reading
+                              </button>
 
-                              <button onClick={handleSubmitTbr}>To Be Read</button>
+                              <button className="dark-btn" onClick={() => handleAddBook("/tbr")}>
+                                To Be Read
+                              </button>
 
-                              <button onClick={handleSubmitRead}>Finished Reading</button>
+                              <button className="dark-btn" onClick={() => handleAddBook("/read")}>
+                                Finished Reading
+                              </button>
                             </div>
                           </div>
                           <div>
