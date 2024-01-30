@@ -37,8 +37,8 @@ const BookModal = ({ show, item, onClose, setUser }) => {
   const handleRemoveBook = () => {
     post("/api/remove", { bookId: item.id, page: currentPage }).then((res) => {
       if (!res.error) {
-        setUser(res.user);
-        onClose();
+        console.log(res.user);
+        navigate(currentPage);
       }
     });
   };
@@ -54,7 +54,7 @@ const BookModal = ({ show, item, onClose, setUser }) => {
           </div>
           {["/tbr", "/read", "/curr"].includes(currentPage) && (
             <div className="remove-container">
-              <button className="dark-btn" onClick={handleRemoveBook}>
+              <button className="dark-btn" onClick={() => handleRemoveBook()}>
                 Remove Book
               </button>
             </div>

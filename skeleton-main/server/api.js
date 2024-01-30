@@ -90,7 +90,7 @@ router.post("/tbr", (req, res) => {
 
 router.post("/curr", (req, res) => {
   User.findById(req.user._id).then((user) => {
-    if (user.tbr.find((book) => book.bookId === req.body.bookId)) {
+    if (user.curr.find((book) => book.bookId === req.body.bookId)) {
       res.send({ error: "book already added" });
     } else {
       user.curr.push({
@@ -108,7 +108,7 @@ router.post("/curr", (req, res) => {
 
 router.post("/read", (req, res) => {
   User.findById(req.user._id).then((user) => {
-    if (user.tbr.find((book) => book.bookId === req.body.bookId)) {
+    if (user.read.find((book) => book.bookId === req.body.bookId)) {
       user.read.push({
         bookId: req.body.bookId,
         rating: req.body.rating,
@@ -126,14 +126,17 @@ router.post("/read", (req, res) => {
 
 router.post("/remove", (req, res) => {
   //delete book
+  console.log(req.user._id);
   User.findById(req.user._id).then((user) => {
-    console.log("1");
+    console.log("0");
     if (req.body.page === "/tbr") {
-      console.log("correct page check");
+      console.log("1");
       user.tbr = user.tbr.filter((book) => book.bookId !== req.body.bookId);
-      console.log(user.tbr);
+      console.log("1.5");
     } else if (req.body.page === "/curr") {
+      console.log("2");
       user.curr = user.curr.filter((book) => book.bookId !== req.body.bookId);
+      console.log("2.5");
     } else if (req.body.page === "/read") {
       user.read = user.read.filter((book) => book.bookId !== req.body.bookId);
     }
