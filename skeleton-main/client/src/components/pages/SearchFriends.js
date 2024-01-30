@@ -8,7 +8,7 @@ const FriendSearch = (props) => {
   const [friendData, setfriendData] = useState([]);
   // const navigate = useNavigate();
 
-  const searchFriend = (evt) => {
+  const searchFriend = (evt) => {        // How to display? In database you have to query exact name/username/etc.
     if (evt.key === "Enter" || evt.key === " ") {
       get("/api/user", { userId: props.userId }).then((user) => {
         // setfriendData(user);

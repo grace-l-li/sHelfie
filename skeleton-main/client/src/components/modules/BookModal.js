@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import "../pages/SearchBooks.js";
 import { post } from "../../utilities.js";
 import { useLocation } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 
 const BookModal = ({ show, item, onClose, setUser }) => {
   //add prop that checks if we were on search or not
@@ -15,7 +14,7 @@ const BookModal = ({ show, item, onClose, setUser }) => {
 
   const location = useLocation();
   const currentPage = location.pathname;
-  console.log(currentPage === "/tbr");
+  console.log(currentPage === "/curr");
 
   let thumbnail = item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
   let authors = item.volumeInfo.authors; // assuming authors is an array
@@ -30,7 +29,8 @@ const BookModal = ({ show, item, onClose, setUser }) => {
         alert(res.error);
       } else {
         setUser(res.user);
-        navigate(page);
+        // navigate(page);
+        onClose();
       }
     });
   };
@@ -39,7 +39,9 @@ const BookModal = ({ show, item, onClose, setUser }) => {
     post("/api/remove", { bookId: item.id, page: currentPage }).then((res) => {
       if (!res.error) {
         console.log(res.user);
-        navigate(currentPage);
+        setUser(res.user);   //Why is setUser not a function??
+        onClose(); //have to refresh to see updated changes
+        // navigate(currentPage);
       }
     });
   };
