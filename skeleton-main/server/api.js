@@ -127,7 +127,19 @@ router.post("/read", (req, res) => {
 router.post("/remove", (req, res) => {
   //delete book
   User.findById(req.user._id).then((user) => {
-    // user.tbr.
+    console.log("1");
+    if (req.body.page === "/tbr") {
+      console.log("correct page check");
+      user.tbr = user.tbr.filter((book) => book.bookId !== req.body.bookId);
+      console.log(user.tbr);
+    } else if (req.body.page === "/curr") {
+      user.curr = user.curr.filter((book) => book.bookId !== req.body.bookId);
+    } else if (req.body.page === "/read") {
+      user.read = user.read.filter((book) => book.bookId !== req.body.bookId);
+    }
+    user.save().then(() => {
+      res.send({ user });
+    });
   });
 });
 

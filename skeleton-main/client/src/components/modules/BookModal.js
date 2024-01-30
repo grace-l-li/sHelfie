@@ -12,6 +12,10 @@ const BookModal = ({ show, item, onClose, setUser }) => {
 
   const navigate = useNavigate();
 
+  const location = useLocation();
+  const currentPage = location.pathname;
+  console.log(currentPage === "/tbr");
+
   let thumbnail = item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
   let authors = item.volumeInfo.authors; // assuming authors is an array
   let authorNames = authors ? authors.join(", ") : "Unknown Author"; // Join multiple authors with comma or use a placeholder
@@ -31,15 +35,13 @@ const BookModal = ({ show, item, onClose, setUser }) => {
   };
 
   const handleRemoveBook = () => {
-    post("/remove", {});
-
-    if (!res.erro) {
-      onClose();
-    }
+    post("/api/remove", { bookId: item.id, page: currentPage }).then((res) => {
+      if (!res.error) {
+        setUser(res.user);
+        onClose();
+      }
+    });
   };
-
-  const location = useLocation();
-  const currentPage = location.pathname;
 
   return (
     <>
@@ -52,7 +54,9 @@ const BookModal = ({ show, item, onClose, setUser }) => {
           </div>
           {["/tbr", "/read", "/curr"].includes(currentPage) && (
             <div className="remove-container">
-              <button className="dark-btn">Remove Book</button>
+              <button className="dark-btn" onClick={handleRemoveBook}>
+                Remove Book
+              </button>
             </div>
           )}
           <div className="overlay-inner">
