@@ -3,8 +3,9 @@
   height: 100%;
   display: flex;
   justify-content: center;
-  padding-top: 4vh;
-  padding-bottom: 4vh;
+  padding-top: 0vh;
+  margin-top: 0vh;
+  margin-bottom: 10vh;
 }
 
 .curr-title {
