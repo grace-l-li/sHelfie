@@ -92,7 +92,9 @@ router.post("/curr", (req, res) => {
   User.findById(req.user._id).then((user) => {
     if (user.curr.find((book) => book.bookId === req.body.bookId)) {
       res.send({ error: "book already added" });
-    } else {
+    } else if (user.curr.length === 3) {res.send({error: "You've reached maximum books allowed"})}
+    
+    else {
       user.curr.push({
         bookId: req.body.bookId,
         rating: req.body.rating,
