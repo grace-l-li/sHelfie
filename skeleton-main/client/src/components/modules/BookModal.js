@@ -4,6 +4,7 @@ import "../pages/SearchBooks.js";
 import { post } from "../../utilities.js";
 
 const BookModal = ({ show, item, onClose, setUser }) => {
+  //add prop that checks if we were on search or not
   if (!show) {
     return null;
   }
@@ -19,7 +20,9 @@ const BookModal = ({ show, item, onClose, setUser }) => {
 
   const handleSubmitTbr = () => {
     post("/api/tbr", { bookId: item.id, rating: -1, review: "" }).then((res) => {
-      if (!res.error) {
+      if (res.error) {
+        alert(res.error);
+      } else {
         setUser(res.user);
         navigate("/tbr");
       }
@@ -31,6 +34,8 @@ const BookModal = ({ show, item, onClose, setUser }) => {
       if (!res.error) {
         setUser(res.user);
         navigate("/curr");
+      } else {
+        alert(res.error);
       }
     });
   };
@@ -39,6 +44,8 @@ const BookModal = ({ show, item, onClose, setUser }) => {
     post("/api/read", { bookId: item.id, rating: -1, review: "" }).then((res) => {
       if (!res.error) {
         navigate("/read");
+      } else {
+        alert(res.error);
       }
     });
   };
