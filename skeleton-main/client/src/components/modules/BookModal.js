@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import "../pages/SearchBooks.js";
 import { post } from "../../utilities.js";
 import { useLocation } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 
 const BookModal = ({ show, item, onClose, setUser }) => {
   //add prop that checks if we were on search or not
