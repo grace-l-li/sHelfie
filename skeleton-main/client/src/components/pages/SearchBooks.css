@@ -570,3 +570,11 @@ body {
   white-space: nowrap;
   margin: 10px 0;
 }
+
+.rating-input-container {
+  background-color: var(--lightpurple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
