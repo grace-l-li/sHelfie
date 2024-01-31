@@ -3,13 +3,13 @@ import "../../utilities.css";
 import "./Feed.css";
 import FeedCard from "./FeedCard.js";
 
-import { post } from "../../utilities";
+import { get, post } from "../../utilities";
 
 const Feed = (props) => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    post("/api/posts", { userId: props.userId })
+    get("/api/posts")
       .then((feedList) => {
         let reversedFeedList = feedList.reverse();
         return reversedFeedList;
@@ -27,7 +27,7 @@ const Feed = (props) => {
       <FeedCard
         key={`FeedCard_${index}`}
         index={index}
-        _id={post._id}
+        postId={post._id}
         creator_id={post.creator_id}
         creator_username={post.creator_username}
         status={post.status}

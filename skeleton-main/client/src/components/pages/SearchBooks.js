@@ -9,7 +9,7 @@ const BookSearch = (props) => {
   const [bookData, setBookData] = useState([]);
 
   const searchBook = (evt) => {
-    if (evt.key === "Enter" || evt.key === " ") {
+    if (evt.key === "Enter" || evt.key === " ") {    //Do time after 3 seconds
       axios
         .get(
           "https://www.googleapis.com/books/v1/volumes?q=" +
@@ -41,7 +41,7 @@ const BookSearch = (props) => {
         </div>
       </div>
       {search !== "" && bookData !== undefined && (
-        <div className="container">{<BookCard book={bookData} setUser={props.setUser} user={props.user}/>}</div>
+        <div className="container">{<BookCard books={bookData} setUser={props.setUser} user={props.user}/>}</div>
       )}
       ;
     </>

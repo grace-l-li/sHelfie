@@ -1,6 +1,7 @@
 import "./curr.css";
 
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import "../../utilities.css";
 import "./Profile.css";
 import "./subpage.css";
@@ -9,18 +10,27 @@ import axios from "axios";
 import "./SearchBooks.css";
 import Wood from "../modules/Wood.svg";
 
-const Curr = (props) => {
+import { get } from "../../utilities.js";
+
+const CurrOther = (props) => {
+  let { username } = useParams();
+
+  const [person, setPerson] = useState({});
+
   useEffect(() => {
     document.title = "Currently Reading";
-  }, [props.userId]);
+    get("/api/userFromUsername", { username: username }).then((res) => {
+      setPerson(res.user);
+    });
+  }, []);
 
   const [bookData, setBookData] = useState([]);
   let infoList = [];
 
   useEffect(() => {
     const fetchData = async () => {
-      if (props.user.curr !== undefined) {
-        for (const book of props.user.curr) {
+      if (person.curr !== undefined) {
+        for (const book of person.curr) {
           await axios
             .get(`https://www.googleapis.com/books/v1/volumes/${book.bookId}`)
             .then((info) => {
@@ -31,15 +41,15 @@ const Curr = (props) => {
       }
     };
     fetchData();
-  }, [props.user.curr]);
+  }, []);
 
   return (
     <>
-      <a href="/profile">
-        <button className="white-btn back-btn">Back</button>
+      <a href={`/profile/${username}`}>
+        <button className="white-btn back-btn other-btn">Back</button>
       </a>
       <div className="currtop-container">
-        <h1 className="curr-title">{props.user.name}'s Currently Reading</h1>
+        <h1 className="curr-title">{person.name}'s Currently Reading</h1>
       </div>
       <div className="curr-container">
         <div className="circle">
@@ -47,7 +57,8 @@ const Curr = (props) => {
             <img src={Wood} />
           </div>
           <div className="currbooks-container">
-            {<BookCard books={bookData} user={props.user} setUser={props.setUser} />}
+            {<BookCard books={bookData} user={person} />}
+            {/*Have to update BookCard to be conditional render for remove & add book*/}
           </div>
         </div>
       </div>
@@ -55,4 +66,4 @@ const Curr = (props) => {
   );
 };
 
-export default Curr;
+export default CurrOther;

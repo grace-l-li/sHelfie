@@ -3,17 +3,18 @@ import React, { useState } from "react";
 import "../pages/SearchBooks.js";
 import "./UserCard.css";
 
-const UserCard = (props) => {
-  const [userCards, setUserCards] = useState([]);
+const UserCard = ({ friends, user }) => {
+  console.log(friends);
+  const [userItem, setUserItem] = useState([]);
 
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-      {props.userCards.map((post, index) => (
+      {friends.map((friend, index) => (
         <div key={index} className="userCard-container">
           <div className="img-flex">
-            <img src={props.user.picture} alt="Profile" />
+            <img src={friend.picture} alt="Profile" />
           </div>
-          <div className="username-container">{props.user.username}</div>
+          <div className="username-container">{friend.username}</div>
         </div>
       ))}
     </div>

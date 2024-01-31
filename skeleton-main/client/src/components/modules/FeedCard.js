@@ -19,6 +19,8 @@ const FeedCard = (props) => {
     get("/api/comment", { parent: props._id }).then((comments) => {
       setComments(comments);
     });
+
+    //make new query to check if person has already liked; update schema with hasLiked = [user_ids]
   }, []);
 
   const addNewComment = (commentObj) => {
@@ -53,19 +55,9 @@ const FeedCard = (props) => {
           <img src={props.user.picture} alt="Profile" />
         </div>
         <div className="name-container">
-          {/* <Link to={`/profile/${props.creator_id}`}> */}
-          <h2>@{props.creator_username}</h2>
-          {/* </Link> */}
-          {/* {() => {
-            <div>Inside function</div>;
-            if (props.status === "/tbr") {
-              return <div> wants to read</div>;
-            } else if (props.status === "/curr") {
-              return <div> is reading</div>;
-            } else if (props.status === "/read") {
-              return <div> finished reading</div>;
-            }
-          }} */}
+          <Link to={`/profile/${props.creator_username}`}>
+            <h2>@{props.creator_username}</h2>
+          </Link>
 
           {props.status === "/tbr" ? (
             <div> wants to read</div>
@@ -90,20 +82,29 @@ const FeedCard = (props) => {
             onMouseEnter={() => handleMouseEnter(props.index)}
             onMouseLeave={() => handleMouseLeave(props.index)}
           >
-            <div className="image-container">
-              <img src={lightpurpleHeart} alt="Like" className="default-img" />
-              <img src={heartIcon} alt="Like" className="hover-img" />
-            </div>
-            <button className="react-btn" onClick={() => handleLike()}>
-              Like
-            </button>
+            {!liked ? (
+              <div onClick={() => handleLike()}>
+                <div className="image-container">
+                  <img src={lightpurpleHeart} alt="Like" className="default-img" />
+                  <img src={heartIcon} alt="Like" className="hover-img" />
+                </div>
+                <button className="react-btn">Like</button>
+              </div>
+            ) : (
+              <div>
+                <div className="image-container">
+                  <img src={purpleHeart} alt="Like" className="default-img" />
+                </div>
+                <button className="react-btn">Liked</button>
+              </div>
+            )}
           </div>
           <div
             className="react-img"
             onMouseEnter={() => handleMouseEnter(props.index)}
             onMouseLeave={() => handleMouseLeave(props.index)}
           >
-            <div className="image-container">
+            <div className="image-container" onClick={() => setCommentClicked(!commentClicked)}>
               <div>
                 <img src={lightpurpleComment} alt="Comment" className="default-img" />
                 <img src={commentIcon} alt="Comment" className="hover-img" />{" "}

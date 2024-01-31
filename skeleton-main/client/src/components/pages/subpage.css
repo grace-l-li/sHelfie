@@ -35,3 +35,7 @@
   top: 2vh;
   z-index: 6;
 }
+
+.other-btn {
+  margin-top: 10vh;
+}

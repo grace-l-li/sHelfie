@@ -1,6 +1,7 @@
 import "./read.css";
 
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import "../../utilities.css";
 import "./Profile.css";
 import "./subpage.css";
@@ -10,6 +11,8 @@ import "./SearchBooks.css";
 import WoodTexture from "../modules/Wood.svg";
 import DarkWood from "../modules/DarkWood.svg";
 
+import { get } from "../../utilities.js";
+
 const chunkArray = (array, size) => {
   let result = [];
   for (let i = 0; i < array.length; i += size) {
@@ -18,18 +21,25 @@ const chunkArray = (array, size) => {
   return result;
 };
 
-const Read = (props) => {
+const ReadOther = (props) => {
+  let { username } = useParams();
+
+  const [person, setPerson] = useState({});
+
   useEffect(() => {
     document.title = "Bookshelf";
-  }, [props.userId]);
+    get("/api/userFromUsername", { username: username }).then((res) => {
+      setPerson(res.user);
+    });
+  }, []);
 
   const [bookData, setBookData] = useState([]);
   let infoList = [];
 
   useEffect(() => {
     const fetchData = async () => {
-      if (props.user.read !== undefined) {
-        for (const book of props.user.read) {
+      if (person.read !== undefined) {
+        for (const book of person.read) {
           await axios
             .get(`https://www.googleapis.com/books/v1/volumes/${book.bookId}`)
             .then((info) => {
@@ -40,7 +50,7 @@ const Read = (props) => {
       }
     };
     fetchData();
-  }, [props.user.read]);
+  }, [person.read]);
 
   const renderShelfRows = () => {
     // Split the bookData into chunks of 3
@@ -60,20 +70,21 @@ const Read = (props) => {
           {chunk.map((book, index) => (
             <BookCard key={index} books={[book]} />
           ))}
+          {/*Have to update BookCard to be conditional render for remove & add book*/}
         </div>
       </div>
     ));
   };
   return (
     <>
-      <a href="/profile">
-        <button className="dark-btn back-btn">Back</button>
+      <a href={`/profile/${username}`}>
+        <button className="dark-btn back-btn other-btn">Back</button>
       </a>
       <div className="top-container">
         <div className="shelf-texture">
           <img src={WoodTexture} />
         </div>
-        <h1 className="read-title">{props.user.name}'s Read</h1>
+        <h1 className="read-title">{person.name}'s Read</h1>
       </div>
       <div className="shelf-flex">
         <div className="left-right">
@@ -107,4 +118,4 @@ const Read = (props) => {
   );
 };
 
-export default Read;
+export default ReadOther;
