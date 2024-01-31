@@ -25,13 +25,13 @@ const BookCard = ({ books, user, setUser }) => {
                   }}
                 >
                   <div className="top">
-                    <h3 className="title">{item.volumeInfo.title}</h3>
+                    <h3 className="gridtitle">{item.volumeInfo.title}</h3>
                   </div>
                   <div className="thumbnail-container">
                     <img src={thumbnail} alt="" />
                   </div>
                   <div className="bottom">
-                    <h3 className="title">By {authorNames}</h3>
+                    <h3 className="gridtitle">By {authorNames}</h3>
                   </div>
                 </div>
                 {show && bookItem === item && (

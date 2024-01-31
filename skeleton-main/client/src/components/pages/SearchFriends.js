@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import UserCard from "../modules/UserCard.js";
 import "../../utilities.css";
-
+import "./SearchFriends.css";
 import { get } from "../../utilities.js";
 
 const FriendSearch = (props) => {
@@ -43,7 +43,7 @@ const FriendSearch = (props) => {
       </div>
 
       {search !== "" && friendData !== undefined && (
-        <div className="container">{<UserCard friends={friendData} />}</div>
+        <div className="card-container">{<UserCard friends={friendData} />}</div>
       )}
     </>
   );

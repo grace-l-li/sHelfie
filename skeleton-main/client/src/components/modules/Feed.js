@@ -44,7 +44,7 @@ const Feed = (props) => {
       />
     ));
   } else {
-    postDisplay = <div>No updates!</div>;
+    postDisplay = <div className="authorbook">No updates!</div>;
   }
   return (
     <>

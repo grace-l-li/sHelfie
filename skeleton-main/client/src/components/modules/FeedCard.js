@@ -5,10 +5,11 @@ import { get, post } from "../../utilities";
 
 import heartIcon from "./HeartButton.svg";
 import commentIcon from "./CommentButton.svg";
-import purpleHeart from "./PurpleHeart.svg";
-import purpleComment from "./PurpleComment.svg";
+import filledHeart from "./filledHeart.svg";
 import lightpurpleHeart from "./LightPurpleHeart.svg";
 import lightpurpleComment from "./LightPurpleComment.svg";
+import yellowStar from "./YellowStar.svg";
+import greyStar from "./GreyStar.svg";
 
 import "./Feed.css";
 
@@ -48,6 +49,23 @@ const FeedCard = (props) => {
     );
   };
 
+  const renderStars = () => {
+    const stars = [];
+    if (props.rating !== -1) {
+      // Add yellow stars up to the rating
+      for (let i = 0; i < props.rating; i++) {
+        stars.push(<img key={`star-${i}`} src={yellowStar} alt="Star" className="star" />);
+      }
+      // Add grey stars for the remaining count
+      for (let i = props.rating; i < 5; i++) {
+        stars.push(<img key={`star-${i}`} src={greyStar} alt="Star" className="star" />);
+      }
+    }
+    return stars;
+  };
+
+  console.log(props.rating);
+
   return (
     <div key={props.index} className="post-container">
       <div className="post-top-bar">
@@ -56,27 +74,31 @@ const FeedCard = (props) => {
         </div>
         <div className="name-container">
           <Link to={`/profile/${props.creator_username}`}>
-            <h2>@{props.creator_username}</h2>
+            <h2 className="name-style">@{props.creator_username}</h2>
           </Link>
-
           {props.status === "/tbr" ? (
-            <div> wants to read</div>
+            <div className="status">wants to read</div>
           ) : props.status === "/curr" ? (
-            <div> is reading</div>
+            <div className="status">is reading</div>
           ) : (
-            <div> finished reading</div>
+            <div className="status">finished reading</div>
           )}
-
-          <div> {props.rating}</div>
         </div>
+        <div className="rating-container"> {renderStars()}</div>
       </div>
       <div className="post-center">
-        <div>{props.bookTitle}</div>
-        <div>by {props.bookAuthor}</div>
-        <div>{props.review}</div>
+        <div className="post-center-left">
+          <div className="titlebook">{props.bookTitle}</div>
+          <div className="authorbook">by {props.bookAuthor}</div>
+          <div className="reviewbook">{props.review}</div>
+          <div>{props.review !== "" && <button className="see-review">See Review</button>} </div>
+        </div>
+        <div className="post-center-right img-book">
+          <img src={props.bookImg} alt="Book" />
+        </div>
       </div>
       <div className="post-bottom-bar">
-        <div className="buttons-container">
+        <div className="buttons-container2">
           <div
             className="react-img"
             onMouseEnter={() => handleMouseEnter(props.index)}
@@ -88,14 +110,13 @@ const FeedCard = (props) => {
                   <img src={lightpurpleHeart} alt="Like" className="default-img" />
                   <img src={heartIcon} alt="Like" className="hover-img" />
                 </div>
-                <button className="react-btn">Like</button>
               </div>
             ) : (
               <div>
                 <div className="image-container">
-                  <img src={purpleHeart} alt="Like" className="default-img" />
+                  <img src={filledHeart} alt="Like" className="default-img" />
+                  <img src={filledHeart} alt="Like" className="hover-img" />
                 </div>
-                <button className="react-btn">Liked</button>
               </div>
             )}
           </div>
@@ -109,7 +130,6 @@ const FeedCard = (props) => {
                 <img src={lightpurpleComment} alt="Comment" className="default-img" />
                 <img src={commentIcon} alt="Comment" className="hover-img" />{" "}
               </div>
-              <button className="react-btn comment-btn">Comment</button>
               {commentClicked && ( //How to display comment box on click
                 <CommentsBlock
                   post={props}
@@ -122,8 +142,8 @@ const FeedCard = (props) => {
             </div>
           </div>
         </div>
-        <div className="likes-style">
-          <h6>{props.likeCount} Likes</h6>
+        <div className="likes-container">
+          <h6 className="likes-style">{props.likeCount} Likes</h6>
         </div>
       </div>
     </div>

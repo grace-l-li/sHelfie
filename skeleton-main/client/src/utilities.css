@@ -51,6 +51,12 @@
   color: var(--darkpurple);
 }
 
+.lower-padding {
+  padding-bottom: 2vh;
+}
+.left-padding {
+  padding-left: 2vh;
+}
 .light-btn {
   font-family: "Readex Pro";
   font-weight: bold;
@@ -87,6 +93,19 @@
   text-decoration: none !important;
 }
 
+.review-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 25vw;
+}
+.read-btn-flx {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .white-btn:hover {
   background-color: var(--lightpurple);
   color: var(--white);
