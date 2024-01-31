@@ -15,7 +15,7 @@ import Read from "./pages/read.js";
 import "../utilities.css";
 import SearchBooks from "./pages/SearchBooks.js";
 import SearchFriends from "./pages/SearchFriends.js";
-
+import FriendsList from "./pages/FriendsList.js";
 import ProfileOther from "./pages/ProfileOther.js";
 import CurrOther from "./pages/CurrOther.js";
 import TbrOther from "./pages/TbrOther.js";
@@ -84,7 +84,7 @@ const App = () => {
   };
 
   const isLandingPage = location.pathname === "/";
-  const pathsWithoutNavBar = ["/profile/edit", "/curr", "/tbr", "/read"];
+  const pathsWithoutNavBar = ["/profile/friends", "/profile/edit", "/curr", "/tbr", "/read"];
   const shouldShowNavBar = !pathsWithoutNavBar.includes(location.pathname);
 
   console.log(user);
@@ -127,6 +127,17 @@ const App = () => {
               setUser={setUser}
               justLoggedIn={justLoggedIn}
               setJustLoggedIn={setJustLoggedIn}
+            />
+          }
+        />
+        <Route
+          path="/profile/friends/"
+          element={
+            <FriendsList
+              handleLogin={handleLogin}
+              handleLogout={handleLogout}
+              userId={userId}
+              user={user}
             />
           }
         />
