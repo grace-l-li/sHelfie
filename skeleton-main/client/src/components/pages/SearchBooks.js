@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Card from "../modules/Card.js";
+import BookCard from "../modules/BookCard.js";
 import axios from "axios";
 import "./SearchBooks.css";
 import "../../utilities.css";
@@ -41,7 +41,7 @@ const BookSearch = (props) => {
         </div>
       </div>
       {search !== "" && bookData !== undefined && (
-        <div className="container">{<Card book={bookData} setUser={props.setUser} />}</div>
+        <div className="container">{<BookCard book={bookData} setUser={props.setUser} user={props.user}/>}</div>
       )}
       ;
     </>

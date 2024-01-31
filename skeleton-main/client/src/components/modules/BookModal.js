@@ -4,7 +4,7 @@ import "../pages/SearchBooks.js";
 import { post } from "../../utilities.js";
 import { useLocation } from "react-router-dom";
 
-const BookModal = ({ show, item, onClose, setUser }) => {
+const BookModal = ({ show, item, onClose, username, setUser }) => {
   //add prop that checks if we were on search or not
   if (!show) {
     return null;
@@ -16,7 +16,8 @@ const BookModal = ({ show, item, onClose, setUser }) => {
   const currentPage = location.pathname;
   console.log(currentPage === "/curr");
 
-  let thumbnail = item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
+  let title = item.volumeInfo.title;
+  let thumbnail = item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.thumbnail;
   let authors = item.volumeInfo.authors; // assuming authors is an array
   let authorNames = authors ? authors.join(", ") : "Unknown Author"; // Join multiple authors with comma or use a placeholder
   let description = item.volumeInfo.description
@@ -29,7 +30,19 @@ const BookModal = ({ show, item, onClose, setUser }) => {
         alert(res.error);
       } else {
         setUser(res.user);
+        console.log(username);
         // navigate(page);
+        post("/api/post", {
+          // creator_id: user._id,
+          creator_username: username, //username doesn't change
+          status: page,
+          bookTitle: title,
+          bookAuthor: authorNames, //author names and thumbnail don't show up??
+          bookImg: thumbnail,
+          rating: -1, //-1 if tbr or current
+          review: "",
+          likeCount: 0,
+        });
         onClose();
       }
     });
@@ -38,8 +51,10 @@ const BookModal = ({ show, item, onClose, setUser }) => {
   const handleRemoveBook = () => {
     post("/api/remove", { bookId: item.id, page: currentPage }).then((res) => {
       if (!res.error) {
-        console.log(res.user);
-        // setUser(res.user);   //Why is setUser not a function??
+        let updatedData = res.updatedData;
+        setUser(updatedData);
+        // console.log(res);
+        // setUser(res.user); //Why is setUser not a function??
         onClose(); //have to refresh to see updated changes
         // navigate(currentPage);
       }
@@ -91,12 +106,12 @@ const BookModal = ({ show, item, onClose, setUser }) => {
                           <div className="dropdown">
                             <span className="dark-btn">Add Book</span>
                             <div className="dropdown-content add-more-btn">
-                              <button className="dark-btn" onClick={() => handleAddBook("/curr")}>
-                                Currently Reading
-                              </button>
-
                               <button className="dark-btn" onClick={() => handleAddBook("/tbr")}>
                                 To Be Read
+                              </button>
+
+                              <button className="dark-btn" onClick={() => handleAddBook("/curr")}>
+                                Currently Reading
                               </button>
 
                               <button className="dark-btn" onClick={() => handleAddBook("/read")}>

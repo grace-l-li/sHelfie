@@ -1,79 +1,58 @@
 import React, { useState, useEffect } from "react";
 import "../../utilities.css";
 import "./Feed.css";
-import heartIcon from "./HeartButton.svg";
-import commentIcon from "./CommentButton.svg";
-import purpleHeart from "./PurpleHeart.svg";
-import purpleComment from "./PurpleComment.svg";
-import blankProfile from "./BlankProfile.svg";
-import lightpurpleHeart from "./LightPurpleHeart.svg";
-import lightpurpleComment from "./LightPurpleComment.svg";
+import FeedCard from "./FeedCard.js";
+
+import { post } from "../../utilities";
 
 const Feed = (props) => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then((response) => response.json())
+    post("/api/posts", { userId: props.userId })
+      .then((feedList) => {
+        let reversedFeedList = feedList.reverse();
+        return reversedFeedList;
+      })
       .then((data) => {
         const postsWithHover = data.map((post) => ({ ...post, hover: false }));
         setPosts(postsWithHover);
       });
   }, []);
 
-  const handleMouseEnter = (index) => {
-    setPosts(posts.map((post, idx) => (idx === index ? { ...post, hover: true } : post)));
-  };
-
-  const handleMouseLeave = (index) => {
-    setPosts(posts.map((post, idx) => (idx === index ? { ...post, hover: false } : post)));
-  };
-
+  let postDisplay = null;
+  const hasFeed = posts.length !== 0;
+  if (hasFeed) {
+    postDisplay = posts.map((post, index) => (
+      <FeedCard
+        key={`FeedCard_${index}`}
+        index={index}
+        _id={post._id}
+        creator_id={post.creator_id}
+        creator_username={post.creator_username}
+        status={post.status}
+        bookTitle={post.bookTitle}
+        bookAuthor={post.bookAuthor}
+        bookImg={post.bookImg}
+        rating={post.rating}
+        review={post.review}
+        likeCount={post.likeCount}
+        userId={props.userId}
+        user={props.user}
+        posts={posts}
+        setPosts={setPosts}
+      />
+    ));
+  } else {
+    postDisplay = <div>No updates!</div>;
+  }
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-      {posts.map((post, index) => (
-        <div key={index} className="post-container">
-          <div className="post-top-bar">
-            <div className="post-img">
-              <img src={props.user.picture} alt="Profile" />
-            </div>
-            <div className="name-container">
-              <h2>@{props.user.username}</h2>
-            </div>
-          </div>
-          <div className="post-center"></div>
-          <div className="post-bottom-bar">
-            <div className="buttons-container">
-              <div
-                className="react-img"
-                onMouseEnter={() => handleMouseEnter(index)}
-                onMouseLeave={() => handleMouseLeave(index)}
-              >
-                <div className="image-container">
-                  <img src={lightpurpleHeart} alt="Like" className="default-img" />
-                  <img src={heartIcon} alt="Like" className="hover-img" />
-                </div>
-                <button className="react-btn">Like</button>
-              </div>
-              <div
-                className="react-img"
-                onMouseEnter={() => handleMouseEnter(index)}
-                onMouseLeave={() => handleMouseLeave(index)}
-              >
-                <div className="image-container">
-                  <img src={lightpurpleComment} alt="Comment" className="default-img" />
-                  <img src={commentIcon} alt="Comment" className="hover-img" />
-                </div>
-                <button className="react-btn comment-btn">Comment</button>
-              </div>
-            </div>
-            <div className="likes-style">
-              <h6>0 Likes</h6>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
+    <>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+        {/* {props.userId && <NewStory addNewStory={addNewStory} />} */}
+        {postDisplay}
+      </div>
+    </>
   );
 };
 

@@ -31,7 +31,7 @@ const Profile = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     let sendPicture = newPicture === "" ? props.user.picture : newPicture;
-    post("/api/user", {
+    post("/api/edituser", {
       name: newName,
       username: newUsername,
       bio: newBio,

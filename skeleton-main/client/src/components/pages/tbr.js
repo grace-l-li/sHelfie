@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import "../../utilities.css";
 import "./Profile.css";
 import "./subpage.css";
-import Card from "../modules/Card.js";
+import BookCard from "../modules/BookCard.js";
 import axios from "axios";
 import "./SearchBooks.css";
 
@@ -38,17 +38,6 @@ const TBR = (props) => {
         <button className="dark-btn back-btn">Back</button>
       </a>
 
-      {/* <div className="everything">
-        <div className="toptbr-container">
-          <h1 className="tbr-title">{props.user.name}'s To Be Read</h1>
-        </div>
-        <div className="tbr-container">{<Card book={bookData} />}</div>
-        <div className="bottomtbr-container"></div>
-
-        <div className="lefttbr-container" />
-
-        <div className="righttbr-container" />
-      </div> */}
       <div className="everything">
         <div className="toptbr-container">
           <h1 className="tbr-title">{props.user.name}'s To Be Read</h1>
@@ -60,7 +49,9 @@ const TBR = (props) => {
 
         {/* Content goes here */}
         <div className="tbr-outer">
-          <div className="tbr-container">{<Card book={bookData} />}</div>
+          <div className="tbr-container">
+            {<BookCard book={bookData} user={props.user} setUser={props.setUser} />}
+          </div>
         </div>
         <div className="bottomtbr-container"></div>
       </div>

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import "../../utilities.css";
 import "./Profile.css";
 import "./subpage.css";
-import Card from "../modules/Card.js";
+import BookCard from "../modules/BookCard.js";
 import axios from "axios";
 import "./SearchBooks.css";
 import WoodTexture from "../modules/Wood.svg";

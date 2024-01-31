@@ -19,7 +19,7 @@ const Home = (props) => {
     <div>
       <div className="Home-container">
         <div className="Feed-flex">
-          <Feed user={props.user} />
+          <Feed user={props.user} userId={props.userId} />
         </div>
 
         <div className="Friends-flex">
