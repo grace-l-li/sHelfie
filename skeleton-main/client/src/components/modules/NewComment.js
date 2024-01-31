@@ -11,7 +11,7 @@ import { post } from "../../utilities";
  * @param {string} storyId optional prop, used for comments
  * @param {({storyId, value}) => void} onSubmit: (function) triggered when this post is submitted, takes {storyId, value} as parameters
  */
-const inputComment = (props) => {
+const InputComment = (props) => {
   const [value, setValue] = useState("");
 
   // called whenever the user types in the new post input box
@@ -62,7 +62,7 @@ const NewComment = (props) => {
     });
   };
 
-  return <inputComment onSubmit={addComment} />;
+  return <InputComment onSubmit={addComment} />;
 };
 
 export { NewComment };

@@ -53,7 +53,15 @@ router.get("/user", (req, res) => {
 });
 
 router.get("/username", (req, res) => {
-  User.findOne({ username: req.body.username }).then((user) => {
+  User.find({ username: req.query.username }).then((users) => {
+    console.log(users);
+    res.send({ users });
+  });
+});
+
+router.get("/userFromUsername", async (req, res) => {
+  let userId = await auth.getIdFromUsername(req.query.username);
+  User.findById(userId).then((user) => {
     res.send({ user });
   });
 });
@@ -148,7 +156,7 @@ router.post("/remove", (req, res) => {
   });
 });
 
-router.post("/posts", (req, res) => {
+router.get("/posts", (req, res) => {
   // empty selector means get all documents
   let userId = req.user._id;
   let ids = [userId];
@@ -189,12 +197,19 @@ router.post("/comment", auth.ensureLoggedIn, (req, res) => {
   newComment.save().then((comment) => res.send(comment));
 });
 
-// router.post("/like", (req, res) => {
-//   Post.findbyId(req.body.postId).then((post) => {
-//     post.likeCount += 1;
-//     post.save().then((post) => res.send(post));
-//   });
-// });
+router.post("/like", (req, res) => {
+  Post.findById(req.body.postId).then((post) => {
+    if (post === null) {
+      res.status(400);
+      res.send({});
+    } else {
+      post.likeCount += 1;
+      post.save().then((post) => res.send(post));
+    }
+  });
+});
+
+// router.get("/hasLiked")
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

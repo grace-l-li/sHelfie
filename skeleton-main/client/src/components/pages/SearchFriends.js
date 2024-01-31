@@ -1,21 +1,24 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import BookCard from "../modules/BookCard.js";
+import UserCard from "../modules/UserCard.js";
 import "../../utilities.css";
+
+import { get } from "../../utilities.js";
 
 const FriendSearch = (props) => {
   const [search, setSearch] = useState("");
-  const [friendData, setfriendData] = useState([]);
+  const [friendData, setFriendData] = useState([]);
   // const navigate = useNavigate();
 
   const searchFriend = (evt) => {
     // How to display? In database you have to query exact name/username/etc.
-    if (evt.key === "Enter" || evt.key === " ") {
-      get("/api/user", { userId: props.userId }).then((user) => {
-        // setfriendData(user);
-      });
-      // .then((res) => setbookData(res.data.items))
-      // .catch((err) => console.log(err));
+    if (evt.key === "Enter") {
+      get("/api/username", { username: search })
+        .then(({ users }) => {
+          console.log(users);
+          setFriendData(users);
+        })
+        .catch((err) => console.log(err));
     }
   };
 
@@ -27,7 +30,7 @@ const FriendSearch = (props) => {
           <div className="search">
             <input
               type="text"
-              placeholder="Enter Your Friend's Name or Username"
+              placeholder="Enter Your Friend's Username"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               onKeyPress={searchFriend}
@@ -39,9 +42,9 @@ const FriendSearch = (props) => {
         </div>
       </div>
 
-      {/* {search !== "" && friendData !== undefined && (
-        <div className="container">{<UserCard book={bookData} />}</div>
-      )} */}
+      {search !== "" && friendData !== undefined && (
+        <div className="container">{<UserCard friends={friendData} />}</div>
+      )}
     </>
   );
 };

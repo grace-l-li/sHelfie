@@ -16,6 +16,11 @@ import "../utilities.css";
 import SearchBooks from "./pages/SearchBooks.js";
 import SearchFriends from "./pages/SearchFriends.js";
 
+import ProfileOther from "./pages/ProfileOther.js";
+import CurrOther from "./pages/CurrOther.js";
+import TbrOther from "./pages/TbrOther.js";
+import ReadOther from "./pages/ReadOther.js";
+
 import { socket } from "../client-socket.js";
 
 import { get, post } from "../utilities";
@@ -163,12 +168,17 @@ const App = () => {
               handleLogin={handleLogin}
               handleLogout={handleLogout}
               userId={userId}
+              user={user}
               setUser={setUser}
             />
           }
         />
 
-        {/* <Route path="/profile/:userId" /> */}
+        <Route path="/profile/:username" element={<ProfileOther />} />
+
+        <Route path="/tbr/:username" element={<TbrOther />} />
+        <Route path="/curr/:username" element={<CurrOther />} />
+        <Route path="/read/:username" element={<ReadOther />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
