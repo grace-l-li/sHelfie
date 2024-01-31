@@ -10,9 +10,9 @@
 const express = require("express");
 
 // import models so we can interact with the database
-const User = require("./models/user");
-const Post = require("./models/post");
-const Comment = require("./models/comment");
+const User = require("./models/user.js");
+const Post = require("./models/post.js");
+const Comment = require("./models/comment.js");
 
 // import authentication library
 const auth = require("./auth");
@@ -44,13 +44,6 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 // | write your API methods below!|
 // |------------------------------|
-
-// router.get("/userFromId", (req, res) => {
-//   console.log(`reached api with userId`);
-//   User.findById(req.query.userId).then((user) => {
-//     res.send({ user });
-//   });
-// });
 
 router.get("/user", (req, res) => {
   User.findById(req.user._id).then((user) => {
@@ -160,8 +153,7 @@ router.post("/remove", (req, res) => {
 });
 
 router.get("/posts", (req, res) => {
-  // empty selector means get all documents
-  let userId = req.user._id;
+  let userId = req.query.userId;
   let ids = [userId];
   User.findById(userId).then((user) => ids.concat(user.friends));
   Post.find({ creator_id: { $in: ids } }).then((posts) => res.send(posts));
@@ -212,47 +204,51 @@ router.post("/like", (req, res) => {
   });
 });
 
-// router.get("/hasLiked")
+// router.get("/hasliked")
+// router.post("/removelike")
 
 router.post("/reqfriend", (req, res) => {
-  User.findById(req.body.person._id).then((person) => {
+  User.findById(req.body.personId).then((person) => {
     person.friend_reqs.push(req.user._id);
-    console.log("friend_reqs updated");
     person.save().then((person) => res.send({ person }));
   });
 }); //add my userId to other's friend_reqs
 
 router.post("/cancelreq", (req, res) => {
-  User.findById(req.body.person._id).then((person) => {
+  User.findById(req.body.personId).then((person) => {
     person.friend_reqs = person.friend_reqs.filter((id) => id !== req.user._id);
-    console.log("request canceled");
     person.save().then((person) => res.send({ person }));
   });
 });
 
 router.post("/acceptfriend", (req, res) => {
-  User.findById(req.body.person._id).then((person) => {
-    person.friends.push(req.user._id);
-    person.num_friends += 1;
-    person.save().then((person) => res.send({ person }));
-  });
   User.findById(req.user._id).then((user) => {
-    user.friends.push(req.body.person._id);
-    user.num_friends += 1;
-    user.save().then((user) => res.send({ user }));
+    if (!user.friends.find((id) => id === req.body.personId)) {
+      user.friends.push(req.body.personId);
+      user.num_friends += 1;
+    }
+    user.save().then();
+  }); // maybe need to chain?
+  User.findById(req.body.personId).then((person) => {
+    if (!person.friends.find((id) => id === req.user._id)) {
+      person.friend_reqs = person.friend_reqs.filter((id) => id !== req.user._id);
+      person.friends.push(req.user._id);
+      person.num_friends += 1;
+    }
+    person.save().then((person) => res.send({ person }));
   });
 }); //remove from their friend_reqs, add to both of our friends
 
-router.post("/deletereq", (req, res) => {
-  User.findById(req.body.person._id).then((person) => {
-    person.friend_reqs.filter((id) => id !== req.user._id);
+router.post("/declinereq", (req, res) => {
+  User.findById(req.body.personId).then((person) => {
+    person.friend_reqs = person.friend_reqs.filter((id) => id !== req.user._id);
     person.save().then((person) => res.send({ person }));
   });
 }); //remove from their friend_reqs
 
 router.get("/checkfriend", (req, res) => {
   User.findById(req.query.personId).then((person) => {
-    res.send({ id: person.friends.find((ids) => ids === req.user._id) });
+    res.send({ id: person.friends.find((id) => id === req.user._id) });
   });
 });
 

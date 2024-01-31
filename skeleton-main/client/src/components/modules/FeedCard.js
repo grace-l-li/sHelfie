@@ -64,8 +64,6 @@ const FeedCard = (props) => {
     return stars;
   };
 
-  console.log(props.rating);
-
   return (
     <div key={props.index} className="post-container">
       <div className="post-top-bar">

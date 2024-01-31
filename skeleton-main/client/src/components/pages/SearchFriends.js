@@ -15,7 +15,6 @@ const FriendSearch = (props) => {
     if (evt.key === "Enter") {
       get("/api/username", { username: search })
         .then(({ users }) => {
-          console.log(users);
           setFriendData(users);
         })
         .catch((err) => console.log(err));

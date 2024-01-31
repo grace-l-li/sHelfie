@@ -51,8 +51,6 @@ const App = () => {
   }, [location]);
 
   const fetchUser = () => {
-    console.log(userId);
-
     if (userId) {
       get("/api/user", { userId: userId }).then(({ user: userObj }) => {
         if (userObj !== null) {
@@ -86,8 +84,6 @@ const App = () => {
   const isLandingPage = location.pathname === "/";
   const pathsWithoutNavBar = ["/profile/friends", "/profile/edit", "/curr", "/tbr", "/read"];
   const shouldShowNavBar = !pathsWithoutNavBar.includes(location.pathname);
-
-  console.log(user);
 
   return (
     <>

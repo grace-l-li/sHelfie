@@ -60,7 +60,7 @@ const Profile = (props) => {
               <h3 className="Username-style">@{props.user.username}</h3>
               <div className="Friends-container">
                 <a href="/profile/friends">
-                  <h3 className="Friends-style"> {props.user.num_friends} Friends </h3>
+                  <h3 className="Friends-style"> {props.user.num_friends} Friend(s) </h3>
                 </a>
               </div>
               <div className="Profile-bio-container">

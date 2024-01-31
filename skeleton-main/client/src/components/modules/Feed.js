@@ -9,7 +9,7 @@ const Feed = (props) => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    get("/api/posts")
+    get("/api/posts", { userId: props.userId })
       .then((feedList) => {
         let reversedFeedList = feedList.reverse();
         return reversedFeedList;
@@ -49,7 +49,6 @@ const Feed = (props) => {
   return (
     <>
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-        {/* {props.userId && <NewStory addNewStory={addNewStory} />} */}
         {postDisplay}
       </div>
     </>
