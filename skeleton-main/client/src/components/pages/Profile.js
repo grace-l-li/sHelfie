@@ -59,7 +59,7 @@ const Profile = (props) => {
               <h1 className="Profile-name">{props.user.name}</h1>
               <h3 className="Username-style">@{props.user.username}</h3>
               <div className="Friends-container">
-                <h3 className="Friends-style"> {props.user.num_friends} Friends </h3>
+                <h3 className="Friends-style"> {props.user.num_friends} Friend(s) </h3>
               </div>
               <div className="Profile-bio-container">
                 <h4 className="Profile-bio">{props.user.bio}</h4>

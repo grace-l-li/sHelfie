@@ -42,11 +42,7 @@ const BookSearch = (props) => {
         </div>
       </div>
       {search !== "" && bookData !== undefined && (
-<<<<<<< HEAD
-        <div className="container">
-=======
         <div className="gridcontainer">
->>>>>>> 7120c9498be61c10f0223da27fa96f9a48907e88
           {<BookCard books={bookData} setUser={props.setUser} user={props.user} />}
         </div>
       )}

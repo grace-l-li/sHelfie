@@ -30,11 +30,9 @@ const TbrOther = () => {
     const fetchData = async () => {
       if (person.tbr !== undefined) {
         for (const bookId of person.tbr) {
-          await axios
-            .get(`https://www.googleapis.com/books/v1/volumes/${bookId}`)
-            .then((info) => {
-              infoList.push(info.data);
-            });
+          await axios.get(`https://www.googleapis.com/books/v1/volumes/${bookId}`).then((info) => {
+            infoList.push(info.data);
+          });
         }
         setBookData(infoList);
       }

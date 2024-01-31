@@ -38,7 +38,7 @@ const Profile = (props) => {
       picture: sendPicture,
     }).then((res) => {
       if (!res.error) {
-        get("/api/user", { userId: props.userId }).then(({ user: userObj }) => {
+        get("/api/userFromId", { userId: props.userId }).then(({ user: userObj }) => {
           if (userObj !== null) {
             props.setUser(userObj);
             navigate("/profile");
@@ -74,7 +74,7 @@ const Profile = (props) => {
                 onChange={(e) => setNewUsername(e.target.value)}
                 maxLength={28}
               />
-              
+
               <div className="Profile-bio-container">
                 <textarea
                   className="Profile-bio editable-field"
