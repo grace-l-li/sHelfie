@@ -8,7 +8,6 @@ import BookCard from "../modules/BookCard.js";
 import axios from "axios";
 import "./SearchBooks.css";
 import WoodTexture from "../modules/Wood.svg";
-import DarkWood from "../modules/DarkWood.svg";
 
 const chunkArray = (array, size) => {
   let result = [];

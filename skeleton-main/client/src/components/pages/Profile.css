@@ -49,9 +49,13 @@
   font-size: 3vh;
   font-family: "Readex Pro";
   text-align: center;
-  /* margin: 0 1vh; */
   font-weight: 550;
   padding: 0 3vh;
+  transition: transform 0.3s ease;
+}
+
+.Friends-style:hover {
+  text-decoration: underline;
 }
 
 .Profile-details {
