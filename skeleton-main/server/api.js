@@ -176,21 +176,21 @@ router.post("/post", (req, res) => {
   newPost.save().then((post) => res.send(post));
 });
 
-router.get("/comment", (req, res) => {
-  Comment.find({ parent: req.body.parent }).then((comments) => {
-    res.send(comments);
-  });
-});
+// router.get("/comment", (req, res) => {
+//   Comment.find({ parent: req.body.parent }).then((comments) => {
+//     res.send(comments);
+//   });
+// });
 
-router.post("/comment", auth.ensureLoggedIn, (req, res) => {
-  const newComment = new Comment({
-    creator_id: req.user._id,
-    creator_username: req.user.username,
-    parent: req.body.parent,
-    content: req.body.content,
-  });
-  newComment.save().then((comment) => res.send(comment));
-});
+// router.post("/comment", auth.ensureLoggedIn, (req, res) => {
+//   const newComment = new Comment({
+//     creator_id: req.user._id,
+//     creator_username: req.user.username,
+//     parent: req.body.parent,
+//     content: req.body.content,
+//   });
+//   newComment.save().then((comment) => res.send(comment));
+// });
 
 router.post("/like", (req, res) => {
   Post.findById(req.body.postId).then((post) => {

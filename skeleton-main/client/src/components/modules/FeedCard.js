@@ -14,21 +14,21 @@ import greyStar from "./GreyStar.svg";
 import "./Feed.css";
 
 const FeedCard = (props) => {
-  const [comments, setComments] = useState([]);
+  // const [comments, setComments] = useState([]);
 
-  useEffect(() => {
-    get("/api/comment", { parent: props._id }).then((comments) => {
-      setComments(comments);
-    });
+  // useEffect(() => {
+  //   get("/api/comment", { parent: props._id }).then((comments) => {
+  //     setComments(comments);
+  //   });
 
-    //make new query to check if person has already liked; update schema with hasLiked = [user_ids]
-  }, []);
+  //make new query to check if person has already liked; update schema with hasLiked = [user_ids]
+  // }, []
 
-  const addNewComment = (commentObj) => {
-    setComments(comments.concat([commentObj]));
-  };
+  // const addNewComment = (commentObj) => {
+  //   setComments(comments.concat([commentObj]));
+  // };
 
-  const [commentClicked, setCommentClicked] = useState(false);
+  // const [commentClicked, setCommentClicked] = useState(false);
   const [liked, setLiked] = useState(false);
 
   const handleLike = () => {
@@ -121,7 +121,7 @@ const FeedCard = (props) => {
               </div>
             )}
           </div>
-          <div
+          {/* <div
             className="react-img"
             onMouseEnter={() => handleMouseEnter(props.index)}
             onMouseLeave={() => handleMouseLeave(props.index)}
@@ -131,7 +131,7 @@ const FeedCard = (props) => {
                 <img src={lightpurpleComment} alt="Comment" className="default-img" />
                 <img src={commentIcon} alt="Comment" className="hover-img" />{" "}
               </div>
-              {commentClicked && ( //How to display comment box on click
+              {commentClicked && (
                 <CommentsBlock
                   post={props}
                   comments={comments}
@@ -141,7 +141,7 @@ const FeedCard = (props) => {
                 />
               )}
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="likes-container">
           <h6 className="likes-style">{props.likeCount} Likes</h6>

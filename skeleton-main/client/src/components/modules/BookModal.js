@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../pages/SearchBooks.js";
 import { post } from "../../utilities.js";
@@ -53,6 +53,12 @@ const BookModal = ({ show, item, onClose, user, setUser }) => {
       }
     });
   };
+  const [showRatingInput, setShowRatingInput] = useState(false);
+
+  // Function to toggle the visibility of the rating input
+  const toggleRatingInput = () => {
+    setShowRatingInput(!showRatingInput);
+  };
 
   return (
     <>
@@ -74,16 +80,28 @@ const BookModal = ({ show, item, onClose, user, setUser }) => {
           {["/read"].includes(currentPage) && (
             <div className="review-container lower-padding">
               <div className="read-btn-flx">
-                <button className="light-btn" onClick={() => handleRemoveBook()}>
+                <button className="light-btn" onClick={handleRemoveBook}>
                   Remove Book
                 </button>
-              </div>
-              <div className="read-btn-flx">
-                <button className="light-btn  ">Write a review</button>
+                <button className="light-btn" onClick={toggleRatingInput}>
+                  Give Rating
+                </button>
+                {showRatingInput && (
+                  <div className="rating-input-container">
+                    <select>
+                      <option value="">Select a Rating</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+                    <button>Submit Rating</button>
+                  </div>
+                )}
               </div>
             </div>
           )}
-
           <div className="overlay-inner">
             <div className="book">
               <ul className="front">
