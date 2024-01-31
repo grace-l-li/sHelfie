@@ -78,7 +78,7 @@ const FeedCard = (props) => {
           {props.status === "rated" ? (
             <div> rated</div>
           ) : props.status === "/tbr" ? (
-            <div> wants to read</div>
+            <div className="status"> wants to read</div>
           ) : props.status === "/curr" ? (
             <div className="status">is reading</div>
           ) : (
