@@ -5,6 +5,8 @@ import "./Home.css";
 import HomeUserCard from "../modules/HomeUserCard.js";
 import UserCard from "../modules/UserCard.js";
 
+import { get } from "../../utilities.js";
+
 const Home = (props) => {
   const [requestsData, setRequestsData] = useState([]);
   const [friendsData, setFriendsData] = useState([]);
@@ -30,13 +32,29 @@ const Home = (props) => {
     // Set the background color when the component mounts
     document.body.style.backgroundColor = "var(--grey)"; // Assuming var(--grey) is defined in your CSS
 
+    // let reqList = [];
+    // for (const user of props.user.friend_reqs) {
+    //   get("/api/userFromId", { userId: user._id }).then((user) => {
+    //     ReqList.push(user);
+    //   });
+    // }
+    // setRequestsData(ReqList);
+
+    // let followList = [];
+    // for (const user of props.user.friends) {
+    //   get("/api/userFromId", { userId: user._id }).then((user) => {
+    //     followList.push(user);
+    //   });
+    // }
+    // setRequestsData(ReqList);
+
     // Cleanup function to reset the background color when the component unmounts
     return () => {
       document.body.style.backgroundColor = ""; // Reset to default or previous color
     };
   }, []);
 
-  // console.log(requestsData);
+
   return (
     <div>
       <div className="Home-container">

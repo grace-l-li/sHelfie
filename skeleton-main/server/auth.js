@@ -53,14 +53,10 @@ const getOrCreateUser = (user) => {
       picture: user.picture,
       username: finalUsername,
       bio: "but first, let me take a s(H)elfie ;)",
-      follow_reqs: [],
-      followers: [],
-      num_followers: 0,
-      following: [],
-      num_following: 0,
-      tbr: [], //[{bookId: String, rating: -1, review: ""}]
-      curr: [], //[{bookId: String, rating: -1, review: ""}]
-      read: [], //[{bookId: String, rating: Number, review: ""}]
+      friend_reqs: [],
+      friends: [],
+      num_friends: 0,
+      tbr: [], //[{bookId: String}]
     });
     return newUser.save();
   });
