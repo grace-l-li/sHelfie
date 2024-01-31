@@ -1,10 +1,12 @@
 .top-container {
+  position: relative;
   background-color: var(--brown);
   width: 100%;
   height: 20vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .read-title {
@@ -12,31 +14,78 @@
   color: var(--white);
   font-weight: 600;
   font-size: 6vh;
+  z-index: 2;
 }
 
 .read-container {
-  display: flex;
   align-items: center;
   justify-content: center;
   justify-items: center;
-  flex: 8;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-row-gap: 4vw;
   box-sizing: border-box;
   /* background-color: var(--medbrown); */
-  padding: 4vw;
+  padding: 4vw 0 1vw 0;
+  width: 80vw;
 }
-
 .shelf-flex {
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  justify-content: center;
   background-color: var(--darkbrown);
+  width: 100%; /* Ensures it takes full width of its parent */
 }
 
 .left-right {
+  position: relative;
+  overflow: hidden;
   background-color: var(--brown);
-  width: 8vh;
+  width: 10vw;
+}
+
+.shelf-row {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.single-shelf {
+  background-color: var(--brown);
+  height: 13vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.rows-container {
+  flex: 10;
+  display: flex;
+  flex-direction: column; /* Ensures vertical stacking */
+  align-items: center;
+  padding: 0px;
+  margin: 0px;
+  min-height: 60vh;
+  justify-content: center;
+}
+
+.shelf-texture img {
+  position: absolute;
+  width: 100%; /* This will make the img tag width equal to that of its parent */
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover; /* Ensures the image covers the area without stretching */
+  z-index: 0; /* Keeps the image behind the content */
+}
+
+.cobweb img {
+  height: 60vh;
+}
+
+.darkwood img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
 }
