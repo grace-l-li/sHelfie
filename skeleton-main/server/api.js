@@ -128,7 +128,7 @@ router.post("/read", (req, res) => {
       user.read.push({
         bookId: req.body.bookId,
         rating: req.body.rating,
-        review: req.body.review,
+        // review: req.body.review,
       });
 
       user.save().then(() => {
@@ -156,7 +156,11 @@ router.get("/posts", (req, res) => {
   let userId = req.query.userId;
   let ids = [userId];
   User.findById(userId).then((user) => ids.concat(user.friends));
-  Post.find({ creator_id: { $in: ids } }).then((posts) => res.send(posts));
+  console.log("ids", ids);
+  Post.find({ creator_id: { $in: ids } }).then((posts) => {
+    console.log("posts", posts);
+    res.send({ posts });
+  });
   //for add friend_ids
 });
 
@@ -209,8 +213,10 @@ router.post("/like", (req, res) => {
 
 router.post("/reqfriend", (req, res) => {
   User.findById(req.body.personId).then((person) => {
-    person.friend_reqs.push(req.user._id);
-    person.save().then((person) => res.send({ person }));
+    if (!person.friend_reqs.find((id) => id === req.user._id)) {
+      person.friend_reqs.push(req.user._id);
+      person.save().then((person) => res.send({ person }));
+    }
   });
 }); //add my userId to other's friend_reqs
 
@@ -219,41 +225,50 @@ router.post("/cancelreq", (req, res) => {
     person.friend_reqs = person.friend_reqs.filter((id) => id !== req.user._id);
     person.save().then((person) => res.send({ person }));
   });
-});
+}); //remove me from their follow_reqs
 
 router.post("/acceptfriend", (req, res) => {
   User.findById(req.user._id).then((user) => {
+    user.friend_reqs = user.friend_reqs.filter((id) => id !== req.body.personId);
     if (!user.friends.find((id) => id === req.body.personId)) {
       user.friends.push(req.body.personId);
       user.num_friends += 1;
+      user.save().then();
     }
-    user.save().then();
-  }); // maybe need to chain?
+  });
   User.findById(req.body.personId).then((person) => {
     if (!person.friends.find((id) => id === req.user._id)) {
-      person.friend_reqs = person.friend_reqs.filter((id) => id !== req.user._id);
       person.friends.push(req.user._id);
       person.num_friends += 1;
+      person.save().then((person) => res.send({ person }));
     }
-    person.save().then((person) => res.send({ person }));
   });
-}); //remove from their friend_reqs, add to both of our friends
+}); //remove from my friend_reqs, add to both of our friends
 
 router.post("/declinereq", (req, res) => {
-  User.findById(req.body.personId).then((person) => {
-    person.friend_reqs = person.friend_reqs.filter((id) => id !== req.user._id);
-    person.save().then((person) => res.send({ person }));
+  User.findById(req.user._id).then((user) => {
+    user.friend_reqs = user.friend_reqs.filter((id) => id !== req.body.personId);
+    user.save().then((user) => res.send({ user }));
   });
-}); //remove from their friend_reqs
+}); //remove from my friend_reqs
 
 router.get("/checkfriend", (req, res) => {
-  User.findById(req.query.personId).then((person) => {
-    res.send({ id: person.friends.find((id) => id === req.user._id) });
-  });
+  if (req.query.personId === req.user._id) {
+    console.log("here?");
+    res.send({ id: undefined });
+  } else {
+    console.log("here.");
+    User.findById(req.query.personId).then((person) => {
+      let t_id = person.friends.find((id) => id === req.user._id);
+      console.log("t_id", t_id);
+      res.send({ id: t_id });
+    });
+  }
 });
 
 router.get("/checkreq", (req, res) => {
   User.findById(req.query.personId).then((person) => {
+    console.log("checkreq", person);
     res.send({ id: person.friend_reqs.find((ids) => ids === req.user._id) });
   });
 });

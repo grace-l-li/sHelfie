@@ -9,9 +9,10 @@ const Feed = (props) => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    get("/api/posts", { userId: props.userId })
+    get("/api/posts", { userId: props.user._id })
       .then((feedList) => {
-        let reversedFeedList = feedList.reverse();
+        console.log("feedList", feedList);
+        let reversedFeedList = feedList.posts.reverse();
         return reversedFeedList;
       })
       .then((data) => {

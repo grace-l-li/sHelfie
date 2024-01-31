@@ -9,7 +9,7 @@ const PostSchema = new mongoose.Schema({
   bookImg: String,
   bookAuthor: String,
   rating: Number, //-1 if tbr or current
-  review: String,
+  // review: String,
   likeCount: Number,
 });
 

@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema({
   num_friends: Number,
   tbr: [], // bookId: String
   curr: [],
-  read: [{}],
+  read: [],  //{bookId: String, Rating: Number}
 });
 
 // compile model from schema

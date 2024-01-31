@@ -37,7 +37,7 @@ const BookModal = ({ show, item, onClose, user, setUser }) => {
           bookAuthor: authorNames,
           bookImg: thumbnail,
           rating: -1, //-1 if tbr or current
-          review: "",
+          // review: "",
           likeCount: 0,
         });
         onClose();

@@ -33,14 +33,16 @@ const ProfileOther = () => {
       .then((user) => {
         get("/api/checkfriend", { personId: user._id })
           .then((res) => {
+            console.log(res);
             if (res.id === undefined) {
               return user;
             } else {
               setFriends(true);
             }
           })
-          .catch((user) => {
+          .then((user) => {
             get("/api/checkreq", { personId: user._id }).then((res) => {
+              console.log(res);
               if (res.id !== undefined) {
                 setRequested(true);
               }
@@ -99,7 +101,7 @@ const ProfileOther = () => {
               <img src={pictureFrame} alt="Picture Frame" className="Picture-frame" />
 
               {friends ? (
-                <button className="edit-profile-btn dark-btn">Friends</button>
+                <div className="edit-profile-btn dark-btn">Friends</div>
               ) : !requested ? (
                 <div>
                   <button className="edit-profile-btn dark-btn" onClick={() => handleRequest()}>

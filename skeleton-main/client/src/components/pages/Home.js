@@ -10,18 +10,6 @@ import { get } from "../../utilities.js";
 const Home = (props) => {
   const [reqData, setReqData] = useState([]);
   const [frData, setFrData] = useState([]);
-
-  useEffect(() => {
-    document.title = "Home";
-    // Set the background color when the component mounts
-    document.body.style.backgroundColor = "var(--grey)"; // Assuming var(--grey) is defined in your CSS
-
-    // Cleanup function to reset the background color when the component unmounts
-    return () => {
-      document.body.style.backgroundColor = ""; // Reset to default or previous color
-    };
-  }, [props.user]);
-
   let reqList = [];
   let frList = [];
 
@@ -50,6 +38,17 @@ const Home = (props) => {
 
     fetchReqList();
     fetchFrList();
+  }, [props.user.friends, props.user.friend_reqs]);
+
+  useEffect(() => {
+    document.title = "Home";
+    // Set the background color when the component mounts
+    document.body.style.backgroundColor = "var(--grey)"; // Assuming var(--grey) is defined in your CSS
+
+    // Cleanup function to reset the background color when the component unmounts
+    return () => {
+      document.body.style.backgroundColor = ""; // Reset to default or previous color
+    };
   }, []);
 
   let render = reqData.length !== 0;
