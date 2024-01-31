@@ -11,6 +11,7 @@ const UserSchema = new mongoose.Schema({
   num_followers: Number,
   following: [],
   num_following: Number,
+  // pending: []
   tbr: [{}], // bookId: String, rating: Number, review: String
   curr: [{}],
   read: [{}],

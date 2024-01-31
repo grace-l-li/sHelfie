@@ -11,6 +11,8 @@ const express = require("express");
 
 // import models so we can interact with the database
 const User = require("./models/user");
+const Post = require("./models/post");
+const Comment = require("./models/comment");
 
 // import authentication library
 const auth = require("./auth");
@@ -50,7 +52,13 @@ router.get("/user", (req, res) => {
   });
 });
 
-router.post("/user", async (req, res) => {
+router.get("/username", (req, res) => {
+  User.findOne({ username: req.body.username }).then((user) => {
+    res.send({ user });
+  });
+});
+
+router.post("/edituser", async (req, res) => {
   let foundUserId = await auth.getIdFromUsername(req.body.username);
 
   if (foundUserId === undefined || foundUserId == req.user._id) {
@@ -92,9 +100,9 @@ router.post("/curr", (req, res) => {
   User.findById(req.user._id).then((user) => {
     if (user.curr.find((book) => book.bookId === req.body.bookId)) {
       res.send({ error: "book already added" });
-    } else if (user.curr.length === 3) {res.send({error: "You've reached maximum books allowed"})}
-    
-    else {
+    } else if (user.curr.length === 3) {
+      res.send({ error: "You've reached maximum books allowed" });
+    } else {
       user.curr.push({
         bookId: req.body.bookId,
         rating: req.body.rating,
@@ -111,6 +119,8 @@ router.post("/curr", (req, res) => {
 router.post("/read", (req, res) => {
   User.findById(req.user._id).then((user) => {
     if (user.read.find((book) => book.bookId === req.body.bookId)) {
+      res.send({ error: "book already added" });
+    } else {
       user.read.push({
         bookId: req.body.bookId,
         rating: req.body.rating,
@@ -120,33 +130,71 @@ router.post("/read", (req, res) => {
       user.save().then(() => {
         res.send({ user });
       });
-    } else {
-      res.send({ error: "book already added" });
     }
   });
 });
 
 router.post("/remove", (req, res) => {
   //delete book
-  console.log(req.user._id);
   User.findById(req.user._id).then((user) => {
-    console.log("0");
     if (req.body.page === "/tbr") {
-      console.log("1");
       user.tbr = user.tbr.filter((book) => book.bookId !== req.body.bookId);
-      console.log("1.5");
     } else if (req.body.page === "/curr") {
-      console.log("2");
       user.curr = user.curr.filter((book) => book.bookId !== req.body.bookId);
-      console.log("2.5");
     } else if (req.body.page === "/read") {
       user.read = user.read.filter((book) => book.bookId !== req.body.bookId);
     }
-    user.save().then(() => {
-      res.send({ user });
-    });
+    user.save().then((updatedData) => res.send({ updatedData }));
   });
 });
+
+router.post("/posts", (req, res) => {
+  // empty selector means get all documents
+  let userId = req.user._id;
+  let ids = [userId];
+  User.findById(userId).then((updatedUser) => ids.concat(updatedUser.following));
+  Post.find({ creator_id: { $in: ids } }).then((posts) => res.send(posts));
+  //for add friend_ids
+});
+
+router.post("/post", (req, res) => {
+  const newPost = new Post({
+    creator_id: req.user._id,
+    creator_username: req.body.creator_username,
+    status: req.body.status,
+    bookTitle: req.body.bookTitle,
+    bookAuthor: req.body.bookAuthor,
+    bookImg: req.body.bookImg,
+    rating: req.body.rating,
+    review: req.body.review,
+    likeCount: req.body.likeCount,
+  });
+
+  newPost.save().then((post) => res.send(post));
+});
+
+router.get("/comment", (req, res) => {
+  Comment.find({ parent: req.body.parent }).then((comments) => {
+    res.send(comments);
+  });
+});
+
+router.post("/comment", auth.ensureLoggedIn, (req, res) => {
+  const newComment = new Comment({
+    creator_id: req.user._id,
+    creator_username: req.user.username,
+    parent: req.body.parent,
+    content: req.body.content,
+  });
+  newComment.save().then((comment) => res.send(comment));
+});
+
+// router.post("/like", (req, res) => {
+//   Post.findbyId(req.body.postId).then((post) => {
+//     post.likeCount += 1;
+//     post.save().then((post) => res.send(post));
+//   });
+// });
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

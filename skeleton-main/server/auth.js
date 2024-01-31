@@ -73,7 +73,7 @@ function login(req, res) {
       // persist user in the session
       req.session.user = user;
       res.send(user);
-      console.log("user: ", user);
+      // console.log("user: ", user);
     })
     .catch((err) => {
       console.log(`Failed to log in: ${err}, stack: ${err.stack}`);

@@ -137,11 +137,11 @@ const App = () => {
           }
         />
 
-        <Route path="/tbr" element={<TBR userId={userId} user={user} />} />
+        <Route path="/tbr" element={<TBR userId={userId} user={user} setUser={setUser} />} />
 
-        <Route path="/curr" element={<Curr userId={userId} user={user} />} />
+        <Route path="/curr" element={<Curr userId={userId} user={user} setUser={setUser} />} />
 
-        <Route path="/read" element={<Read userId={userId} user={user} />} />
+        <Route path="/read" element={<Read userId={userId} user={user} setUser={setUser} />} />
 
         <Route
           path="/search-books"
@@ -150,6 +150,7 @@ const App = () => {
               handleLogin={handleLogin}
               handleLogout={handleLogout}
               userId={userId}
+              user={user}
               setUser={setUser}
             />
           }
@@ -166,6 +167,8 @@ const App = () => {
             />
           }
         />
+
+        {/* <Route path="/profile/:userId" /> */}
 
         <Route path="*" element={<NotFound />} />
       </Routes>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { post } from "../../utilities";
 
-import "./NewPostInput.css";
+import "./Feed.css";
+import { post } from "../../utilities";
 
 /**
  * New Post is a parent component for all input components
@@ -11,7 +11,7 @@ import "./NewPostInput.css";
  * @param {string} storyId optional prop, used for comments
  * @param {({storyId, value}) => void} onSubmit: (function) triggered when this post is submitted, takes {storyId, value} as parameters
  */
-const NewPostInput = (props) => {
+const inputComment = (props) => {
   const [value, setValue] = useState("");
 
   // called whenever the user types in the new post input box
@@ -30,14 +30,14 @@ const NewPostInput = (props) => {
     <div className="u-flex">
       <input
         type="text"
-        placeholder={props.defaultText}
+        placeholder="New Comment"
         value={value}
         onChange={handleChange}
-        className="NewPostInput-input"
+        // className=""
       />
       <button
         type="submit"
-        className="NewPostInput-button u-pointer"
+        // className=""
         value="Submit"
         onClick={handleSubmit}
       >
@@ -48,36 +48,21 @@ const NewPostInput = (props) => {
 };
 
 /**
- * New Story is a New Post component for stories
- */
-const NewStory = (props) => {
-  const addStory = (value) => {
-    const body = { content: value };
-    post("/api/story", body).then((story) => {
-      // display this story on the screen
-      props.addNewStory(story);
-    });
-  };
-
-  return <NewPostInput defaultText="New Story" onSubmit={addStory} />;
-};
-
-/**
  * New Comment is a New Post component for comments
  *
  * Proptypes
+ * @param {string} defaultText is the placeholder text
  * @param {string} storyId to add comment to
  */
 const NewComment = (props) => {
   const addComment = (value) => {
-    const body = { parent: props.storyId, content: value };
-    post("/api/comment", body).then((comment) => {
+    post("/api/comment", { parent: props.postId, content: value }).then((comment) => {
       // display this comment on the screen
       props.addNewComment(comment);
     });
   };
 
-  return <NewPostInput defaultText="New Comment" onSubmit={addComment} />;
+  return <inputComment onSubmit={addComment} />;
 };
 
-export { NewComment, NewStory };
+export { NewComment };

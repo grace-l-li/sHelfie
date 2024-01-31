@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Card from "../modules/Card.js";
+import BookCard from "../modules/BookCard.js";
 import "../../utilities.css";
 
 const FriendSearch = (props) => {
@@ -8,7 +8,8 @@ const FriendSearch = (props) => {
   const [friendData, setfriendData] = useState([]);
   // const navigate = useNavigate();
 
-  const searchFriend = (evt) => {        // How to display? In database you have to query exact name/username/etc.
+  const searchFriend = (evt) => {
+    // How to display? In database you have to query exact name/username/etc.
     if (evt.key === "Enter" || evt.key === " ") {
       get("/api/user", { userId: props.userId }).then((user) => {
         // setfriendData(user);
@@ -17,7 +18,7 @@ const FriendSearch = (props) => {
       // .catch((err) => console.log(err));
     }
   };
-  
+
   return (
     <>
       <div className="header">
@@ -39,7 +40,7 @@ const FriendSearch = (props) => {
       </div>
 
       {/* {search !== "" && friendData !== undefined && (
-        <div className="container">{<Card book={bookData} />}</div>
+        <div className="container">{<UserCard book={bookData} />}</div>
       )} */}
     </>
   );

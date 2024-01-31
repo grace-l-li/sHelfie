@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import "../../utilities.css";
 import "./Profile.css";
 import "./subpage.css";
-import Card from "../modules/Card.js";
+import BookCard from "../modules/BookCard.js";
 import axios from "axios";
 import "./SearchBooks.css";
 
@@ -41,7 +41,9 @@ const Read = (props) => {
       </div>
       <div className="shelf-flex">
         <div className="left-right"></div>
-        <div className="read-container">{<Card book={bookData} />}</div>
+        <div className="read-container">
+          {<BookCard book={bookData} user={props.user} setUser={props.setUser} />}
+        </div>
         <div className="left-right" />
       </div>
       <div className="top-container" />

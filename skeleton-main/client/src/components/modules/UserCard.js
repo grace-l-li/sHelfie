@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import BookModal from "./BookModal.js";
+// import BookModal from "./BookModal.js";
 import "../pages/SearchBooks.js";
 
 const UserCard = ({ book, setUser }) => {
@@ -34,13 +34,13 @@ const UserCard = ({ book, setUser }) => {
                   </div>
                 </div>
                 {show && bookItem === item && (
-                  <BookModal
-                    show={show}
-                    item={bookItem}
-                    onClose={() => setShow(false)}
-                    setUser={setUser}
-                    currentPage="search-books"
-                  />
+                  // <BookModal
+                  //   show={show}
+                  //   item={bookItem}
+                  //   onClose={() => setShow(false)}
+                  //   setUser={setUser}
+                  //   currentPage="search-books"
+                  // />
                 )}
               </div>
             </>

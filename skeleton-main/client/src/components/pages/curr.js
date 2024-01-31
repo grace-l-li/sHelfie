@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import "../../utilities.css";
 import "./Profile.css";
 import "./subpage.css";
-import Card from "../modules/Card.js";
+import BookCard from "../modules/BookCard.js";
 import axios from "axios";
 import "./SearchBooks.css";
 import Wood from "../modules/Wood.svg";
@@ -46,7 +46,9 @@ const Curr = (props) => {
           <div className="woodstyling">
             <img src={Wood} />
           </div>
-          <div className="currbooks-container">{<Card book={bookData} />}</div>
+          <div className="currbooks-container">
+            {<BookCard book={bookData} user={props.user} setUser={props.setUser} />}
+          </div>
         </div>
       </div>
     </>
