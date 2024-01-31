@@ -1,0 +1,59 @@
+.home-userCard-container {
+  display: flex;
+  flex-direction: row;
+  width: 30%;
+  height: 7vh;
+  background-color: var(--lightpurple);
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0vh 1vh;
+  border-radius: 50px;
+  transition: background-color 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: color 0.3s ease;
+  min-width: 250px;
+  margin-bottom: 1vh;
+}
+
+.pf-friend {
+  width: 6vh;
+  height: 6vh;
+  border-radius: 50%;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.home-username-container {
+  flex: 2;
+  font-family: "Readex Pro";
+  color: var(--darkpurple);
+  font-weight: bold;
+  font-size: 2vh;
+  padding-left: 2vh;
+  transition: underline 0.3s ease;
+}
+
+.home-username-container:hover {
+  text-decoration: underline;
+}
+
+.checks {
+  flex: 0.5;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.request-icons {
+  height: 3vh;
+  width: 3vh;
+  padding-right: 1vh;
+  transition: transform 0.3s ease;
+}
+
+.request-icons:hover {
+  transform: scale(1.2);
+}

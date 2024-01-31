@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Feed from "../modules/Feed.js";
 import "../../utilities.css";
 import "./Home.css";
+import HomeUserCard from "../modules/HomeUserCard.js";
 import UserCard from "../modules/UserCard.js";
 
 import { get } from "../../utilities.js";
@@ -22,6 +23,9 @@ const Home = (props) => {
         "https://lh3.googleusercontent.com/a/ACg8ocJU173LIiJvKqQsvcGoDsa7bJlvsLzqhy9kwZyMTFJnLA=s96-c",
     },
   ];
+
+  // setRequestsData(hardCodedList);
+  // setFriendsData(hardCodedList);
 
   useEffect(() => {
     document.title = "Home";
@@ -50,8 +54,6 @@ const Home = (props) => {
     };
   }, []);
 
-  // setRequestsData(hardCodedList);
-  // setFriendsData(hardCodedList);
 
   return (
     <div>
@@ -59,12 +61,16 @@ const Home = (props) => {
         <div className="Feed-flex">
           <Feed user={props.user} userId={props.userId} />
         </div>
-
         <div className="Friends-flex">
-          <h3 className="Friends-header">Friend Requests</h3>
-          {/* <div className="container">{<UserCard friends={hardCodedList} />}</div> */}
-          <h3 className="Friends-header">Friends</h3>
-          {/* <div className="container">{<UserCard friends={hardCodedList} />}</div> */}
+          <div>
+            <h3 className="Friends-header">Friend Requests</h3>
+            <div>{<HomeUserCard friends={hardCodedList} requests={true} />}</div>
+          </div>
+          <div className="line" />
+          <div>
+            <h3 className="Friends-header">Friends</h3>
+            <div>{<HomeUserCard friends={hardCodedList} requests={false} />}</div>
+          </div>
         </div>
       </div>
     </div>

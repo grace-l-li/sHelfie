@@ -65,25 +65,31 @@ const BookModal = ({ show, item, onClose, username, setUser }) => {
               Close
             </button>
           </div>
-          {["/read"].includes(currentPage) && (
-            <div className="review-container">
-              <button className="dark-btn">Write a review</button>
-            </div>
-          )}
-          {["/tbr", "/read", "/curr"].includes(currentPage) && (
-            <div className="remove-container">
-              <button className="dark-btn" onClick={() => handleRemoveBook()}>
+          {["/tbr", "/curr"].includes(currentPage) && (
+            <div className="remove-container lower-padding">
+              <button className="light-btn" onClick={() => handleRemoveBook()}>
                 Remove Book
               </button>
             </div>
           )}
-
+          {["/read"].includes(currentPage) && (
+            <div className="review-container lower-padding">
+              <div className="read-btn-flx">
+                <button className="light-btn" onClick={() => handleRemoveBook()}>
+                  Remove Book
+                </button>
+              </div>
+              <div className="read-btn-flx">
+                <button className="light-btn  ">Write a review</button>
+              </div>
+            </div>
+          )}
           <div className="overlay-inner">
             <div className="book">
               <ul className="front">
                 <li>
                   <div className="frontcover">
-                    <div className="book-icon">
+                    <div className="bookmodal-icon">
                       <img src={thumbnail} alt=""></img>
                     </div>
                   </div>
