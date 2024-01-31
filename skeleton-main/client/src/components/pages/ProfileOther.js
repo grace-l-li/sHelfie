@@ -28,25 +28,19 @@ const ProfileOther = () => {
       .then((res) => {
         setPerson(res.user);
         setProfileImage(res.user.picture);
-        console.log(res.user);
         return res.user;
       })
       .then((user) => {
         get("/api/checkfriend", { personId: user._id })
           .then((res) => {
             if (res.id === undefined) {
-              console.log("correct");
-              console.log(user);
               return user;
             } else {
-              console.log("39", res.id);
               setFriends(true);
             }
           })
-          .then((user) => {
-            console.log("45", user);
+          .catch((user) => {
             get("/api/checkreq", { personId: user._id }).then((res) => {
-              console.log(res.id);
               if (res.id !== undefined) {
                 setRequested(true);
               }
@@ -60,19 +54,10 @@ const ProfileOther = () => {
   const handleImageError = () => {
     setProfileImage(blankProfile);
   };
-  console.log(person);
-
-  // if (!friends) {
-  //   get("/api/checkreq", { personId: person._id }).then((res) => {
-  //     if (res !== undefined) {
-  //       setRequested(true);
-  //     }
-  //   });
-  // }
 
   const handleRequest = () => {
     //I'm requesting them
-    post("/api/reqfriend", { person: person }).then((res) => {
+    post("/api/reqfriend", { personId: person._id }).then((res) => {
       if (!res.error) {
         setRequested(true);
       }
@@ -81,7 +66,7 @@ const ProfileOther = () => {
 
   const handleCancelReq = () => {
     //Canceling friend request
-    post("/api/cancelreq", { person: person }).then((res) => {
+    post("/api/cancelreq", { personId: person._id }).then((res) => {
       if (!res.error) {
         setRequested(false);
       }

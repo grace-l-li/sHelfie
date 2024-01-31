@@ -4,7 +4,7 @@ import "../pages/SearchBooks.js";
 import { post } from "../../utilities.js";
 import { useLocation } from "react-router-dom";
 
-const BookModal = ({ show, item, onClose, username, setUser }) => {
+const BookModal = ({ show, item, onClose, user, setUser }) => {
   //add prop that checks if we were on search or not
   if (!show) {
     return null;
@@ -14,7 +14,6 @@ const BookModal = ({ show, item, onClose, username, setUser }) => {
 
   const location = useLocation();
   const currentPage = location.pathname;
-  console.log(currentPage === "/curr");
 
   let title = item.volumeInfo.title;
   let thumbnail = item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.thumbnail;
@@ -30,10 +29,9 @@ const BookModal = ({ show, item, onClose, username, setUser }) => {
         alert(res.error);
       } else {
         setUser(res.user);
-        console.log(username);
 
         post("/api/post", {
-          creator_username: username,
+          creator_username: user.username,
           status: page,
           bookTitle: title,
           bookAuthor: authorNames,
@@ -65,6 +63,7 @@ const BookModal = ({ show, item, onClose, username, setUser }) => {
               Close
             </button>
           </div>
+
           {["/tbr", "/curr"].includes(currentPage) && (
             <div className="remove-container lower-padding">
               <button className="light-btn" onClick={() => handleRemoveBook()}>
@@ -84,6 +83,7 @@ const BookModal = ({ show, item, onClose, username, setUser }) => {
               </div>
             </div>
           )}
+
           <div className="overlay-inner">
             <div className="book">
               <ul className="front">
@@ -105,22 +105,24 @@ const BookModal = ({ show, item, onClose, username, setUser }) => {
                       <p className="author">Written by {authorNames} </p>
                       <div className="buttons-container">
                         <div className="btn-subcontainer">
-                          <div className="dropdown">
-                            <span className="dark-btn">Add Book</span>
-                            <div className="dropdown-content add-more-btn">
-                              <button className="dark-btn" onClick={() => handleAddBook("/tbr")}>
-                                Want To Read
-                              </button>
+                          {user && (
+                            <div className="dropdown">
+                              <span className="dark-btn">Add Book</span>
+                              <div className="dropdown-content add-more-btn">
+                                <button className="dark-btn" onClick={() => handleAddBook("/tbr")}>
+                                  Want To Read
+                                </button>
 
-                              <button className="dark-btn" onClick={() => handleAddBook("/curr")}>
-                                Currently Reading
-                              </button>
+                                <button className="dark-btn" onClick={() => handleAddBook("/curr")}>
+                                  Currently Reading
+                                </button>
 
-                              <button className="dark-btn" onClick={() => handleAddBook("/read")}>
-                                Finished Reading
-                              </button>
+                                <button className="dark-btn" onClick={() => handleAddBook("/read")}>
+                                  Finished Reading
+                                </button>
+                              </div>
                             </div>
-                          </div>
+                          )}
                           <div>
                             <a href={item.volumeInfo.previewLink}>
                               <button className="dark-btn add-more-btn">More Info</button>

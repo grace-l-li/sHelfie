@@ -4,7 +4,6 @@ import "../pages/SearchBooks.js";
 import "./UserCard.css";
 
 const UserCard = ({ friends, user }) => {
-  console.log(friends);
   const [userItem, setUserItem] = useState([]);
 
   return (

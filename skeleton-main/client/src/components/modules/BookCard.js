@@ -39,7 +39,7 @@ const BookCard = ({ books, user, setUser }) => {
                     show={show}
                     item={bookItem}
                     onClose={() => setShow(false)}
-                    username={user.username}
+                    user={user}
                     setUser={setUser}
                     currentPage="search-books"
                   />

@@ -68,7 +68,7 @@ const ReadOther = (props) => {
         )}
         <div className="read-container">
           {chunk.map((book, index) => (
-            <BookCard key={index} books={[book]} />
+            <BookCard key={index} books={[book]}/>
           ))}
           {/*Have to update BookCard to be conditional render for remove & add book*/}
         </div>
