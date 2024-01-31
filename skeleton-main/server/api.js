@@ -155,12 +155,16 @@ router.post("/remove", (req, res) => {
 router.get("/posts", (req, res) => {
   let userId = req.query.userId;
   let ids = [userId];
-  User.findById(userId).then((user) => ids.concat(user.friends));
-  console.log("ids", ids);
-  Post.find({ creator_id: { $in: ids } }).then((posts) => {
-    console.log("posts", posts);
-    res.send({ posts });
-  });
+  User.findById(userId)
+    .then((user) => {
+      ids = ids.concat(user.friends);
+      return ids;
+    })
+    .then((ids) => {
+      Post.find({ creator_id: { $in: ids } }).then((posts) => {
+        res.send({ posts });
+      });
+    });
   //for add friend_ids
 });
 
