@@ -58,11 +58,7 @@ const Read = (props) => {
         )}
         <div className="read-container">
           {chunk.map((book, index) => (
-<<<<<<< HEAD
-            <BookCard key={index} books={[book]} user={props.user} setUser={props.setUser} />
-=======
             <BookCard key={index} books={[book]} user={props.user} />
->>>>>>> 7120c9498be61c10f0223da27fa96f9a48907e88
           ))}
         </div>
       </div>
