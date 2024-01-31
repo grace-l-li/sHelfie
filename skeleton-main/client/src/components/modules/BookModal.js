@@ -25,19 +25,18 @@ const BookModal = ({ show, item, onClose, username, setUser }) => {
     : "No description available.";
 
   const handleAddBook = (page) => {
-    post(`/api${page}`, { bookId: item.id, rating: -1, review: "" }).then((res) => {
+    post(`/api${page}`, { bookId: item.id }).then((res) => {
       if (res.error) {
         alert(res.error);
       } else {
         setUser(res.user);
         console.log(username);
-        // navigate(page);
+
         post("/api/post", {
-          // creator_id: user._id,
-          creator_username: username, //username doesn't change
+          creator_username: username,
           status: page,
           bookTitle: title,
-          bookAuthor: authorNames, //author names and thumbnail don't show up??
+          bookAuthor: authorNames,
           bookImg: thumbnail,
           rating: -1, //-1 if tbr or current
           review: "",
@@ -51,12 +50,8 @@ const BookModal = ({ show, item, onClose, username, setUser }) => {
   const handleRemoveBook = () => {
     post("/api/remove", { bookId: item.id, page: currentPage }).then((res) => {
       if (!res.error) {
-        let updatedData = res.updatedData;
-        setUser(updatedData);
-        // console.log(res);
-        // setUser(res.user); //Why is setUser not a function??
-        onClose(); //have to refresh to see updated changes
-        // navigate(currentPage);
+        setUser(res.updatedUser);
+        onClose();
       }
     });
   };
@@ -114,7 +109,7 @@ const BookModal = ({ show, item, onClose, username, setUser }) => {
                             <span className="dark-btn">Add Book</span>
                             <div className="dropdown-content add-more-btn">
                               <button className="dark-btn" onClick={() => handleAddBook("/tbr")}>
-                                To Be Read
+                                Want To Read
                               </button>
 
                               <button className="dark-btn" onClick={() => handleAddBook("/curr")}>

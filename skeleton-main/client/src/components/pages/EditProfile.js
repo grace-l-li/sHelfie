@@ -38,7 +38,7 @@ const Profile = (props) => {
       picture: sendPicture,
     }).then((res) => {
       if (!res.error) {
-        get(`/api/user`, { userId: props.userId }).then(({ user: userObj }) => {
+        get("/api/user", { userId: props.userId }).then(({ user: userObj }) => {
           if (userObj !== null) {
             props.setUser(userObj);
             navigate("/profile");
@@ -74,12 +74,7 @@ const Profile = (props) => {
                 onChange={(e) => setNewUsername(e.target.value)}
                 maxLength={28}
               />
-              {/* <h1 className="Profile-name">{props.user.name}</h1> */}
-              {/* <h3 className="Username-style">{props.user.username}</h3> */}
-              {/* <div className="Friends-container">
-                <h3 className="Friends-style"> {props.user.num_followers} Friends </h3>
-                <h3 className="Friends-style"> {props.user.num_following} Following </h3>
-              </div> */}
+              
               <div className="Profile-bio-container">
                 <textarea
                   className="Profile-bio editable-field"

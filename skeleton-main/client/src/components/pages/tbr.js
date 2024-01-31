@@ -19,9 +19,9 @@ const TBR = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       if (props.user.tbr !== undefined) {
-        for (const book of props.user.tbr) {
+        for (const bookId of props.user.tbr) {
           await axios
-            .get(`https://www.googleapis.com/books/v1/volumes/${book.bookId}`)
+            .get(`https://www.googleapis.com/books/v1/volumes/${bookId}`)
             .then((info) => {
               infoList.push(info.data);
             });

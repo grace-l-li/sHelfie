@@ -51,11 +51,12 @@ const App = () => {
   }, [location]);
 
   const fetchUser = () => {
+    console.log(userId);
+
     if (userId) {
       get("/api/user", { userId: userId }).then(({ user: userObj }) => {
         if (userObj !== null) {
           setUser(userObj);
-          return userObj;
         }
       });
     }
@@ -71,7 +72,6 @@ const App = () => {
     console.log(`Logged in as ${decodedCredential.name}`);
     post("/api/login", { token: userToken }).then((user) => {
       setUserId(user._id);
-      // post("/api/initsocket", { socketid: socket.id });
       setJustLoggedIn(true);
       navigate("/profile");
     });
@@ -86,6 +86,8 @@ const App = () => {
   const isLandingPage = location.pathname === "/";
   const pathsWithoutNavBar = ["/profile/edit", "/curr", "/tbr", "/read"];
   const shouldShowNavBar = !pathsWithoutNavBar.includes(location.pathname);
+
+  console.log(user);
 
   return (
     <>
