@@ -72,7 +72,7 @@ const Profile = (props) => {
                 className="Username-style editable-field"
                 value={newUsername}
                 onChange={(e) => setNewUsername(e.target.value)}
-                maxLength={30}
+                maxLength={28}
               />
               {/* <h1 className="Profile-name">{props.user.name}</h1> */}
               {/* <h3 className="Username-style">{props.user.username}</h3> */}

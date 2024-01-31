@@ -1,19 +1,24 @@
 .userCard-container {
   display: flex;
   flex-direction: row;
-  width: 60%;
-  height: 40vh;
+  width: 30%;
+  height: 12vh;
   background-color: var(--lightpurple);
-  margin: 3vh auto;
-  border-radius: 25px;
-}
-.img-flex {
-  flex: 1;
+  justify-content: flex-start;
   align-items: center;
-  justify-content: center;
+  padding: 0vh 1vh;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  transition: transform 0.3s ease;
+  min-width: 400px;
 }
 
-.img-flex img {
+.userCard-container:hover {
+  transform: scale(1.07);
+  background-color: var(--white);
+}
+.userCard-container img {
   width: 10vh;
   height: 10vh;
   border-radius: 50%;
@@ -22,14 +27,9 @@
 }
 
 .username-container {
-  flex: 4;
-  padding: 3vh;
-  display: flex;
-  align-items: center; /* This will vertically center the text within the title area */
-  justify-content: center; /* Align text to the start */
   font-family: "Readex Pro";
-  color: var(--lightpurple);
+  color: var(--darkpurple);
   font-weight: bold;
-  font-size: 1.8vh;
-  flex: 12;
+  font-size: 3.5vh;
+  padding-left: 2vh;
 }

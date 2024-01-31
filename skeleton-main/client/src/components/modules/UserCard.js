@@ -10,11 +10,11 @@ const UserCard = ({ friends, user }) => {
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
       {friends.map((friend, index) => (
-        <div key={index} className="userCard-container">
-          <div className="img-flex">
+        <div key={index}>
+          <a className="userCard-container" href={`/profile/${friend.username}`}>
             <img src={friend.picture} alt="Profile" />
-          </div>
-          <div className="username-container">{friend.username}</div>
+            <div className="username-container">@{friend.username}</div>
+          </a>
         </div>
       ))}
     </div>
