@@ -20,9 +20,9 @@ const Curr = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       if (props.user.curr !== undefined) {
-        for (const book of props.user.curr) {
+        for (const bookId of props.user.curr) {
           await axios
-            .get(`https://www.googleapis.com/books/v1/volumes/${book.bookId}`)
+            .get(`https://www.googleapis.com/books/v1/volumes/${bookId}`)
             .then((info) => {
               infoList.push(info.data);
             });

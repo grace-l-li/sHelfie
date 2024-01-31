@@ -59,7 +59,9 @@ const FeedCard = (props) => {
             <h2>@{props.creator_username}</h2>
           </Link>
 
-          {props.status === "/tbr" ? (
+          {props.status === "rated" ? (
+            <div> rated</div>
+          ) : props.status === "/tbr" ? (
             <div> wants to read</div>
           ) : props.status === "/curr" ? (
             <div> is reading</div>

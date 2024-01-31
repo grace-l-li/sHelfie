@@ -22,7 +22,6 @@ const router = express.Router();
 
 //initialize socket
 const socketManager = require("./server-socket");
-const user = require("./models/user");
 
 router.post("/login", auth.login);
 router.post("/logout", auth.logout);
@@ -46,15 +45,27 @@ router.post("/initsocket", (req, res) => {
 // | write your API methods below!|
 // |------------------------------|
 
+// router.get("/userFromId", (req, res) => {
+//   console.log(`reached api with userId`);
+//   User.findById(req.query.userId).then((user) => {
+//     res.send({ user });
+//   });
+// });
+
 router.get("/user", (req, res) => {
   User.findById(req.user._id).then((user) => {
     res.send({ user });
   });
 });
 
+router.get("/userFromId", (req, res) => {
+  User.findById(req.query.userId).then((user) => {
+    res.send({ user });
+  });
+});
+
 router.get("/username", (req, res) => {
   User.find({ username: req.query.username }).then((users) => {
-    console.log(users);
     res.send({ users });
   });
 });
@@ -87,15 +98,11 @@ router.post("/edituser", async (req, res) => {
 
 router.post("/tbr", (req, res) => {
   User.findById(req.user._id).then((user) => {
-    if (user.tbr.find((book) => book.bookId === req.body.bookId)) {
+    if (user.tbr.find((bookId) => bookId === req.body.bookId)) {
       //check if element in array already
       res.send({ error: "book already added" });
     } else {
-      user.tbr.push({
-        bookId: req.body.bookId,
-        rating: req.body.rating,
-        review: req.body.review,
-      });
+      user.tbr.push(req.body.bookId);
 
       user.save().then(() => {
         res.send({ user });
@@ -106,16 +113,12 @@ router.post("/tbr", (req, res) => {
 
 router.post("/curr", (req, res) => {
   User.findById(req.user._id).then((user) => {
-    if (user.curr.find((book) => book.bookId === req.body.bookId)) {
+    if (user.curr.find((bookId) => bookId === req.body.bookId)) {
       res.send({ error: "book already added" });
     } else if (user.curr.length === 3) {
       res.send({ error: "You've reached maximum books allowed" });
     } else {
-      user.curr.push({
-        bookId: req.body.bookId,
-        rating: req.body.rating,
-        review: req.body.review,
-      });
+      user.curr.push(req.body.bookId);
 
       user.save().then(() => {
         res.send({ user });
@@ -146,13 +149,13 @@ router.post("/remove", (req, res) => {
   //delete book
   User.findById(req.user._id).then((user) => {
     if (req.body.page === "/tbr") {
-      user.tbr = user.tbr.filter((book) => book.bookId !== req.body.bookId);
+      user.tbr = user.tbr.filter((bookId) => bookId !== req.body.bookId);
     } else if (req.body.page === "/curr") {
-      user.curr = user.curr.filter((book) => book.bookId !== req.body.bookId);
+      user.curr = user.curr.filter((bookId) => bookId !== req.body.bookId);
     } else if (req.body.page === "/read") {
-      user.read = user.read.filter((book) => book.bookId !== req.body.bookId);
+      user.read = user.read.filter((bookId) => bookId !== req.body.bookId);
     }
-    user.save().then((updatedData) => res.send({ updatedData }));
+    user.save().then((updatedUser) => res.send({ updatedUser }));
   });
 });
 
@@ -160,7 +163,7 @@ router.get("/posts", (req, res) => {
   // empty selector means get all documents
   let userId = req.user._id;
   let ids = [userId];
-  User.findById(userId).then((updatedUser) => ids.concat(updatedUser.following));
+  User.findById(userId).then((user) => ids.concat(user.friends));
   Post.find({ creator_id: { $in: ids } }).then((posts) => res.send(posts));
   //for add friend_ids
 });
@@ -210,6 +213,54 @@ router.post("/like", (req, res) => {
 });
 
 // router.get("/hasLiked")
+
+router.post("/reqfriend", (req, res) => {
+  User.findById(req.body.person._id).then((person) => {
+    person.friend_reqs.push(req.user._id);
+    console.log("friend_reqs updated");
+    person.save().then((person) => res.send({ person }));
+  });
+}); //add my userId to other's friend_reqs
+
+router.post("/cancelreq", (req, res) => {
+  User.findById(req.body.person._id).then((person) => {
+    person.friend_reqs = person.friend_reqs.filter((id) => id !== req.user._id);
+    console.log("request canceled");
+    person.save().then((person) => res.send({ person }));
+  });
+});
+
+router.post("/acceptfriend", (req, res) => {
+  User.findById(req.body.person._id).then((person) => {
+    person.friends.push(req.user._id);
+    person.num_friends += 1;
+    person.save().then((person) => res.send({ person }));
+  });
+  User.findById(req.user._id).then((user) => {
+    user.friends.push(req.body.person._id);
+    user.num_friends += 1;
+    user.save().then((user) => res.send({ user }));
+  });
+}); //remove from their friend_reqs, add to both of our friends
+
+router.post("/deletereq", (req, res) => {
+  User.findById(req.body.person._id).then((person) => {
+    person.friend_reqs.filter((id) => id !== req.user._id);
+    person.save().then((person) => res.send({ person }));
+  });
+}); //remove from their friend_reqs
+
+router.get("/checkfriend", (req, res) => {
+  User.findById(req.query.personId).then((person) => {
+    res.send({ id: person.friends.find((ids) => ids === req.user._id) });
+  });
+});
+
+router.get("/checkreq", (req, res) => {
+  User.findById(req.query.personId).then((person) => {
+    res.send({ id: person.friend_reqs.find((ids) => ids === req.user._id) });
+  });
+});
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

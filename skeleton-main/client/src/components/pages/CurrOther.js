@@ -30,12 +30,10 @@ const CurrOther = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       if (person.curr !== undefined) {
-        for (const book of person.curr) {
-          await axios
-            .get(`https://www.googleapis.com/books/v1/volumes/${book.bookId}`)
-            .then((info) => {
-              infoList.push(info.data);
-            });
+        for (const bookId of person.curr) {
+          await axios.get(`https://www.googleapis.com/books/v1/volumes/${bookId}`).then((info) => {
+            infoList.push(info.data);
+          });
         }
         setBookData(infoList);
       }
@@ -57,7 +55,7 @@ const CurrOther = (props) => {
             <img src={Wood} />
           </div>
           <div className="currbooks-container">
-            {<BookCard books={bookData} user={person} />}
+            {<BookCard books={bookData} user={person}/>}
             {/*Have to update BookCard to be conditional render for remove & add book*/}
           </div>
         </div>

@@ -6,14 +6,11 @@ const UserSchema = new mongoose.Schema({
   picture: String,
   username: String,
   bio: String,
-  follow_reqs: [],
-  followers: [],
-  num_followers: Number,
-  following: [],
-  num_following: Number,
-  // pending: []
-  tbr: [{}], // bookId: String, rating: Number, review: String
-  curr: [{}],
+  friend_reqs: [],
+  friends: [],
+  num_friends: Number,
+  tbr: [], // bookId: String
+  curr: [],
   read: [{}],
 });
 

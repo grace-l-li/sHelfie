@@ -13,7 +13,7 @@ import "./Profile.css";
 const Profile = (props) => {
   useEffect(() => {
     if (props.userId) {
-      get(`/api/user`, { userId: props.userId }).then(({ user: userObj }) => {
+      get("/api/user", { userId: props.userId }).then(({ user: userObj }) => {
         if (userObj !== null) {
           props.setUser(userObj);
         }
@@ -30,8 +30,6 @@ const Profile = (props) => {
       }, 3000);
     }
   }, [props.justLoggedIn]);
-
-  console.log(props.user.picture);
 
   const [profileImage, setProfileImage] = useState(props.user.picture || blankProfile);
   // const [playAnimation, setPlayAnimation] = useState(false);
@@ -61,8 +59,7 @@ const Profile = (props) => {
               <h1 className="Profile-name">{props.user.name}</h1>
               <h3 className="Username-style">@{props.user.username}</h3>
               <div className="Friends-container">
-                <h3 className="Friends-style"> {props.user.num_followers} Friends </h3>
-                <h3 className="Friends-style"> {props.user.num_following} Following </h3>
+                <h3 className="Friends-style"> {props.user.num_friends} Friends </h3>
               </div>
               <div className="Profile-bio-container">
                 <h4 className="Profile-bio">{props.user.bio}</h4>
@@ -88,7 +85,7 @@ const Profile = (props) => {
                 <img src={boxDrawing} alt="Box" />
               </a>
               <a href="/tbr">
-                <button className="white-btn subpage-link">to be read</button>
+                <button className="white-btn subpage-link">want to read</button>
               </a>
             </div>
 

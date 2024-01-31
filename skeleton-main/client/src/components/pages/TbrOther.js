@@ -29,9 +29,9 @@ const TbrOther = () => {
   useEffect(() => {
     const fetchData = async () => {
       if (person.tbr !== undefined) {
-        for (const book of person.tbr) {
+        for (const bookId of person.tbr) {
           await axios
-            .get(`https://www.googleapis.com/books/v1/volumes/${book.bookId}`)
+            .get(`https://www.googleapis.com/books/v1/volumes/${bookId}`)
             .then((info) => {
               infoList.push(info.data);
             });
