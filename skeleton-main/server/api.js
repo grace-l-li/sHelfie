@@ -92,9 +92,9 @@ router.post("/curr", (req, res) => {
   User.findById(req.user._id).then((user) => {
     if (user.curr.find((book) => book.bookId === req.body.bookId)) {
       res.send({ error: "book already added" });
-    } else if (user.curr.length === 3) {res.send({error: "You've reached maximum books allowed"})}
-    
-    else {
+    } else if (user.curr.length === 3) {
+      res.send({ error: "You've reached maximum books allowed" });
+    } else {
       user.curr.push({
         bookId: req.body.bookId,
         rating: req.body.rating,
@@ -111,6 +111,9 @@ router.post("/curr", (req, res) => {
 router.post("/read", (req, res) => {
   User.findById(req.user._id).then((user) => {
     if (user.read.find((book) => book.bookId === req.body.bookId)) {
+      //check if element in array already
+      res.send({ error: "book already added" });
+    } else {
       user.read.push({
         bookId: req.body.bookId,
         rating: req.body.rating,
@@ -120,8 +123,6 @@ router.post("/read", (req, res) => {
       user.save().then(() => {
         res.send({ user });
       });
-    } else {
-      res.send({ error: "book already added" });
     }
   });
 });

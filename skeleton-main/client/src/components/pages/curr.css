@@ -36,8 +36,7 @@
 }
 
 .circle {
-  position: relative; /* This ensures that the absolute positioning of the child is relative to this container */
-
+  position: relative;
   overflow: hidden;
   width: 80vw;
   height: 80vw;
@@ -48,24 +47,11 @@
   justify-content: center;
 }
 .currbooks-container {
-  display: flex; /* Use flex instead of grid */
-  justify-content: center; /* This will center all items in the container */
+  display: flex;
+  justify-content: center;
   align-items: center;
   box-sizing: border-box;
   padding: 4vw;
   z-index: 1;
-  gap: 4vw; /* This sets both the row and column gaps for flex items */
-  /* background-color: red; */
+  gap: 4vw;
 }
-/* }
-.currbooks-container {
-  justify-content: center;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  box-sizing: border-box;
-  padding: 4vw;
-  justify-items: center;
-  align-items: center;
-  grid-column-gap: 4vw;
-  background-color: red;
-} */
