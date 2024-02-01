@@ -57,8 +57,15 @@ router.get("/userFromId", (req, res) => {
   });
 });
 
+// router.get("/username", (req, res) => {
+//   User.find({ username: req.query.username }).then((users) => {
+//     res.send({ users });
+//   });
+// });
+
 router.get("/username", (req, res) => {
-  const searchQuery = new RegExp(req.query.username, "i");
+  // Using a regular expression to match any part of the username
+  const searchQuery = new RegExp(req.query.username, "i"); // 'i' for case-insensitive
   User.find({ username: { $regex: searchQuery } })
     .then((users) => {
       res.send({ users });

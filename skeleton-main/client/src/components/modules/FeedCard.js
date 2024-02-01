@@ -92,7 +92,6 @@ const FeedCard = (props) => {
           <div className="titlebook">{props.bookTitle}</div>
           <div className="authorbook">by {props.bookAuthor}</div>
           <div className="reviewbook">{props.review}</div>
-          <div>{props.review !== "" && <button className="see-review">See Review</button>} </div>
         </div>
         <div className="post-center-right img-book">
           <img src={props.bookImg} alt="Book" />
