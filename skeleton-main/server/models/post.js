@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const PostSchema = new mongoose.Schema({
   creator_id: String,
   creator_username: String,
+  creator_picture: String,
   status: String,
   bookTitle: String,
   bookImg: String,

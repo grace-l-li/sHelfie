@@ -32,6 +32,7 @@ const BookModal = ({ show, item, onClose, user, setUser }) => {
 
         post("/api/post", {
           creator_username: user.username,
+          creator_picture: user.picture,
           status: page,
           bookTitle: title,
           bookAuthor: authorNames,
@@ -58,6 +59,21 @@ const BookModal = ({ show, item, onClose, user, setUser }) => {
   // Function to toggle the visibility of the rating input
   const toggleRatingInput = () => {
     setShowRatingInput(!showRatingInput);
+  };
+
+  const handleRating = () => {
+    let opt = document.getElementById("rated");
+    let selected = opt.options[opt.selectedIndex].value;
+    post("/api/post", {
+      creator_username: user.username,
+      creator_picture: user.picture,
+      status: "rated",
+      bookTitle: title,
+      bookAuthor: authorNames,
+      bookImg: thumbnail,
+      rating: selected,
+      likeCount: 0,
+    });
   };
 
   return (
@@ -88,7 +104,7 @@ const BookModal = ({ show, item, onClose, user, setUser }) => {
                 </button>
                 {showRatingInput && (
                   <div className="rating-input-container">
-                    <select>
+                    <select id="rated" onClick={() => handleRating()}>
                       <option value="">Select a Rating</option>
                       <option value="1">1</option>
                       <option value="2">2</option>

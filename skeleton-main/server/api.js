@@ -58,9 +58,14 @@ router.get("/userFromId", (req, res) => {
 });
 
 router.get("/username", (req, res) => {
-  User.find({ username: req.query.username }).then((users) => {
-    res.send({ users });
-  });
+  const searchQuery = new RegExp(req.query.username, "i");
+  User.find({ username: { $regex: searchQuery } })
+    .then((users) => {
+      res.send({ users });
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
 });
 
 router.get("/userFromUsername", async (req, res) => {
@@ -172,6 +177,7 @@ router.post("/post", (req, res) => {
   const newPost = new Post({
     creator_id: req.user._id,
     creator_username: req.body.creator_username,
+    creator_picture: req.body.creator_picture,
     status: req.body.status,
     bookTitle: req.body.bookTitle,
     bookAuthor: req.body.bookAuthor,

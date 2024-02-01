@@ -68,7 +68,7 @@ const FeedCard = (props) => {
     <div key={props.index} className="post-container">
       <div className="post-top-bar">
         <div className="post-img">
-          <img src={props.user.picture} alt="Profile" />
+          <img src={props.creator_picture} alt="Profile" />
         </div>
         <div className="name-container">
           <Link to={`/profile/${props.creator_username}`}>
@@ -76,7 +76,7 @@ const FeedCard = (props) => {
           </Link>
 
           {props.status === "rated" ? (
-            <div> rated</div>
+            <div className="status"> rated</div>
           ) : props.status === "/tbr" ? (
             <div className="status"> wants to read</div>
           ) : props.status === "/curr" ? (
