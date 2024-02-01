@@ -31,6 +31,7 @@ const Feed = (props) => {
         postId={post._id}
         creator_id={post.creator_id}
         creator_username={post.creator_username}
+        creator_picture={post.creator_picture}
         status={post.status}
         bookTitle={post.bookTitle}
         bookAuthor={post.bookAuthor}

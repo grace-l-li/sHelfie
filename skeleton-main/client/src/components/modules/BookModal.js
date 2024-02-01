@@ -30,9 +30,12 @@ const BookModal = ({ show, item, onClose, user, setUser }) => {
       } else {
         setUser(res.user);
 
+        console.log(res.user.picture);
+        console.log(user.picture);
+
         post("/api/post", {
-          creator_username: user.username,
-          creator_picture: user.picture,
+          creator_username: res.user.username,
+          creator_picture: res.user.picture,
           status: page,
           bookTitle: title,
           bookAuthor: authorNames,
